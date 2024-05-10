@@ -23,6 +23,7 @@ import (
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 
 	juno "github.com/forbole/juno/v6/types"
 

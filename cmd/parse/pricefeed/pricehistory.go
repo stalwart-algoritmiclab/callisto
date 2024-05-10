@@ -13,9 +13,9 @@ import (
 	"github.com/forbole/juno/v6/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/pricefeed"
-	"github.com/forbole/callisto/v4/utils"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 // priceHistoryCmd returns the Cobra command allowing to store token price history

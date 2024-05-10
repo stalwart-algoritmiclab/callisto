@@ -1,6 +1,12 @@
 module github.com/stalwart-algoritmiclab/callisto
 
-go 1.21
+go 1.22
+
+toolchain go1.22.0
+
+// This is to avoid warnings while running the binary
+// See here: https://github.com/desmos-labs/desmos/pull/1131#discussion_r1194090419
+replace github.com/cosmos/gogoproto => github.com/cosmos/gogoproto v1.4.10
 
 require (
 	cosmossdk.io/log v1.3.1
@@ -353,3 +359,7 @@ require (
 	pgregory.net/rapid v1.1.0 // indirect
 	sigs.k8s.io/yaml v1.4.0 // indirect
 )
+
+// This is to avoid warnings while running the binary
+// See here: https://github.com/desmos-labs/desmos/pull/1131#discussion_r1194090419
+replace github.com/cosmos/gogoproto => github.com/cosmos/gogoproto v1.4.10

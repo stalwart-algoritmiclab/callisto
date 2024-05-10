@@ -7,10 +7,7 @@
 package message_type
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/gogoproto/proto"
-
-	"github.com/stalwart-algoritmiclab/callisto/modules/utils"
+	utils "github.com/stalwart-algoritmiclab/callisto/modules/utils"
 	msgtypes "github.com/stalwart-algoritmiclab/callisto/types"
 
 	"github.com/forbole/juno/v6/types"

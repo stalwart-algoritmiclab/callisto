@@ -9,15 +9,12 @@ package staking
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/authz"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/rs/zerolog/log"
 
 	juno "github.com/forbole/juno/v6/types"
 
-	"github.com/forbole/callisto/v4/utils"
-	juno "github.com/forbole/juno/v5/types"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 var msgFilter = map[string]bool{

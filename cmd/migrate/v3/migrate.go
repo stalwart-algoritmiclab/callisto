@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/forbole/callisto/v4/modules/actions"
+	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
 
 	parsecmdtypes "github.com/forbole/juno/v6/cmd/parse/types"
 

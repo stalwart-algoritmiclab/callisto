@@ -17,11 +17,9 @@ import (
 	authttypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	vestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 
-	moduleutils "github.com/forbole/callisto/v4/modules/utils"
-	"github.com/forbole/callisto/v4/types"
-	"github.com/forbole/callisto/v4/utils"
-	"github.com/stalwart-algoritmiclab/callisto/modules/utils"
+	moduleutils "github.com/stalwart-algoritmiclab/callisto/modules/utils"
 	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 var msgFilter = map[string]bool{
