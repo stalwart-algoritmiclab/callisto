@@ -4,9 +4,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authttypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/forbole/callisto/v4/types"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 
-	dbtypes "github.com/forbole/callisto/v4/database/types"
+	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 )
 
 func (suite *DbTestSuite) TestSaveAccount() {

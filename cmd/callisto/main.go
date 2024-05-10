@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cosmossdk.io/simapp"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/cmd"
 	initcmd "github.com/forbole/juno/v5/cmd/init"
@@ -8,15 +9,11 @@ import (
 	startcmd "github.com/forbole/juno/v5/cmd/start"
 	"github.com/forbole/juno/v5/modules/messages"
 
-	migratecmd "github.com/forbole/callisto/v4/cmd/migrate"
-	parsecmd "github.com/forbole/callisto/v4/cmd/parse"
-
-	"github.com/forbole/callisto/v4/types/config"
-
-	"cosmossdk.io/simapp"
-
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules"
+	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
+	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules"
+	"github.com/stalwart-algoritmiclab/callisto/types/config"
 )
 
 func main() {

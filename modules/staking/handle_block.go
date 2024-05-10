@@ -4,13 +4,12 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/forbole/callisto/v4/types"
-
-	juno "github.com/forbole/juno/v5/types"
-
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 	tmtypes "github.com/cometbft/cometbft/types"
+	juno "github.com/forbole/juno/v5/types"
 	"github.com/rs/zerolog/log"
+
+	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 // HandleBlock implements BlockModule

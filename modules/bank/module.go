@@ -2,13 +2,11 @@ package bank
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
-
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/bank/source"
-
+	"github.com/forbole/juno/v5/modules"
 	junomessages "github.com/forbole/juno/v5/modules/messages"
 
-	"github.com/forbole/juno/v5/modules"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
 )
 
 var (

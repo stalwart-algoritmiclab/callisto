@@ -4,14 +4,12 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/forbole/callisto/v4/modules/actions"
-
+	junov4 "github.com/forbole/juno/v5/cmd/migrate/v4"
 	parsecmdtypes "github.com/forbole/juno/v5/cmd/parse/types"
-
+	"github.com/forbole/juno/v5/types/config"
 	"gopkg.in/yaml.v3"
 
-	junov4 "github.com/forbole/juno/v5/cmd/migrate/v4"
-	"github.com/forbole/juno/v5/types/config"
+	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
 )
 
 // RunMigration runs the migrations from v2 to v3

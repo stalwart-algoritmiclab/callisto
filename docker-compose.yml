@@ -1,7 +1,8 @@
-version: '3.6'
+version: '3.9'
 services:
   hasura:
-    image: hasura/graphql-engine:v2.0.4
+    container_name: hasura
+    image: hasura/graphql-engine:v2.38.1
     ports:
     - "8080:8080"
     restart: always
@@ -15,7 +16,9 @@ services:
       HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
       ## uncomment next line to set an admin secret
       # HASURA_GRAPHQL_ADMIN_SECRET: myadminsecretkey
+
   callisto:
+    container_name: callisto
     build:
       context: .
       dockerfile: Dockerfile

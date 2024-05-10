@@ -1,36 +1,31 @@
 package modules
 
 import (
-	"github.com/forbole/callisto/v4/modules/actions"
-	"github.com/forbole/callisto/v4/modules/types"
-
-	"github.com/forbole/juno/v5/modules/pruning"
-	"github.com/forbole/juno/v5/modules/telemetry"
-
-	"github.com/forbole/callisto/v4/modules/slashing"
-
 	jmodules "github.com/forbole/juno/v5/modules"
 	"github.com/forbole/juno/v5/modules/messages"
+	"github.com/forbole/juno/v5/modules/pruning"
 	"github.com/forbole/juno/v5/modules/registrar"
-
-	"github.com/forbole/callisto/v4/utils"
-
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/auth"
-	"github.com/forbole/callisto/v4/modules/bank"
-	"github.com/forbole/callisto/v4/modules/consensus"
-	"github.com/forbole/callisto/v4/modules/distribution"
-	"github.com/forbole/callisto/v4/modules/feegrant"
-
-	dailyrefetch "github.com/forbole/callisto/v4/modules/daily_refetch"
-	"github.com/forbole/callisto/v4/modules/gov"
-	messagetype "github.com/forbole/callisto/v4/modules/message_type"
-	"github.com/forbole/callisto/v4/modules/mint"
-	"github.com/forbole/callisto/v4/modules/modules"
-	"github.com/forbole/callisto/v4/modules/pricefeed"
-	"github.com/forbole/callisto/v4/modules/staking"
-	"github.com/forbole/callisto/v4/modules/upgrade"
+	"github.com/forbole/juno/v5/modules/telemetry"
 	juno "github.com/forbole/juno/v5/types"
+
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
+	"github.com/stalwart-algoritmiclab/callisto/modules/auth"
+	"github.com/stalwart-algoritmiclab/callisto/modules/bank"
+	"github.com/stalwart-algoritmiclab/callisto/modules/consensus"
+	dailyrefetch "github.com/stalwart-algoritmiclab/callisto/modules/daily_refetch"
+	"github.com/stalwart-algoritmiclab/callisto/modules/distribution"
+	"github.com/stalwart-algoritmiclab/callisto/modules/feegrant"
+	"github.com/stalwart-algoritmiclab/callisto/modules/gov"
+	messagetype "github.com/stalwart-algoritmiclab/callisto/modules/message_type"
+	"github.com/stalwart-algoritmiclab/callisto/modules/mint"
+	"github.com/stalwart-algoritmiclab/callisto/modules/modules"
+	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed"
+	"github.com/stalwart-algoritmiclab/callisto/modules/slashing"
+	"github.com/stalwart-algoritmiclab/callisto/modules/staking"
+	"github.com/stalwart-algoritmiclab/callisto/modules/types"
+	"github.com/stalwart-algoritmiclab/callisto/modules/upgrade"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 // UniqueAddressesParser returns a wrapper around the given parser that removes all duplicated addresses

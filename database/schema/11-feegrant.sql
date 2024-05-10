@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE fee_grant_allowance
 (
     id                 SERIAL      NOT NULL PRIMARY KEY,
@@ -8,3 +9,8 @@ CREATE TABLE fee_grant_allowance
     CONSTRAINT unique_fee_grant_allowance UNIQUE(grantee_address, granter_address) 
 );
 CREATE INDEX fee_grant_allowance_height_index ON fee_grant_allowance (height);
+
+
+-- +migrate Down
+DROP INDEX IF EXISTS fee_grant_allowance_height_index;
+DROP TABLE IF EXISTS fee_grant_allowance CASCADE;
