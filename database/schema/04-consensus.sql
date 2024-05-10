@@ -1,3 +1,4 @@
+-- +migrate Up
 CREATE TABLE genesis
 (
     one_row_id     BOOL      NOT NULL DEFAULT TRUE PRIMARY KEY,
@@ -42,3 +43,14 @@ CREATE TABLE average_block_time_from_genesis
     CHECK (one_row_id)
 );
 CREATE INDEX average_block_time_from_genesis_height_index ON average_block_time_from_genesis (height);
+
+-- +migrate Down
+DROP INDEX IF EXISTS average_block_time_from_genesis_height_index;
+DROP TABLE IF EXISTS average_block_time_from_genesis CASCADE;
+DROP INDEX IF EXISTS average_block_time_per_day_height_index;
+DROP TABLE IF EXISTS average_block_time_per_day CASCADE;
+DROP INDEX IF EXISTS average_block_time_per_hour_height_index;
+DROP TABLE IF EXISTS average_block_time_per_hour CASCADE;
+DROP INDEX IF EXISTS average_block_time_per_minute_height_index;
+DROP TABLE IF EXISTS average_block_time_per_minute CASCADE;
+DROP TABLE IF EXISTS genesis CASCADE;

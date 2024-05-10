@@ -1,7 +1,7 @@
 package database_test
 
 import (
-	"github.com/forbole/callisto/v4/database/types"
+	"github.com/stalwart-algoritmiclab/callisto/database/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_InsertEnableModules() {

@@ -3,8 +3,8 @@ package message_type
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/gogoproto/proto"
-	utils "github.com/forbole/callisto/v4/modules/utils"
-	msgtypes "github.com/forbole/callisto/v4/types"
+	utils "github.com/stalwart-algoritmiclab/callisto/modules/utils"
+	msgtypes "github.com/stalwart-algoritmiclab/callisto/types"
 
 	"github.com/forbole/juno/v5/types"
 )

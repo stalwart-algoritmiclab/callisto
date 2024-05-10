@@ -1,23 +1,20 @@
 package parse
 
 import (
+	parseblocks "github.com/forbole/juno/v5/cmd/parse/blocks"
+	parsegenesis "github.com/forbole/juno/v5/cmd/parse/genesis"
+	parsetransaction "github.com/forbole/juno/v5/cmd/parse/transactions"
 	parse "github.com/forbole/juno/v5/cmd/parse/types"
 	"github.com/spf13/cobra"
 
-	parseblocks "github.com/forbole/juno/v5/cmd/parse/blocks"
-
-	parsegenesis "github.com/forbole/juno/v5/cmd/parse/genesis"
-
-	parsetransaction "github.com/forbole/juno/v5/cmd/parse/transactions"
-
-	parseauth "github.com/forbole/callisto/v4/cmd/parse/auth"
-	parsebank "github.com/forbole/callisto/v4/cmd/parse/bank"
-	parsedistribution "github.com/forbole/callisto/v4/cmd/parse/distribution"
-	parsefeegrant "github.com/forbole/callisto/v4/cmd/parse/feegrant"
-	parsegov "github.com/forbole/callisto/v4/cmd/parse/gov"
-	parsemint "github.com/forbole/callisto/v4/cmd/parse/mint"
-	parsepricefeed "github.com/forbole/callisto/v4/cmd/parse/pricefeed"
-	parsestaking "github.com/forbole/callisto/v4/cmd/parse/staking"
+	parseauth "github.com/stalwart-algoritmiclab/callisto/cmd/parse/auth"
+	parsebank "github.com/stalwart-algoritmiclab/callisto/cmd/parse/bank"
+	parsedistribution "github.com/stalwart-algoritmiclab/callisto/cmd/parse/distribution"
+	parsefeegrant "github.com/stalwart-algoritmiclab/callisto/cmd/parse/feegrant"
+	parsegov "github.com/stalwart-algoritmiclab/callisto/cmd/parse/gov"
+	parsemint "github.com/stalwart-algoritmiclab/callisto/cmd/parse/mint"
+	parsepricefeed "github.com/stalwart-algoritmiclab/callisto/cmd/parse/pricefeed"
+	parsestaking "github.com/stalwart-algoritmiclab/callisto/cmd/parse/staking"
 )
 
 // NewParseCmd returns the Cobra command allowing to parse some chain data without having to re-sync the whole database
