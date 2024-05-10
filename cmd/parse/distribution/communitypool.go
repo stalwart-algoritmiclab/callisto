@@ -7,10 +7,10 @@ import (
 	"github.com/forbole/juno/v6/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/distribution"
-	modulestypes "github.com/forbole/callisto/v4/modules/types"
-	"github.com/forbole/callisto/v4/utils"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/distribution"
+	modulestypes "github.com/stalwart-algoritmiclab/callisto/modules/types"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 // communityPoolCmd returns the Cobra command allowing to refresh community pool

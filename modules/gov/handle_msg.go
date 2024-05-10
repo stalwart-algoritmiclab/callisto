@@ -5,20 +5,20 @@ import (
 	"strings"
 	"time"
 
+	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc/codes"
 
-	"github.com/forbole/callisto/v4/types"
-	"github.com/forbole/callisto/v4/utils"
-
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/x/authz"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	govtypesv1beta1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 
 	juno "github.com/forbole/juno/v6/types"
 
-	eventutils "github.com/forbole/callisto/v4/utils/events"
+	eventutils "github.com/stalwart-algoritmiclab/callisto/utils/events"
 )
 
 var msgFilter = map[string]bool{

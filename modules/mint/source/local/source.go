@@ -8,7 +8,7 @@ import (
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	"github.com/forbole/juno/v6/node/local"
 
-	mintsource "github.com/forbole/callisto/v4/modules/mint/source"
+	mintsource "github.com/stalwart-algoritmiclab/callisto/modules/mint/source"
 )
 
 var (

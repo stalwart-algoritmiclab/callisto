@@ -92,3 +92,20 @@ format:
 clean:
 	rm -f tools-stamp ./build/**
 .PHONY: clean
+
+
+###############################################################################
+###                                Local	                                ###
+###############################################################################
+migrate-up:
+	@sql-migrate up
+.PHONY: migrate-up
+
+migrate-down:
+	@sql-migrate down
+.PHONY: migrate-up
+
+run:
+	@echo "--> Running local"
+	@go run ./cmd/callisto start --home $(CURDIR)/volume
+.PHONY: run

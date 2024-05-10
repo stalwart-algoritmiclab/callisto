@@ -7,14 +7,14 @@ import (
 	startcmd "github.com/forbole/juno/v6/cmd/start"
 	"github.com/forbole/juno/v6/modules/messages"
 
-	migratecmd "github.com/forbole/callisto/v4/cmd/migrate"
-	parsecmd "github.com/forbole/callisto/v4/cmd/parse"
-	"github.com/forbole/callisto/v4/utils"
+	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
+	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 
-	"github.com/forbole/callisto/v4/types/config"
+	"github.com/stalwart-algoritmiclab/callisto/types/config"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules"
 )
 
 func main() {

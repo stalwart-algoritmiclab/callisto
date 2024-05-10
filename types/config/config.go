@@ -6,7 +6,7 @@ import (
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
 
-	"github.com/forbole/callisto/v4/modules/actions"
+	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
 )
 
 // Config represents the Callisto configuration

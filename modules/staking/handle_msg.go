@@ -8,7 +8,7 @@ import (
 
 	juno "github.com/forbole/juno/v6/types"
 
-	"github.com/forbole/callisto/v4/utils"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 var msgFilter = map[string]bool{
