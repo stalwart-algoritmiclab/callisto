@@ -9,12 +9,12 @@ package database_test
 import (
 	tmtypes "github.com/cometbft/cometbft/proto/tendermint/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 
 	"cosmossdk.io/math"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 )
 
 func newDecPts(value int64, prec int64) *math.LegacyDec {

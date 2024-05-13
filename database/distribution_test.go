@@ -12,12 +12,12 @@ import (
 	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
-	bddbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	bddbtypes "github.com/forbole/callisto/database/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveCommunityPool() {

@@ -9,7 +9,7 @@ package utils_test
 import (
 	"testing"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/utils"
+	"github.com/forbole/callisto/modules/utils"
 
 	"github.com/stretchr/testify/require"
 )

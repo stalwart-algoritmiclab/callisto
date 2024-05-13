@@ -10,8 +10,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/forbole/juno/v6/modules"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	stakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source"
+	"github.com/forbole/callisto/database"
+	stakingsource "github.com/forbole/callisto/modules/staking/source"
 )
 
 var (

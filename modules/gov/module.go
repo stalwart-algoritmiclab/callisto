@@ -9,9 +9,9 @@ package gov
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/forbole/callisto/database"
 
-	govsource "github.com/stalwart-algoritmiclab/callisto/modules/gov/source"
+	govsource "github.com/forbole/callisto/modules/gov/source"
 
 	"github.com/forbole/juno/v6/modules"
 )

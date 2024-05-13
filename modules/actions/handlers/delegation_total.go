@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/actions/types"
+	"github.com/forbole/callisto/modules/actions/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/rs/zerolog/log"

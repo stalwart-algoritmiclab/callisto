@@ -9,8 +9,8 @@ package v5
 import (
 	"fmt"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/utils"
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/modules/utils"
+	"github.com/forbole/callisto/types"
 )
 
 // Migrate implements database.Migrator

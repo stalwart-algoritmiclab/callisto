@@ -15,8 +15,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/forbole/juno/v6/node/local"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/modules/bank/source"
+	"github.com/forbole/callisto/types"
 )
 
 var (

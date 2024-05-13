@@ -9,11 +9,11 @@ package distribution
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
 
-	distrsource "github.com/stalwart-algoritmiclab/callisto/modules/distribution/source"
+	distrsource "github.com/forbole/callisto/modules/distribution/source"
 
 	"github.com/forbole/juno/v6/modules"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/forbole/callisto/database"
 )
 
 var (

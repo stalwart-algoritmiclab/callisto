@@ -1,8 +1,6 @@
-module github.com/stalwart-algoritmiclab/callisto
+module github.com/forbole/callisto
 
-go 1.22
-
-toolchain go1.22.0
+go 1.21.6
 
 // This is to avoid warnings while running the binary
 // See here: https://github.com/desmos-labs/desmos/pull/1131#discussion_r1194090419

@@ -12,7 +12,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed/coingecko"
+	"github.com/forbole/callisto/modules/pricefeed/coingecko"
 )
 
 func TestConvertCoingeckoPrices(t *testing.T) {

@@ -12,7 +12,7 @@ import (
 	"github.com/go-co-op/gocron"
 	"github.com/rs/zerolog/log"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/utils"
+	"github.com/forbole/callisto/modules/utils"
 )
 
 // RegisterPeriodicOperations implements modules.PeriodicOperationsModule

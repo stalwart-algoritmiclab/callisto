@@ -9,7 +9,7 @@ package source
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 )
 
 type Source interface {
