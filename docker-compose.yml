@@ -21,7 +21,7 @@ services:
     container_name: callisto
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.local
     restart: always
     command: callisto parse --home /callisto/.callisto
     volumes:

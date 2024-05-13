@@ -7,7 +7,7 @@ import (
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	"github.com/forbole/juno/v6/node/local"
 
-	distrsource "github.com/stalwart-algoritmiclab/callisto/modules/distribution/source"
+	distrsource "github.com/forbole/callisto/modules/distribution/source"
 )
 
 var (

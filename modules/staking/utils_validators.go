@@ -8,8 +8,8 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/rs/zerolog/log"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/staking/keybase"
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/modules/staking/keybase"
+	"github.com/forbole/callisto/types"
 )
 
 // getValidatorConsPubKey returns the consensus public key of the given validator

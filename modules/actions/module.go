@@ -12,7 +12,7 @@ import (
 	"github.com/forbole/juno/v6/types/config"
 	"github.com/rs/zerolog/log"
 
-	modulestypes "github.com/stalwart-algoritmiclab/callisto/modules/types"
+	modulestypes "github.com/forbole/callisto/modules/types"
 )
 
 const (

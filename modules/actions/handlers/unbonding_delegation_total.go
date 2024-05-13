@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/actions/types"
+	"github.com/forbole/callisto/modules/actions/types"
 
 	"github.com/rs/zerolog/log"
 )

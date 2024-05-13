@@ -8,12 +8,12 @@ import (
 	parsecmdtypes "github.com/forbole/juno/v6/cmd/parse/types"
 	"github.com/forbole/juno/v6/types/config"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/feegrant"
-	"github.com/stalwart-algoritmiclab/callisto/utils"
+	"github.com/forbole/callisto/modules/feegrant"
+	"github.com/forbole/callisto/utils"
 
 	"github.com/spf13/cobra"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/forbole/callisto/database"
 
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 

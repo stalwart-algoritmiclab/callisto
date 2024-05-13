@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 )
 
 // GetLastBlock returns the last block stored inside the database based on the heights

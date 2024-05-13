@@ -3,7 +3,7 @@ package database
 import (
 	"fmt"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 )
 
 // SaveStakingPool allows to save for the given height the given stakingtypes pool

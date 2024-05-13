@@ -4,8 +4,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/forbole/juno/v6/modules"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	slashingsource "github.com/stalwart-algoritmiclab/callisto/modules/slashing/source"
+	"github.com/forbole/callisto/database"
+	slashingsource "github.com/forbole/callisto/modules/slashing/source"
 )
 
 var (
