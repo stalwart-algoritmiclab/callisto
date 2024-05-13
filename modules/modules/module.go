@@ -4,7 +4,7 @@ import (
 	"github.com/forbole/juno/v5/modules"
 	"github.com/forbole/juno/v5/types/config"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/forbole/callisto/database"
 )
 
 var (

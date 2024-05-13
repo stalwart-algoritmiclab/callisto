@@ -6,9 +6,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveInflation() {

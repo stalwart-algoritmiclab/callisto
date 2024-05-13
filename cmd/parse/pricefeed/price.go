@@ -7,8 +7,8 @@ import (
 	"github.com/forbole/juno/v5/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed"
+	"github.com/forbole/callisto/database"
+	"github.com/forbole/callisto/modules/pricefeed"
 )
 
 // priceCmd returns the Cobra command allowing to refresh token price

@@ -9,7 +9,7 @@ import (
 	"github.com/forbole/juno/v5/types/config"
 	"gopkg.in/yaml.v3"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
+	"github.com/forbole/callisto/modules/actions"
 )
 
 // RunMigration runs the migrations from v2 to v3

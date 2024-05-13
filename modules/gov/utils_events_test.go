@@ -6,7 +6,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
-	"github.com/stalwart-algoritmiclab/callisto/modules/gov"
+	"github.com/forbole/callisto/modules/gov"
 	"github.com/stretchr/testify/require"
 )
 

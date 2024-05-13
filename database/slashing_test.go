@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_ValidatorSigningInfo() {

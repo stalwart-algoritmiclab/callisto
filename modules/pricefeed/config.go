@@ -3,7 +3,7 @@ package pricefeed
 import (
 	"gopkg.in/yaml.v3"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 )
 
 // Config contains the configuration about the pricefeed module

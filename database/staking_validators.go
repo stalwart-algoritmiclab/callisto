@@ -3,9 +3,9 @@ package database
 import (
 	"fmt"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"

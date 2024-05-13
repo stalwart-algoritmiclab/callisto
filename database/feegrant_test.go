@@ -4,8 +4,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	feegranttypes "github.com/cosmos/cosmos-sdk/x/feegrant"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	dbtypes "github.com/forbole/callisto/database/types"
+	"github.com/forbole/callisto/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveFeeGrantAllowance() {

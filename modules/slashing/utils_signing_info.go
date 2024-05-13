@@ -3,7 +3,7 @@ package slashing
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 )
 
 func (m *Module) getSigningInfos(height int64) ([]types.ValidatorSigningInfo, error) {

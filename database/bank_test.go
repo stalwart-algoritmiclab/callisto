@@ -3,9 +3,9 @@ package database_test
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/database/types"
 
-	bddbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	bddbtypes "github.com/forbole/callisto/database/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveSupply() {

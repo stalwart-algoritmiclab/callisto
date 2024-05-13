@@ -12,8 +12,8 @@ import (
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	"github.com/lib/pq"
 
-	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	dbtypes "github.com/forbole/callisto/database/types"
+	"github.com/forbole/callisto/types"
 )
 
 // SaveGovParams saves the given x/gov parameters inside the database

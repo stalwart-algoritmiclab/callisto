@@ -5,8 +5,8 @@ import (
 	"github.com/forbole/juno/v5/modules"
 	junomessages "github.com/forbole/juno/v5/modules/messages"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	"github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
+	"github.com/forbole/callisto/database"
+	"github.com/forbole/callisto/modules/bank/source"
 )
 
 var (

@@ -8,9 +8,9 @@ import (
 	"github.com/forbole/juno/v5/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	authutils "github.com/stalwart-algoritmiclab/callisto/modules/auth"
-	"github.com/stalwart-algoritmiclab/callisto/utils"
+	"github.com/forbole/callisto/database"
+	authutils "github.com/forbole/callisto/modules/auth"
+	"github.com/forbole/callisto/utils"
 )
 
 // vestingCmd returns a Cobra command that allows to fix the vesting data for the accounts

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
+	"github.com/forbole/callisto/types"
 	"google.golang.org/grpc/codes"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"

@@ -9,11 +9,11 @@ import (
 	startcmd "github.com/forbole/juno/v5/cmd/start"
 	"github.com/forbole/juno/v5/modules/messages"
 
-	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
-	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	"github.com/stalwart-algoritmiclab/callisto/modules"
-	"github.com/stalwart-algoritmiclab/callisto/types/config"
+	migratecmd "github.com/forbole/callisto/cmd/migrate"
+	parsecmd "github.com/forbole/callisto/cmd/parse"
+	"github.com/forbole/callisto/database"
+	"github.com/forbole/callisto/modules"
+	"github.com/forbole/callisto/types/config"
 )
 
 func main() {

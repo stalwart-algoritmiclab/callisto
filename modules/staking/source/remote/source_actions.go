@@ -5,7 +5,7 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/forbole/juno/v5/node/remote"
 
-	"github.com/stalwart-algoritmiclab/callisto/utils"
+	"github.com/forbole/callisto/utils"
 )
 
 // GetDelegationsWithPagination implements stakingsource.Source
