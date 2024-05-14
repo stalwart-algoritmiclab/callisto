@@ -7,14 +7,14 @@ import (
 	parse "github.com/forbole/juno/v5/cmd/parse/types"
 	"github.com/spf13/cobra"
 
-	parseauth "github.com/forbole/callisto/cmd/parse/auth"
-	parsebank "github.com/forbole/callisto/cmd/parse/bank"
-	parsedistribution "github.com/forbole/callisto/cmd/parse/distribution"
-	parsefeegrant "github.com/forbole/callisto/cmd/parse/feegrant"
-	parsegov "github.com/forbole/callisto/cmd/parse/gov"
-	parsemint "github.com/forbole/callisto/cmd/parse/mint"
-	parsepricefeed "github.com/forbole/callisto/cmd/parse/pricefeed"
-	parsestaking "github.com/forbole/callisto/cmd/parse/staking"
+	parseauth "github.com/forbole/callisto/v4/cmd/parse/auth"
+	parsebank "github.com/forbole/callisto/v4/cmd/parse/bank"
+	parsedistribution "github.com/forbole/callisto/v4/cmd/parse/distribution"
+	parsefeegrant "github.com/forbole/callisto/v4/cmd/parse/feegrant"
+	parsegov "github.com/forbole/callisto/v4/cmd/parse/gov"
+	parsemint "github.com/forbole/callisto/v4/cmd/parse/mint"
+	parsepricefeed "github.com/forbole/callisto/v4/cmd/parse/pricefeed"
+	parsestaking "github.com/forbole/callisto/v4/cmd/parse/staking"
 )
 
 // NewParseCmd returns the Cobra command allowing to parse some chain data without having to re-sync the whole database

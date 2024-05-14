@@ -9,7 +9,7 @@ import (
 	juno "github.com/forbole/juno/v5/types"
 	"github.com/rs/zerolog/log"
 
-	"github.com/forbole/callisto/types"
+	"github.com/forbole/callisto/v4/types"
 )
 
 // HandleBlock implements BlockModule

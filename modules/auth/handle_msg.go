@@ -13,8 +13,8 @@ import (
 	authttypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	vestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 
-	"github.com/forbole/callisto/modules/utils"
-	"github.com/forbole/callisto/types"
+	"github.com/forbole/callisto/v4/modules/utils"
+	"github.com/forbole/callisto/v4/types"
 )
 
 // HandleMsgExec implements modules.AuthzMessageModule

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/forbole/callisto/modules/actions/handlers"
-	actionstypes "github.com/forbole/callisto/modules/actions/types"
+	"github.com/forbole/callisto/v4/modules/actions/handlers"
+	actionstypes "github.com/forbole/callisto/v4/modules/actions/types"
 )
 
 var (

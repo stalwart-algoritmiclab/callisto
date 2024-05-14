@@ -1,5 +1,6 @@
 VERSION := $(shell echo $(shell git describe --tags) | sed 's/^v//')
 COMMIT  := $(shell git log -1 --format='%H')
+CONFIG := ./volume/
 
 export GO111MODULE = on
 
@@ -40,6 +41,16 @@ else
 endif
 .PHONY: build
 
+docker-build: go.sum
+ifeq ($(OS),Windows_NT)
+	@echo "building callisto binary..."
+	@go build -mod=readonly $(BUILD_FLAGS) -o build/callisto.exe ./cmd/callisto
+else
+	@echo "building callisto binary..."
+	@LEDGER_ENABLED=false CGO_ENABLED=1 GOOS=linux GOARCH=amd64 go build -buildvcs=false --tags muslc -mod=vendor $(BUILD_FLAGS) -o build/callisto ./cmd/callisto
+endif
+.PHONY: build
+
 ###############################################################################
 ###                                 Install                                 ###
 ###############################################################################
@@ -48,6 +59,40 @@ install: go.sum
 	@echo "installing callisto binary..."
 	@go install -mod=readonly $(BUILD_FLAGS) ./cmd/callisto
 .PHONY: install
+
+###############################################################################
+###                                   Run                                   ###
+###############################################################################
+
+run:
+ifeq ($(OS),Windows_NT)
+	@echo "running callisto for Windows..."
+	@go run cmd/callisto/main.go start --home $(CONFIG)
+else
+	@echo "running callisto for Linux..."
+	@go run cmd/callisto/main.go start --home $(CONFIG)
+endif
+.PHONY: run
+
+run-build: build
+ifeq ($(OS),Windows_NT)
+	@echo "running callisto for Windows..."
+	@./build/callisto.exe start --home $(CONFIG)
+else
+	@echo "running callisto for Linux..."
+	@./build/callisto start --home $(CONFIG)
+endif
+.PHONY: run-build
+
+start:
+ifeq ($(OS),Windows_NT)
+	@echo "running callisto for Windows..."
+	@./build/callisto.exe start --home $(CONFIG)
+else
+	@echo "running callisto for Linux..."
+	@./build/callisto start --home $(CONFIG)
+endif
+.PHONY: start
 
 ###############################################################################
 ###                           Tests & Simulation                            ###
@@ -92,7 +137,6 @@ format:
 clean:
 	rm -f tools-stamp ./build/**
 .PHONY: clean
-
 
 ###############################################################################
 ###                                Local	                                ###
