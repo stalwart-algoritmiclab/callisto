@@ -9,7 +9,7 @@ package auth
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
 
-	"github.com/forbole/callisto/database"
+	"github.com/forbole/callisto/v4/database"
 
 	"github.com/forbole/juno/v6/modules"
 	"github.com/forbole/juno/v6/modules/messages"

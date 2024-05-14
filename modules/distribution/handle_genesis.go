@@ -12,7 +12,7 @@ import (
 
 	tmtypes "github.com/cometbft/cometbft/types"
 
-	"github.com/forbole/callisto/types"
+	"github.com/forbole/callisto/v4/types"
 
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	"github.com/rs/zerolog/log"

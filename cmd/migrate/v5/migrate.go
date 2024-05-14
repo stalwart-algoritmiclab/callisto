@@ -14,7 +14,7 @@ import (
 	"github.com/forbole/juno/v6/database/postgresql"
 	"github.com/forbole/juno/v6/types/config"
 
-	v5db "github.com/forbole/callisto/database/migrate/v5"
+	v5db "github.com/forbole/callisto/v4/database/migrate/v5"
 )
 
 // RunMigration runs the migrations to v5

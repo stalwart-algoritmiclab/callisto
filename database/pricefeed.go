@@ -9,9 +9,9 @@ package database
 import (
 	"fmt"
 
-	dbtypes "github.com/forbole/callisto/database/types"
+	dbtypes "github.com/forbole/callisto/v4/database/types"
 
-	"github.com/forbole/callisto/types"
+	"github.com/forbole/callisto/v4/types"
 
 	"github.com/lib/pq"
 )

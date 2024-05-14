@@ -15,7 +15,7 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"github.com/forbole/callisto/modules/actions/logging"
+	"github.com/forbole/callisto/v4/modules/actions/logging"
 )
 
 // ActionsWorker represents the worker that is used to handle Hasura actions queries

@@ -7,7 +7,7 @@
 package gov
 
 import (
-	"github.com/forbole/callisto/types"
+	"github.com/forbole/callisto/v4/types"
 )
 
 type DistrModule interface {

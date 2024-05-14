@@ -10,7 +10,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/forbole/callisto/modules/actions/types"
+	"github.com/forbole/callisto/v4/modules/actions/types"
 
 	"google.golang.org/grpc/codes"
 

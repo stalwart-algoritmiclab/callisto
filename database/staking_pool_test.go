@@ -9,8 +9,8 @@ package database_test
 import (
 	"cosmossdk.io/math"
 
-	dbtypes "github.com/forbole/callisto/database/types"
-	"github.com/forbole/callisto/types"
+	dbtypes "github.com/forbole/callisto/v4/database/types"
+	"github.com/forbole/callisto/v4/types"
 )
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveStakingPool() {

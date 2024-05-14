@@ -13,7 +13,7 @@ import (
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	"github.com/forbole/juno/v6/node/remote"
 
-	slashingsource "github.com/forbole/callisto/modules/slashing/source"
+	slashingsource "github.com/forbole/callisto/v4/modules/slashing/source"
 )
 
 var (
