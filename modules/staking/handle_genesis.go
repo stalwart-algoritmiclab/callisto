@@ -10,7 +10,7 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/rs/zerolog/log"
 
-	"github.com/forbole/callisto/types"
+	"github.com/forbole/callisto/v4/types"
 )
 
 // HandleGenesis implements GenesisModule
