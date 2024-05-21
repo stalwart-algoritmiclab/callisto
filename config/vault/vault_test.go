@@ -88,7 +88,7 @@ func TestUpload(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err = cl.Upload("callisto", "config_test.yaml"); err != nil {
+	if err = cl.Upload("callisto", "config.yaml"); err != nil {
 		t.Fatal(err)
 	}
 
