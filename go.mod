@@ -28,6 +28,7 @@ require (
 	github.com/pelletier/go-toml v1.9.5
 	github.com/prometheus/client_golang v1.19.0
 	github.com/proullon/ramsql v0.1.3
+	gitlab.stalwart.tech/ijio/main/backend/lib/vault v1.0.8
 	github.com/rs/zerolog v1.32.0
 	github.com/shopspring/decimal v1.4.0
 	github.com/spf13/cast v1.5.0
@@ -236,7 +237,7 @@ require (
 	github.com/maratori/testpackage v1.1.1 // indirect
 	github.com/matoous/godox v0.0.0-20230222163458-006bad1f9d26 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.9 // indirect
 	github.com/mbilski/exhaustivestruct v1.2.0 // indirect
 	github.com/mgechev/revive v1.3.4 // indirect
