@@ -11,11 +11,11 @@ func TestPush(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err = client.Push("rate-parser", "api:\n\thost: Nats"); err != nil {
+	if err = client.Push("callisto", "api:\n\thost: Nats"); err != nil {
 		t.Fatal(err)
 	}
 
-	data, _ := client.Pull("rate-parser")
+	data, _ := client.Pull("callisto")
 	t.Log(string(data))
 }
 
@@ -42,7 +42,7 @@ func TestPull(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	data, err := client.Pull("rate-parser")
+	data, err := client.Pull("callisto")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -69,7 +69,7 @@ func TestDownload(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err = client.Download("rate-parser", "config.yaml"); err != nil {
+	if err = client.Download("callisto", "config.yaml"); err != nil {
 		t.Error(err)
 	}
 
@@ -88,11 +88,11 @@ func TestUpload(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	if err = cl.Upload("rate-parser", "config_test.yaml"); err != nil {
+	if err = cl.Upload("callisto", "config.yaml"); err != nil {
 		t.Fatal(err)
 	}
 
-	data, err := cl.Pull("rate-parser")
+	data, err := cl.Pull("callisto")
 	if err != nil {
 		t.Fatal(err)
 	}
