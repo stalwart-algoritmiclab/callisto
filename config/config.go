@@ -4,7 +4,8 @@ import (
 	junoconf "github.com/forbole/juno/v5/types/config"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	"gitlab.stalwart.tech/ijio/main/backend/lib/vault"
+
+	"github.com/forbole/callisto/v4/config/vault"
 )
 
 // CheckVaultConfig - checking the ability to load the configuration from vault
