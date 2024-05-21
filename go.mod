@@ -15,6 +15,7 @@ require (
 	github.com/forbole/juno/v5 v5.2.1-0.20240201075935-851426ddd905
 	github.com/go-co-op/gocron v1.37.0
 	github.com/golangci/golangci-lint v1.55.2
+	github.com/hashicorp/vault/api v1.9.2
 	github.com/jmoiron/sqlx v1.4.0
 	github.com/lib/pq v1.10.9
 	github.com/pelletier/go-toml v1.9.5
@@ -188,7 +189,6 @@ require (
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d // indirect
 	github.com/hashicorp/hcl v1.0.1-vault-5 // indirect
-	github.com/hashicorp/vault/api v1.9.2 // indirect
 	github.com/hdevalence/ed25519consensus v0.1.0 // indirect
 	github.com/hexops/gotextdiff v1.0.3 // indirect
 	github.com/huandu/skiplist v1.2.0 // indirect
