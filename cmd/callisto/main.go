@@ -10,7 +10,7 @@ import (
 	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
 	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
 	"github.com/stalwart-algoritmiclab/callisto/utils"
-
+	vault "github.com/forbole/callisto/v4/config"
 	"github.com/stalwart-algoritmiclab/callisto/types/config"
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
@@ -36,6 +36,7 @@ func main() {
 	rootCmd.AddCommand(
 		cmd.VersionCmd(),
 		initcmd.NewInitCmd(cfg.GetInitConfig()),
+		vault.CheckVaultConfig(cfg.GetName(), startcmd.NewStartCmd(cfg.GetParseConfig())),
 		parsecmd.NewParseCmd(cfg.GetParseConfig()),
 		migratecmd.NewMigrateCmd(cfg.GetName(), cfg.GetParseConfig()),
 		startcmd.NewStartCmd(cfg.GetParseConfig()),

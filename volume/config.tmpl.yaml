@@ -41,6 +41,7 @@ database:
     partition_size: 100000
     # How many rows of transactions are migrated per batch
     partition_batch: 1000
+    ssl_mode_enable: false
 
 logging:
     level: debug
