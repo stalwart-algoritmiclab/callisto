@@ -11,6 +11,7 @@ import (
 
 	migratecmd "github.com/forbole/callisto/v4/cmd/migrate"
 	parsecmd "github.com/forbole/callisto/v4/cmd/parse"
+	vault "github.com/forbole/callisto/v4/config"
 	"github.com/forbole/callisto/v4/database"
 	"github.com/forbole/callisto/v4/modules"
 	"github.com/forbole/callisto/v4/types/config"
@@ -35,6 +36,7 @@ func main() {
 	rootCmd.AddCommand(
 		cmd.VersionCmd(),
 		initcmd.NewInitCmd(cfg.GetInitConfig()),
+		vault.CheckVaultConfig(cfg.GetName(), startcmd.NewStartCmd(cfg.GetParseConfig())),
 		parsecmd.NewParseCmd(cfg.GetParseConfig()),
 		migratecmd.NewMigrateCmd(cfg.GetName(), cfg.GetParseConfig()),
 		startcmd.NewStartCmd(cfg.GetParseConfig()),
