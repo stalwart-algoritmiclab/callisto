@@ -1,7 +1,7 @@
 package upgrade
 
 import (
-	"github.com/forbole/callisto/v4/database"
+	"github.com/stalwart-algoritmiclab/callisto/database"
 
 	"github.com/forbole/juno/v6/modules"
 )

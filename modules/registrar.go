@@ -90,6 +90,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 	stakingModule := staking.NewModule(sources.StakingSource, r.cdc, db)
 	govModule := gov.NewModule(sources.GovSource, distrModule, mintModule, slashingModule, stakingModule, r.cdc, db)
 	upgradeModule := upgrade.NewModule(db, stakingModule)
+	stwartModule := stwart.NewModule(cdc, db, ctx.Proxy, ctx.Logger)
 
 	return []jmodules.Module{
 		messages.NewModule(r.parser, ctx.Database),
@@ -111,5 +112,6 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 		slashingModule,
 		stakingModule,
 		upgradeModule,
+		stwartModule,
 	}
 }
