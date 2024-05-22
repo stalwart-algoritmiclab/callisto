@@ -16,9 +16,9 @@ import (
 	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
 	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
 	"github.com/stalwart-algoritmiclab/callisto/utils"
-	vault "github.com/forbole/callisto/v4/config"
 	"github.com/stalwart-algoritmiclab/callisto/types/config"
 
+	vault "github.com/stalwart-algoritmiclab/callisto/config"
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/modules"
 )
@@ -52,6 +52,15 @@ func main() {
 	err := executor.Execute()
 	if err != nil {
 		panic(err)
+	}
+}
+
+// getBasicManagers returns the various basic managers that are used to register the encoding to
+// support custom messages.
+// This should be edited by custom implementations if needed.
+func getBasicManagers() []module.BasicManager {
+	return []module.BasicManager{
+		simapp.ModuleBasics,
 	}
 }
 
