@@ -9,7 +9,7 @@ package handlers
 import (
 	"fmt"
 
-	"github.com/forbole/callisto/v4/modules/actions/types"
+	"github.com/stalwart-algoritmiclab/callisto/modules/actions/types"
 
 	"github.com/rs/zerolog/log"
 )

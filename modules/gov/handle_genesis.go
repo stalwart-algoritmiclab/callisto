@@ -12,7 +12,7 @@ import (
 
 	tmtypes "github.com/cometbft/cometbft/types"
 
-	"github.com/forbole/callisto/v4/types"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 
 	gov "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"

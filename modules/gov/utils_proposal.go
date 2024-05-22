@@ -24,7 +24,7 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"google.golang.org/grpc/codes"
 
-	"github.com/forbole/callisto/v4/types"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 
 	gov "github.com/cosmos/cosmos-sdk/x/gov/types"
 )

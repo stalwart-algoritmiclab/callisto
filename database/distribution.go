@@ -10,9 +10,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	dbtypes "github.com/forbole/callisto/v4/database/types"
+	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 
-	"github.com/forbole/callisto/v4/types"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/lib/pq"

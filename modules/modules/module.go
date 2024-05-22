@@ -10,7 +10,7 @@ import (
 	"github.com/forbole/juno/v6/modules"
 	"github.com/forbole/juno/v6/types/config"
 
-	"github.com/forbole/callisto/v4/database"
+	"github.com/stalwart-algoritmiclab/callisto/database"
 )
 
 var (

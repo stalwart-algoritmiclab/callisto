@@ -14,7 +14,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/forbole/callisto/v4/types"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 // GetCoinsList allows to fetch from the remote APIs the list of all the supported tokens

@@ -15,9 +15,9 @@ import (
 	"github.com/cosmos/gogoproto/proto"
 	"github.com/lib/pq"
 
-	dbtypes "github.com/forbole/callisto/v4/database/types"
-	dbutils "github.com/forbole/callisto/v4/database/utils"
-	"github.com/forbole/callisto/v4/types"
+	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	dbutils "github.com/stalwart-algoritmiclab/callisto/database/utils"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 // SaveAccounts saves the given accounts inside the database

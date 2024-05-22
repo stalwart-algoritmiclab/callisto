@@ -14,8 +14,8 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/forbole/juno/v6/node/remote"
 
-	bankkeeper "github.com/forbole/callisto/v4/modules/bank/source"
-	"github.com/forbole/callisto/v4/types"
+	bankkeeper "github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
+	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 var (

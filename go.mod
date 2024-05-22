@@ -1,4 +1,4 @@
-module github.com/forbole/callisto/v4
+module github.com/stalwart-algoritmiclab/callisto
 
 go 1.21.6
 

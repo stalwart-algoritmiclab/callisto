@@ -13,7 +13,7 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	modulestypes "github.com/forbole/callisto/v4/modules/types"
+	modulestypes "github.com/stalwart-algoritmiclab/callisto/modules/types"
 
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	govtypesv1beta1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
@@ -22,13 +22,13 @@ import (
 	"github.com/forbole/juno/v6/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/distribution"
-	"github.com/forbole/callisto/v4/modules/gov"
-	"github.com/forbole/callisto/v4/modules/mint"
-	"github.com/forbole/callisto/v4/modules/slashing"
-	"github.com/forbole/callisto/v4/modules/staking"
-	"github.com/forbole/callisto/v4/utils"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/distribution"
+	"github.com/stalwart-algoritmiclab/callisto/modules/gov"
+	"github.com/stalwart-algoritmiclab/callisto/modules/mint"
+	"github.com/stalwart-algoritmiclab/callisto/modules/slashing"
+	"github.com/stalwart-algoritmiclab/callisto/modules/staking"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 // proposalCmd returns the Cobra command allowing to fix all things related to a proposal

@@ -9,6 +9,7 @@ package stwart
 import (
 	"errors"
 	"fmt"
+	"time"
 
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 	tmtypes "github.com/cometbft/cometbft/types"
@@ -23,6 +24,8 @@ import (
 )
 
 const (
+	intervalLastBlock = time.Second
+
 	module = "stwart"
 )
 
@@ -40,7 +43,7 @@ func (m *Module) parseMissingBlocksAndTransactions(height int64) (dbtypes.BlockR
 
 	txs, err := m.node.Txs(block)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, m.handleErrors(err)
+		return dbtypes.BlockRow{}, []*txtypes.Tx{}, fmt.Errorf("failed to get transactions for block: %s", err)
 	}
 
 	vals, err := m.node.Validators(height)
