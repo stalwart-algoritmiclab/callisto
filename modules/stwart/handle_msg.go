@@ -1,0 +1,144 @@
+package stwart
+
+import (
+	"errors"
+	"fmt"
+	"os"
+	"time"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/forbole/juno/v5/modules"
+	"github.com/forbole/juno/v5/types"
+
+	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
+	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
+)
+
+// scheduler runs the scheduler
+func (m *Module) scheduler() {
+	for {
+		// get the latest-parsed block from a database
+		lastBlock, err := m.lastBlockRepo.Get()
+		if err != nil {
+			m.logger.Error("Fail lastBlockRepo.Get", "module", m.Name(), "error", err)
+			continue
+		}
+
+		lastBlock++
+
+		// get the latest block from node
+		lastBlockHeight, err := m.node.LatestHeight()
+		if err != nil {
+			return
+		}
+
+		if lastBlock > uint64(lastBlockHeight) {
+			continue
+		}
+
+		if err = m.parseBlock(lastBlock); err != nil {
+			time.Sleep(intervalLastBlock)
+
+			if errors.As(err, &errs.NotFound{}) {
+				continue
+			}
+
+			m.logger.Error("Fail parseBlock", "module", m.Name(), "error", err)
+			continue
+		}
+
+		if err = m.lastBlockRepo.Update(lastBlock); err != nil {
+			m.logger.Error("Fail lastBlockRepo.Update", "module", m.Name(), "error", err)
+			os.Exit(1)
+		}
+	}
+}
+
+// parseBlock parse block
+func (m *Module) parseBlock(lastBlock uint64) error {
+	block, err := m.db.GetBlock(filter.NewFilter().SetArgument(dbtypes.FieldHeight, lastBlock))
+	if err != nil {
+		if errors.As(err, &errs.NotFound{}) {
+			if block, _, err = m.parseMissingBlocksAndTransactions(int64(lastBlock)); err != nil {
+				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
+				return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
+			}
+			return err
+		}
+
+		return errs.Internal{Cause: err.Error()}
+	}
+
+	m.logger.Debug("parse block", "height", block.Height)
+
+	if block.TxNum == 0 {
+		return nil
+	}
+
+	return m.parseTx(block)
+}
+
+// parseTx parse txs from block
+func (m *Module) parseTx(block dbtypes.BlockRow) error {
+	txs, err := m.db.GetTransactions(filter.NewFilter().SetArgument(dbtypes.FieldHeight, block.Height))
+	if err != nil {
+		if errors.As(err, &errs.NotFound{}) {
+			if block, _, err = m.parseMissingBlocksAndTransactions(block.Height); err != nil {
+				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
+				return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
+			}
+			return err
+		}
+
+		return errs.Internal{Cause: err.Error()}
+	}
+
+	if err = block.CheckTxNumCount(int64(len(txs))); err != nil {
+		if _, txs, err = m.parseMissingBlocksAndTransactions(block.Height); err != nil {
+			m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
+			return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
+		}
+
+		if err = block.CheckTxNumCount(int64(len(txs))); err != nil {
+			return err
+		}
+	}
+
+	for _, tx := range txs {
+		if !tx.Successful() {
+			continue
+		}
+
+		if err = m.parseMessages(tx); err != nil {
+			return errs.Internal{Cause: err.Error()}
+		}
+	}
+
+	return nil
+}
+
+// parseMessages - parse messages from transaction
+func (m *Module) parseMessages(tx *types.Tx) error {
+	for i, msg := range tx.Body.Messages {
+		var stdMsg sdk.Msg
+		if err := m.cdc.UnpackAny(msg, &stdMsg); err != nil {
+			return fmt.Errorf("error while an unpacking message: %s", err)
+		}
+
+		for _, module := range m.stwartModules {
+			if messageModule, ok := module.(modules.MessageModule); ok {
+				if err := messageModule.HandleMsg(i, stdMsg, tx); err != nil {
+					if errors.As(err, &errs.NotFound{}) {
+						continue
+					}
+
+					m.logger.MsgError(module, tx, stdMsg, err)
+					return err
+				}
+			}
+		}
+	}
+
+	return nil
+}

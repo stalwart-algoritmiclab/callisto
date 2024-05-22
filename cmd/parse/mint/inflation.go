@@ -7,9 +7,9 @@ import (
 	"github.com/forbole/juno/v5/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/mint"
-	modulestypes "github.com/forbole/callisto/v4/modules/types"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/mint"
+	modulestypes "github.com/stalwart-algoritmiclab/callisto/modules/types"
 )
 
 // inflationCmd returns the Cobra command allowing to refresh x/mint inflation

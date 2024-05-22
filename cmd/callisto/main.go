@@ -5,16 +5,16 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/cmd"
 	initcmd "github.com/forbole/juno/v5/cmd/init"
+	"github.com/forbole/juno/v5/cmd/parse/genesis"
 	parsetypes "github.com/forbole/juno/v5/cmd/parse/types"
 	startcmd "github.com/forbole/juno/v5/cmd/start"
 	"github.com/forbole/juno/v5/modules/messages"
 
-	migratecmd "github.com/forbole/callisto/v4/cmd/migrate"
-	parsecmd "github.com/forbole/callisto/v4/cmd/parse"
-	vault "github.com/forbole/callisto/v4/config"
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules"
-	"github.com/forbole/callisto/v4/types/config"
+	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
+	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules"
+	"github.com/stalwart-algoritmiclab/callisto/types/config"
 )
 
 func main() {
@@ -36,7 +36,8 @@ func main() {
 	rootCmd.AddCommand(
 		cmd.VersionCmd(),
 		initcmd.NewInitCmd(cfg.GetInitConfig()),
-		vault.CheckVaultConfig(cfg.GetName(), startcmd.NewStartCmd(cfg.GetParseConfig())),
+		//vault.CheckVaultConfig(cfg.GetName(), startcmd.NewStartCmd(cfg.GetParseConfig())),
+		genesis.NewGenesisCmd(cfg.GetParseConfig()),
 		parsecmd.NewParseCmd(cfg.GetParseConfig()),
 		migratecmd.NewMigrateCmd(cfg.GetName(), cfg.GetParseConfig()),
 		startcmd.NewStartCmd(cfg.GetParseConfig()),

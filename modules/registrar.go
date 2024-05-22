@@ -8,24 +8,25 @@ import (
 	"github.com/forbole/juno/v5/modules/telemetry"
 	juno "github.com/forbole/juno/v5/types"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/actions"
-	"github.com/forbole/callisto/v4/modules/auth"
-	"github.com/forbole/callisto/v4/modules/bank"
-	"github.com/forbole/callisto/v4/modules/consensus"
-	dailyrefetch "github.com/forbole/callisto/v4/modules/daily_refetch"
-	"github.com/forbole/callisto/v4/modules/distribution"
-	"github.com/forbole/callisto/v4/modules/feegrant"
-	"github.com/forbole/callisto/v4/modules/gov"
-	messagetype "github.com/forbole/callisto/v4/modules/message_type"
-	"github.com/forbole/callisto/v4/modules/mint"
-	"github.com/forbole/callisto/v4/modules/modules"
-	"github.com/forbole/callisto/v4/modules/pricefeed"
-	"github.com/forbole/callisto/v4/modules/slashing"
-	"github.com/forbole/callisto/v4/modules/staking"
-	"github.com/forbole/callisto/v4/modules/types"
-	"github.com/forbole/callisto/v4/modules/upgrade"
-	"github.com/forbole/callisto/v4/utils"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
+	"github.com/stalwart-algoritmiclab/callisto/modules/auth"
+	"github.com/stalwart-algoritmiclab/callisto/modules/bank"
+	"github.com/stalwart-algoritmiclab/callisto/modules/consensus"
+	dailyrefetch "github.com/stalwart-algoritmiclab/callisto/modules/daily_refetch"
+	"github.com/stalwart-algoritmiclab/callisto/modules/distribution"
+	"github.com/stalwart-algoritmiclab/callisto/modules/feegrant"
+	"github.com/stalwart-algoritmiclab/callisto/modules/gov"
+	messagetype "github.com/stalwart-algoritmiclab/callisto/modules/message_type"
+	"github.com/stalwart-algoritmiclab/callisto/modules/mint"
+	"github.com/stalwart-algoritmiclab/callisto/modules/modules"
+	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed"
+	"github.com/stalwart-algoritmiclab/callisto/modules/slashing"
+	"github.com/stalwart-algoritmiclab/callisto/modules/staking"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart"
+	"github.com/stalwart-algoritmiclab/callisto/modules/types"
+	"github.com/stalwart-algoritmiclab/callisto/modules/upgrade"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 // UniqueAddressesParser returns a wrapper around the given parser that removes all duplicated addresses
@@ -81,6 +82,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 	stakingModule := staking.NewModule(sources.StakingSource, cdc, db)
 	govModule := gov.NewModule(sources.GovSource, distrModule, mintModule, slashingModule, stakingModule, cdc, db)
 	upgradeModule := upgrade.NewModule(db, stakingModule)
+	stwartModule := stwart.NewModule(cdc, db, ctx.Proxy, ctx.Logger)
 
 	return []jmodules.Module{
 		messages.NewModule(r.parser, cdc, ctx.Database),
@@ -102,5 +104,6 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 		slashingModule,
 		stakingModule,
 		upgradeModule,
+		stwartModule,
 	}
 }

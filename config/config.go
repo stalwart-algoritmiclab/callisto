@@ -5,7 +5,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 
-	"github.com/forbole/callisto/v4/config/vault"
+	"github.com/stalwart-algoritmiclab/callisto/config/vault"
 )
 
 // CheckVaultConfig - checking the ability to load the configuration from vault

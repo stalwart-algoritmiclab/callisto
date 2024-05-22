@@ -6,7 +6,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/forbole/callisto/v4/modules/pricefeed/coingecko"
+	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed/coingecko"
 )
 
 func TestConvertCoingeckoPrices(t *testing.T) {
