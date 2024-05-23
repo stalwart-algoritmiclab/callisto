@@ -15,6 +15,6 @@ type (
 	// Exchanger - describes an interface for working with database models.
 	Exchanger interface {
 		GetAllMsgExchange(filter filter.Filter) ([]exchanger.MsgExchange, error)
-		InsertMsgExchange(hash string, msgs ...exchanger.MsgExchange) error
+		InsertMsgExchange(hash string, msgs ...*exchanger.MsgExchange) error
 	}
 )
