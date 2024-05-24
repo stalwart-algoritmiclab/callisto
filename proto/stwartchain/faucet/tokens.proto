@@ -1,0 +1,11 @@
+syntax = "proto3";
+package stwartchain.faucet;
+
+option go_package = "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet";
+
+message Tokens {
+  uint64 id = 1;
+  string denom = 2; 
+  string amount = 3; 
+  string creator = 4;
+}
