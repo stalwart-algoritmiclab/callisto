@@ -37,6 +37,9 @@ import (
 	stakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source"
 	localstakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/local"
 	remotestakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/remote"
+	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
+	remoteexchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
+	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 )
 
 type Sources struct {
@@ -46,6 +49,8 @@ type Sources struct {
 	MintSource     mintsource.Source
 	SlashingSource slashingsource.Source
 	StakingSource  stakingsource.Source
+
+	ExchangerSource exchangerSource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, encodingConfig params.EncodingConfig) (*Sources, error) {
@@ -116,5 +121,8 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		MintSource:     remotemintsource.NewSource(source, minttypes.NewQueryClient(source.GrpcConn)),
 		SlashingSource: remoteslashingsource.NewSource(source, slashingtypes.NewQueryClient(source.GrpcConn)),
 		StakingSource:  remotestakingsource.NewSource(source, stakingtypes.NewQueryClient(source.GrpcConn)),
+
+		// stwart sources
+		ExchangerSource: remoteexchangerSource.NewSource(source, exchangertypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }
