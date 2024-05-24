@@ -3,6 +3,7 @@ package chain
 import (
 	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 )
 
 // LastBlock - describes an interface for working with database models.
@@ -20,5 +21,7 @@ type (
 
 	// Faucet - describes an interface for working with faucet database models.
 	Faucet interface {
+		GetAllMsgIssue(filter filter.Filter) ([]faucet.MsgIssue, error)
+		InsertMsgIssue(hash string, msgs ...*faucet.MsgIssue) error
 	}
 )
