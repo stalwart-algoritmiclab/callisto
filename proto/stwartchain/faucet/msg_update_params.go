@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package faucet
 
 import (
@@ -26,6 +20,5 @@ func (m *MsgUpdateParams) ValidateBasic() error {
 	return nil
 }
 
-func (m *MsgUpdateParams) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{}
 }

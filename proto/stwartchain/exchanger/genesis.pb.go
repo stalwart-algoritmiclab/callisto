@@ -141,4 +141,22 @@ func file_stwartchain_exchanger_genesis_proto_init() {
 			}
 		}
 	}
+	type x struct{}
+	out := protoimpl.TypeBuilder{
+		File: protoimpl.DescBuilder{
+			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
+			RawDescriptor: file_stwartchain_exchanger_genesis_proto_rawDesc,
+			NumEnums:      0,
+			NumMessages:   1,
+			NumExtensions: 0,
+			NumServices:   0,
+		},
+		GoTypes:           file_stwartchain_exchanger_genesis_proto_goTypes,
+		DependencyIndexes: file_stwartchain_exchanger_genesis_proto_depIdxs,
+		MessageInfos:      file_stwartchain_exchanger_genesis_proto_msgTypes,
+	}.Build()
+	File_stwartchain_exchanger_genesis_proto = out.File
+	file_stwartchain_exchanger_genesis_proto_rawDesc = nil
+	file_stwartchain_exchanger_genesis_proto_goTypes = nil
+	file_stwartchain_exchanger_genesis_proto_depIdxs = nil
 }
