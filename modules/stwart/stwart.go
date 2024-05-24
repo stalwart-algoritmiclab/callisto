@@ -14,6 +14,8 @@ import (
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain/last_block"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger"
+	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	coresource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger"
 	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
@@ -56,6 +58,8 @@ func NewModule(
 	db *database.Db,
 	node node.Node,
 	logger logging.Logger,
+
+	exchangerSource exchangerSource.Source,
 
 	faucetSource faucetsource.Source,
 	exchangerSource exchangersource.Source,
