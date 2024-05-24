@@ -37,12 +37,12 @@ import (
 	stakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source"
 	localstakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/local"
 	remotestakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/remote"
-	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
-	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	remoteexchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
+	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
+	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
+	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 )
 
 type Sources struct {
@@ -54,7 +54,7 @@ type Sources struct {
 	StakingSource  stakingsource.Source
 
 	ExchangerSource exchangerSource.Source
-	FaucetSource   faucetsource.Source
+	FaucetSource    faucetsource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, encodingConfig params.EncodingConfig) (*Sources, error) {
@@ -127,7 +127,7 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		StakingSource:  remotestakingsource.NewSource(source, stakingtypes.NewQueryClient(source.GrpcConn)),
 
 		// Custom stwart modules
-		FaucetSource: remotefaucetsource.NewSource(source, faucet.NewQueryClient(source.GrpcConn)),
+		FaucetSource:    remotefaucetsource.NewSource(source, faucettypes.NewQueryClient(source.GrpcConn)),
 		ExchangerSource: remoteexchangerSource.NewSource(source, exchangertypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }
