@@ -17,4 +17,8 @@ type (
 		GetAllMsgExchange(filter filter.Filter) ([]exchanger.MsgExchange, error)
 		InsertMsgExchange(hash string, msgs ...*exchanger.MsgExchange) error
 	}
+
+	// Faucet - describes an interface for working with faucet database models.
+	Faucet interface {
+	}
 )
