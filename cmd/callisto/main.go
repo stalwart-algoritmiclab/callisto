@@ -5,7 +5,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/cmd"
 	initcmd "github.com/forbole/juno/v5/cmd/init"
-	"github.com/forbole/juno/v5/cmd/parse/genesis"
 	parsetypes "github.com/forbole/juno/v5/cmd/parse/types"
 	startcmd "github.com/forbole/juno/v5/cmd/start"
 	"github.com/forbole/juno/v5/modules/messages"
@@ -38,7 +37,6 @@ func main() {
 		cmd.VersionCmd(),
 		initcmd.NewInitCmd(cfg.GetInitConfig()),
 		vault.CheckVaultConfig(cfg.GetName(), startcmd.NewStartCmd(cfg.GetParseConfig())),
-		genesis.NewGenesisCmd(cfg.GetParseConfig()),
 		parsecmd.NewParseCmd(cfg.GetParseConfig()),
 		migratecmd.NewMigrateCmd(cfg.GetName(), cfg.GetParseConfig()),
 		startcmd.NewStartCmd(cfg.GetParseConfig()),
