@@ -86,8 +86,8 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 		cdc,
 		db,
 		ctx.Proxy,
+		sources.FaucetSource,
 		ctx.Logger,
-
 		sources.ExchangerSource,
 	)
 
