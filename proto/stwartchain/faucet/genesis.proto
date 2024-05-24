@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package stwartchain.faucet;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "stwartchain/faucet/params.proto";
+import "stwartchain/faucet/tokens.proto";
+
+option go_package = "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet";
+
+// GenesisState defines the faucet module's genesis state.
+message GenesisState {
+  
+  // params defines all the parameters of the module.
+           Params params      = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+  repeated Tokens tokensList  = 2 [(gogoproto.nullable) = false] ;
+           uint64 tokensCount = 3;
+}
+
