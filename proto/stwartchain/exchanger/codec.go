@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package exchanger
 
 import (
@@ -22,5 +16,4 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgUpdateParams{},
 	)
-	msgservice.RegisterMsgServiceDesc(registry, &_Msg_serviceDesc)
 }
