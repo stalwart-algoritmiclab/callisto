@@ -13,4 +13,6 @@ CREATE INDEX exchanger_creator_index ON stwart_exchanger (creator);
 CREATE INDEX exchanger_tx_hash_index ON stwart_exchanger (tx_hash);
 
 -- +migrate Down
+DROP INDEX IF EXISTS exchanger_tx_hash_index;
+DROP INDEX IF EXISTS exchanger_creator_index;
 DROP TABLE IF EXISTS stwart_exchanger;
