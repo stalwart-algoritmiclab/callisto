@@ -41,7 +41,7 @@ func (r Repository) InsertMsgExchange(hash string, msgs ...*exchanger.MsgExchang
 		) VALUES (
 			$1, $2, $3, $4, $5
 		) RETURNING
-			id,  creator, denom, amount, denom_to, tx_hash
+			id, creator, denom, amount, denom_to, tx_hash
 	`
 
 	for _, msg := range msgs {
@@ -50,7 +50,7 @@ func (r Repository) InsertMsgExchange(hash string, msgs ...*exchanger.MsgExchang
 			return err
 		}
 
-		if _, err := r.db.Exec(q, m.TxHash, m.Creator, m.Amount); err != nil {
+		if _, err = r.db.Exec(q, m.Creator, m.Denom, m.Amount, m.DenomTo, m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

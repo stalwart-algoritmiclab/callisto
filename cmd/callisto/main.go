@@ -8,6 +8,7 @@ import (
 	parsetypes "github.com/forbole/juno/v5/cmd/parse/types"
 	startcmd "github.com/forbole/juno/v5/cmd/start"
 	"github.com/forbole/juno/v5/modules/messages"
+	_ "go.uber.org/automaxprocs"
 
 	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
 	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"

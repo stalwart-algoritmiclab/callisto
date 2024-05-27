@@ -3,7 +3,6 @@ package stwart
 import (
 	"errors"
 	"fmt"
-	"time"
 
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 	tmtypes "github.com/cometbft/cometbft/types"
@@ -18,8 +17,6 @@ import (
 )
 
 const (
-	intervalLastBlock = time.Second
-
 	module = "stwart"
 )
 
