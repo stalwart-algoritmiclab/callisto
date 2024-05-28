@@ -6,9 +6,9 @@ import (
 
 var _ sdk.Msg = &MsgFees{}
 
-func NewMsgFees(comission sdk.Coin, addressTo string) *MsgFees {
+func NewMsgFees(comission sdk.Coin, addressTo string) *MsgFees { //nolint:misspell
 	return &MsgFees{
-		Comission: comission,
+		Comission: comission, //nolint:misspell
 		AddressTo: addressTo,
 	}
 }
