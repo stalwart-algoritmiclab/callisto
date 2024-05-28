@@ -90,6 +90,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 		sources.FaucetSource,
 		sources.ExchangerSource,
 		sources.SecuredSource,
+		sources.CoreSource,
 	)
 
 	return []jmodules.Module{
