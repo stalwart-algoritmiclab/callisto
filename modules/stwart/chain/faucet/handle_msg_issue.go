@@ -8,9 +8,5 @@ import (
 
 // handleMsgIssue allows to properly handle a MsgIssue
 func (m *Module) handleMsgIssue(tx *juno.Tx, _ int, msg *faucet.MsgIssue) error {
-
-	return m.faucetRepo.InsertMsgIssue(tx.TxHash, &faucet.MsgIssue{
-		Creator: msg.Creator,
-		Address: msg.Address,
-	})
+	return m.faucetRepo.InsertMsgIssue(tx.TxHash, msg)
 }

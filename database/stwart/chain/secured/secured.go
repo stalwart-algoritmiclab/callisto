@@ -1,4 +1,4 @@
-package faucet
+package secured
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
@@ -7,7 +7,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 )
 
-var _ chain.Faucet = &Repository{}
+var _ chain.Secured = &Repository{}
 
 type (
 	// Repository - defines a repository for secured repository

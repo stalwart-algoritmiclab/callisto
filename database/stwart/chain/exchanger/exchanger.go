@@ -10,7 +10,7 @@ import (
 var _ chain.Exchanger = &Repository{}
 
 type (
-	// Repository - defines a repository for allowed repository
+	// Repository - defines a repository for secured repository
 	Repository struct {
 		cdc codec.Codec
 		db  *sqlx.DB

@@ -7,6 +7,7 @@ import (
 
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 // MakeEncodingConfig creates an EncodingConfig to properly handle all the messages
@@ -22,6 +23,7 @@ func MakeEncodingConfig(managers []module.BasicManager) func() params.EncodingCo
 		// custom modules
 		exchanger.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		faucet.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		secured.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		return encodingConfig
 	}
 }
