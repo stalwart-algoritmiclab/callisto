@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package rates
 
 const (
@@ -26,6 +20,19 @@ func KeyPrefix(p string) []byte {
 }
 
 const (
-	AddressesKey      = "Addresses/value/"
-	AddressesCountKey = "Addresses/count/"
+	TokensKey      = "Rates/value/"
+	TokensCountKey = "Rates/count/"
 )
+
+// RatesKey returns the store key to retrieve a Rates from the index fields
+func RatesKey(
+	denom string,
+) []byte {
+	var key []byte
+
+	denomBytes := []byte(denom)
+	key = append(key, denomBytes...)
+	key = append(key, []byte("/")...)
+
+	return key
+}

@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package rates
 
 import (
@@ -41,4 +35,6 @@ func NewModule(keeper source.Source, cdc codec.Codec, db *database.Db) *Module {
 }
 
 // Name implements modules.Module
-func (m *Module) Name() string { return "stwart_rates" }
+func (m *Module) Name() string {
+	return "stwart_rates"
+}
