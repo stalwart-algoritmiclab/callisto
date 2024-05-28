@@ -23,6 +23,7 @@ func MakeEncodingConfig(managers []module.BasicManager) func() params.EncodingCo
 		// custom modules
 		exchanger.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		faucet.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		core.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		secured.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		return encodingConfig
 	}

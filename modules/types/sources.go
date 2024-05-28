@@ -41,12 +41,15 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/utils/simapp"
 	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	remoteexchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
+	coresource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
+	remotecoreSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source/remote"
 	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	remoteexchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
 	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
+	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
@@ -63,6 +66,7 @@ type Sources struct {
 	ExchangerSource exchangersource.Source
 	FaucetSource    faucetsource.Source
 	SecuredSource   securedsource.Source
+	CoreSource      coresource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, cdc codec.Codec) (*Sources, error) {
@@ -126,5 +130,6 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		FaucetSource:    remotefaucetsource.NewSource(source, faucettypes.NewQueryClient(source.GrpcConn)),
 		ExchangerSource: remoteexchangersource.NewSource(source, exchangertypes.NewQueryClient(source.GrpcConn)),
 		SecuredSource:   remotesecuredsource.NewSource(source, securedtypes.NewQueryClient(source.GrpcConn)),
+		CoreSource:      remotecoreSource.NewSource(source, coretypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }
