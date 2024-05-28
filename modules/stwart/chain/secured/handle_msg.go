@@ -1,10 +1,10 @@
-package faucet
+package secured
 
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	juno "github.com/forbole/juno/v5/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 // HandleMsg implements MessageModule
@@ -13,9 +13,9 @@ func (m *Module) HandleMsg(index int, msg sdk.Msg, tx *juno.Tx) error {
 	//	return nil
 	//}
 
-	switch faucetMsg := msg.(type) {
-	case *faucet.MsgIssue:
-		return m.handleMsgIssue(tx, index, faucetMsg)
+	switch securedMsg := msg.(type) {
+	case *secured.MsgCreateAddresses:
+		return m.handleMsgCreateAddresses(tx, index, securedMsg)
 	default:
 		return nil
 	}

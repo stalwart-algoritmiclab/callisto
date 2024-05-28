@@ -9,9 +9,11 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain/last_block"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger"
-	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
+	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured"
+	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 )
 
 var (
@@ -41,7 +43,8 @@ func NewModule(
 	logger logging.Logger,
 
 	faucetSource faucetsource.Source,
-	exchangerSource exchangerSource.Source,
+	exchangerSource exchangersource.Source,
+	securedSource securedsource.Source,
 ) *Module {
 	m := &Module{
 		cdc:           cdc,
@@ -53,6 +56,7 @@ func NewModule(
 			// stwart modules
 			exchanger.NewModule(exchangerSource, cdc, db),
 			faucet.NewModule(faucetSource, cdc, db),
+			secured.NewModule(securedSource, cdc, db),
 		},
 	}
 
