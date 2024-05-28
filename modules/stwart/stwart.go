@@ -12,6 +12,8 @@ import (
 	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
+
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 )
@@ -45,6 +47,7 @@ func NewModule(
 	faucetSource faucetsource.Source,
 	exchangerSource exchangersource.Source,
 	securedSource securedsource.Source,
+	coreSource core.Source,
 ) *Module {
 	m := &Module{
 		cdc:           cdc,
@@ -57,6 +60,7 @@ func NewModule(
 			exchanger.NewModule(exchangerSource, cdc, db),
 			faucet.NewModule(faucetSource, cdc, db),
 			secured.NewModule(securedSource, cdc, db),
+			core.NewModule(coreSource, cdc, db),
 		},
 	}
 
