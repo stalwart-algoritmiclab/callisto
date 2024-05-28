@@ -5,6 +5,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
@@ -46,6 +47,14 @@ type (
 
 		GetAllMsgSend(filter filter.Filter) ([]core.MsgSend, error)
 		InsertMsgSend(hash string, msgs ...*core.MsgSend) error
+	}
+
+	// Rates - describes an interface for working with rates database models.
+	Rates interface {
+		GetAllMsgCreateAddresses(filter filter.Filter) ([]rates.MsgCreateAddresses, error)
+		InsertMsgCreateAddresses(hash string, msgs ...*rates.MsgCreateAddresses) error
+		GetAllMsgCreateRates(filter filter.Filter) ([]rates.MsgCreateRates, error)
+		InsertMsgCreateRates(hash string, msgs ...*rates.MsgCreateRates) error
 	}
 
 	// Secured - describes an interface for working with secured database models.
