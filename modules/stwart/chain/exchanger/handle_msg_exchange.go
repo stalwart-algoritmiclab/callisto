@@ -8,10 +8,5 @@ import (
 
 // handleMsgExchange handles the MsgExchange message
 func (m *Module) handleMsgExchange(tx *juno.Tx, _ int, msg *exchanger.MsgExchange) error {
-	return m.exchangerRepo.InsertMsgExchange(tx.TxHash, &exchanger.MsgExchange{
-		Creator: msg.Creator,
-		Denom:   msg.Denom,
-		Amount:  msg.Amount,
-		DenomTo: msg.DenomTo,
-	})
+	return m.exchangerRepo.InsertMsgExchange(tx.TxHash, msg)
 }
