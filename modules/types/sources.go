@@ -50,9 +50,12 @@ import (
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
 	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
+	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
+	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	ratestypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
 )
 
 type Sources struct {
@@ -67,6 +70,7 @@ type Sources struct {
 	FaucetSource    faucetsource.Source
 	SecuredSource   securedsource.Source
 	CoreSource      coresource.Source
+	RatesSource     ratessource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, cdc codec.Codec) (*Sources, error) {
@@ -129,6 +133,7 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		// Custom stwart modules
 		FaucetSource:    remotefaucetsource.NewSource(source, faucettypes.NewQueryClient(source.GrpcConn)),
 		ExchangerSource: remoteexchangersource.NewSource(source, exchangertypes.NewQueryClient(source.GrpcConn)),
+		RatesSource:     remoteratessource.NewSource(source, ratestypes.NewQueryClient(source.GrpcConn)),
 		SecuredSource:   remotesecuredsource.NewSource(source, securedtypes.NewQueryClient(source.GrpcConn)),
 		CoreSource:      remotecoreSource.NewSource(source, coretypes.NewQueryClient(source.GrpcConn)),
 	}, nil
