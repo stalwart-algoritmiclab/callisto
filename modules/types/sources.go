@@ -47,10 +47,15 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/utils/simapp"
 	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	remoteexchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
+	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
+	remoteexchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
 	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
+	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
+	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 type Sources struct {
@@ -61,8 +66,9 @@ type Sources struct {
 	SlashingSource slashingsource.Source
 	StakingSource  stakingsource.Source
 
-	ExchangerSource exchangerSource.Source
+	ExchangerSource exchangersource.Source
 	FaucetSource    faucetsource.Source
+	SecuredSource   securedsource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, cdc codec.Codec) (*Sources, error) {
@@ -124,6 +130,7 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 
 		// Custom stwart modules
 		FaucetSource:    remotefaucetsource.NewSource(source, faucettypes.NewQueryClient(source.GrpcConn)),
-		ExchangerSource: remoteexchangerSource.NewSource(source, exchangertypes.NewQueryClient(source.GrpcConn)),
+		ExchangerSource: remoteexchangersource.NewSource(source, exchangertypes.NewQueryClient(source.GrpcConn)),
+		SecuredSource:   remotesecuredsource.NewSource(source, securedtypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }

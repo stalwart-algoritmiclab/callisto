@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package stwart
 
 import (
@@ -15,20 +9,9 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain/last_block"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger"
-	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
-	coresource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger"
 	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy"
-	feepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source"
-	referralsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source"
-
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core"
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates"
-	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 )
@@ -59,15 +42,9 @@ func NewModule(
 	node node.Node,
 	logger logging.Logger,
 
-	exchangerSource exchangerSource.Source,
-
 	faucetSource faucetsource.Source,
 	exchangerSource exchangersource.Source,
 	securedSource securedsource.Source,
-	ratesSource ratessource.Source,
-	coreSource coresource.Source,
-	feepolicySource feepolicysource.Source,
-	referralsSource referralsource.Source,
 ) *Module {
 	m := &Module{
 		cdc:           cdc,
@@ -80,10 +57,6 @@ func NewModule(
 			exchanger.NewModule(exchangerSource, cdc, db),
 			faucet.NewModule(faucetSource, cdc, db),
 			secured.NewModule(securedSource, cdc, db),
-			rates.NewModule(ratesSource, cdc, db),
-			core.NewModule(coreSource, cdc, db),
-			feepolicy.NewModule(feepolicySource, cdc, db),
-			referrals.NewModule(referralsSource, cdc, db),
 		},
 	}
 
