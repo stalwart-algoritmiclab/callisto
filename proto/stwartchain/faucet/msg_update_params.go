@@ -20,5 +20,6 @@ func (m *MsgUpdateParams) ValidateBasic() error {
 	return nil
 }
 
+func (m *MsgUpdateParams) GetSigners() []sdk.AccAddress {
 	return []sdk.AccAddress{}
 }

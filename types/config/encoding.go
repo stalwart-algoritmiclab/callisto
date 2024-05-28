@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package config
 
 import (
@@ -13,6 +7,7 @@ import (
 
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 // MakeEncodingConfig creates an EncodingConfig to properly handle all the messages
@@ -28,6 +23,8 @@ func MakeEncodingConfig(managers []module.BasicManager) func() params.EncodingCo
 		// custom modules
 		exchanger.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		faucet.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		core.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		secured.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		return encodingConfig
 	}
 }
