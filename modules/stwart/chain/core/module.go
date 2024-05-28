@@ -6,7 +6,7 @@ import (
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain/core"
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
 )
 
 var (

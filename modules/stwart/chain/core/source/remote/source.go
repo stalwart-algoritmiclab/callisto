@@ -3,7 +3,7 @@ package remote
 import (
 	"github.com/forbole/juno/v5/node/remote"
 
-	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 )
 

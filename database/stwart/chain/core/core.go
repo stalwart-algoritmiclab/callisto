@@ -70,7 +70,7 @@ func (r Repository) InsertMsgIssue(hash string, msgs ...*core.MsgIssue) error {
 			return err
 		}
 
-		if _, err = r.db.Exec(q, m.Creator, m.Denom, m.Amount, m.Denom, m.TxHash); err != nil {
+		if _, err = r.db.Exec(q, m.Creator, m.Denom, m.Amount, m.Address, m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}
@@ -119,7 +119,7 @@ func (r Repository) InsertMsgWithdraw(hash string, msgs ...*core.MsgWithdraw) er
 			return err
 		}
 
-		if _, err = r.db.Exec(q, m.Creator, m.Denom, m.Amount, m.Denom, m.TxHash); err != nil {
+		if _, err = r.db.Exec(q, m.Creator, m.Denom, m.Amount, m.Address, m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

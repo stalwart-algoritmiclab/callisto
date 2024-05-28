@@ -37,7 +37,7 @@ import (
 	stakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source"
 	localstakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/local"
 	remotestakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/remote"
-	coresource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core"
+	coresource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
 	remotecoreSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source/remote"
 	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	remoteexchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"

@@ -1,4 +1,4 @@
-package core
+package source
 
 type Source interface {
 	// TODO

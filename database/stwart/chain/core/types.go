@@ -3,7 +3,7 @@ package core
 const (
 	tableIssue     = "stwart_core_issue"
 	tableWithdraw  = "stwart_core_withdraw"
-	tableRefReward = "stwart_core_ref_reward"
+	tableRefReward = "stwart_core_refreward"
 	tableRefund    = "stwart_core_refund"
 	tableFees      = "stwart_core_fees"
 	tableSend      = "stwart_core_send"
