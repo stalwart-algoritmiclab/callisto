@@ -23,7 +23,23 @@ CREATE TABLE IF NOT EXISTS stwart_rates_create_rates
 CREATE INDEX rates_create_rates_creator_index ON stwart_rates_create_rates (creator);
 CREATE INDEX rates_create_rates_tx_hash_index ON stwart_rates_create_rates (tx_hash);
 
+CREATE TABLE IF NOT EXISTS stwart_rates_update_rates
+(
+    id       SERIAL NOT NULL PRIMARY KEY,
+    creator  TEXT   NOT NULL,
+    denom    TEXT   NOT NULL,
+    rate     TEXT NOT NULL,
+    tx_hash  TEXT   NOT NULL
+);
+
+CREATE INDEX rates_update_rates_creator_index ON stwart_rates_update_rates (creator);
+CREATE INDEX rates_update_rates_tx_hash_index ON stwart_rates_update_rates (tx_hash);
+
 -- +migrate Down
+
+DROP INDEX rates_update_rates_tx_hash_index;
+DROP INDEX rates_update_rates_creator_index;
+DROP TABLE IF EXISTS stwart_rates_update_rates;
 
 DROP INDEX rates_create_rates_tx_hash_index;
 DROP INDEX rates_create_rates_creator_index;
