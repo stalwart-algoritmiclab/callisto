@@ -36,7 +36,6 @@ CREATE INDEX rates_update_rates_creator_index ON stwart_rates_update_rates (crea
 CREATE INDEX rates_update_rates_tx_hash_index ON stwart_rates_update_rates (tx_hash);
 
 -- +migrate Down
-
 DROP INDEX rates_update_rates_tx_hash_index;
 DROP INDEX rates_update_rates_creator_index;
 DROP TABLE IF EXISTS stwart_rates_update_rates;
