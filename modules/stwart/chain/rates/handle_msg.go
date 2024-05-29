@@ -8,12 +8,20 @@ import (
 )
 
 // HandleMsg implements MessageModule
-func (m *Module) HandleMsg(index int, msg sdk.Msg, tx *juno.Tx) error {
+func (m *Module) HandleMsg(_ int, msg sdk.Msg, tx *juno.Tx) error {
 	switch ratesMsg := msg.(type) {
 	case *rates.MsgCreateRates:
-		return m.handleMsgCreateRates(tx, index, ratesMsg)
+		return m.handleMsgCreateRates(tx, ratesMsg)
+	case *rates.MsgUpdateRates:
+		return m.handleMsgUpdateRates(tx, ratesMsg)
+	case *rates.MsgDeleteRates:
+		return m.handleMsgDeleteRates(tx, ratesMsg)
 	case *rates.MsgCreateAddresses:
-		return m.handleMsgCreateAddresses(tx, index, ratesMsg)
+		return m.handleMsgCreateAddresses(tx, ratesMsg)
+	case *rates.MsgUpdateAddresses:
+		return m.handleMsgUpdateAddresses(tx, ratesMsg)
+	case *rates.MsgDeleteAddresses:
+		return m.handleMsgDeleteAddresses(tx, ratesMsg)
 	default:
 		return nil
 	}
