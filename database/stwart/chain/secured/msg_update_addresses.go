@@ -1,9 +1,3 @@
-/*
- * SPDX-License-Identifier: BUSL-1.1
- * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
- * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
- */
-
 package secured
 
 import (
@@ -44,11 +38,11 @@ func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*secured.MsgUp
 
 	q := `
 		INSERT INTO stwart_secured_update_addresses (
-			address_id, tx_hash, creator, addresses
+			 id, tx_hash, creator, addresses
 		) VALUES (
 			$1, $2, $3, $4
 		) RETURNING
-			id, address_id, tx_hash, creator, addresses
+			id, tx_hash, creator, addresses
 	`
 
 	for _, msg := range msgs {
@@ -57,7 +51,7 @@ func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*secured.MsgUp
 			return err
 		}
 
-		if _, err = r.db.Exec(q, m.AddressID, m.TxHash, m.Creator, m.Addresses); err != nil {
+		if _, err = r.db.Exec(q, m.ID, m.TxHash, m.Creator, m.Addresses); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}
