@@ -61,5 +61,11 @@ type (
 	Secured interface {
 		GetAllMsgCreateAddresses(filter filter.Filter) ([]secured.MsgCreateAddresses, error)
 		InsertMsgCreateAddresses(hash string, msgs ...*secured.MsgCreateAddresses) error
+
+		GetAllMsgDeleteAddresses(filter filter.Filter) ([]secured.MsgDeleteAddresses, error)
+		InsertMsgDeleteAddresses(hash string, msgs ...*secured.MsgDeleteAddresses) error
+
+		GetAllMsgUpdateAddresses(filter filter.Filter) ([]secured.MsgUpdateAddresses, error)
+		InsertMsgUpdateAddresses(hash string, msgs ...*secured.MsgUpdateAddresses) error
 	}
 )
