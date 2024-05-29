@@ -31,6 +31,63 @@ func toMsgCreateAddressesDatabase(txHash string, m *rates.MsgCreateAddresses) (M
 	}, nil
 }
 
+// toMsgUpdateAddressesDomain - mapping db model to proto model
+func toMsgUpdateAddressesDomain(m MsgUpdateAddresses) rates.MsgUpdateAddresses {
+	return rates.MsgUpdateAddresses{
+		Creator: m.Creator,
+		Id:      m.ID,
+		Address: m.Address,
+	}
+}
+
+// toMsgUpdateAddressesDomainList - mapping func to a proto list.
+func toMsgUpdateAddressesDomainList(m []MsgUpdateAddresses) []rates.MsgUpdateAddresses {
+	res := make([]rates.MsgUpdateAddresses, 0, len(m))
+	for _, msg := range m {
+		res = append(res, toMsgUpdateAddressesDomain(msg))
+	}
+
+	return res
+}
+
+// toMsgUpdateAddressesDatabase - mapping func to a database model.
+func toMsgUpdateAddressesDatabase(txHash string, m *rates.MsgUpdateAddresses) (MsgUpdateAddresses, error) {
+	return MsgUpdateAddresses{
+		Creator:   m.Creator,
+		Address:   m.Address,
+		AddressID: m.Id,
+		TxHash:    txHash,
+	}, nil
+}
+
+// toMsgDeleteAddressesDomain - mapping db model to proto model
+func toMsgDeleteAddressesDomain(m MsgDeleteAddresses) rates.MsgDeleteAddresses {
+	return rates.MsgDeleteAddresses{
+		Creator: m.Creator,
+		Id:      m.AddressID,
+	}
+
+}
+
+// toMsgDeleteAddressesDomainList - mapping func to a proto list.
+func toMsgDeleteAddressesDomainList(m []MsgDeleteAddresses) []rates.MsgDeleteAddresses {
+	res := make([]rates.MsgDeleteAddresses, 0, len(m))
+	for _, msg := range m {
+		res = append(res, toMsgDeleteAddressesDomain(msg))
+	}
+
+	return res
+}
+
+// toMsgDeleteAddressesDatabase - mapping func to a database model.
+func toMsgDeleteAddressesDatabase(txHash string, m *rates.MsgDeleteAddresses) (MsgDeleteAddresses, error) {
+	return MsgDeleteAddresses{
+		Creator:   m.Creator,
+		AddressID: m.Id,
+		TxHash:    txHash,
+	}, nil
+}
+
 // toMsgCreateRatesDomain - mapping db model to proto model
 func toMsgCreateRatesDomain(m MsgCreateRates) rates.MsgCreateRates {
 	return rates.MsgCreateRates{
