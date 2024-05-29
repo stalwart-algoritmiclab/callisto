@@ -9,13 +9,13 @@ import (
 
 // HandleMsg implements MessageModule
 func (m *Module) HandleMsg(index int, msg sdk.Msg, tx *juno.Tx) error {
-	//if len(tx.Logs) == 0 {
-	//	return nil
-	//}
-
 	switch securedMsg := msg.(type) {
 	case *secured.MsgCreateAddresses:
 		return m.handleMsgCreateAddresses(tx, index, securedMsg)
+	case *secured.MsgDeleteAddresses:
+		return m.handleMsgDeleteAddresses(tx, index, securedMsg)
+	case *secured.MsgUpdateAddresses:
+		return m.handleMsgUpdateAddresses(tx, index, securedMsg)
 	default:
 		return nil
 	}

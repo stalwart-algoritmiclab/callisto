@@ -35,6 +35,4 @@ func NewModule(keeper source.Source, cdc codec.Codec, db *database.Db) *Module {
 }
 
 // Name implements modules.Module
-func (m *Module) Name() string {
-	return "stwart_rates"
-}
+func (m *Module) Name() string { return "stwart_rates" }
