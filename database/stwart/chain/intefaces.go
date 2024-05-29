@@ -53,8 +53,21 @@ type (
 	Rates interface {
 		GetAllMsgCreateAddresses(filter filter.Filter) ([]rates.MsgCreateAddresses, error)
 		InsertMsgCreateAddresses(hash string, msgs ...*rates.MsgCreateAddresses) error
+
+		GetAllMsgUpdateAddresses(filter filter.Filter) ([]rates.MsgUpdateAddresses, error)
+		InsertMsgUpdateAddresses(hash string, msgs ...*rates.MsgUpdateAddresses) error
+
+		GetAllMsgDeleteAddresses(filter filter.Filter) ([]rates.MsgDeleteAddresses, error)
+		InsertMsgDeleteAddresses(hash string, msgs ...*rates.MsgDeleteAddresses) error
+
 		GetAllMsgCreateRates(filter filter.Filter) ([]rates.MsgCreateRates, error)
 		InsertMsgCreateRates(hash string, msgs ...*rates.MsgCreateRates) error
+
+		GetAllMsgUpdateRates(filter filter.Filter) ([]rates.MsgUpdateRates, error)
+		InsertMsgUpdateRates(hash string, msgs ...*rates.MsgUpdateRates) error
+
+		GetAllMsgDeleteRates(filter filter.Filter) ([]rates.MsgDeleteRates, error)
+		InsertMsgDeleteRates(hash string, msgs ...*rates.MsgDeleteRates) error
 	}
 
 	// Secured - describes an interface for working with secured database models.
