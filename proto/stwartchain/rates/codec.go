@@ -12,7 +12,8 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 		&MsgCreateAddresses{},
 		&MsgUpdateAddresses{},
 		&MsgDeleteAddresses{},
-
+	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgCreateRates{},
 		&MsgUpdateRates{},
 		&MsgDeleteRates{},

@@ -2,7 +2,7 @@
 // source: stwartchain/rates/query.proto
 
 /*
-Package types is a reverse proxy.
+package rates is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */

@@ -20,19 +20,6 @@ func KeyPrefix(p string) []byte {
 }
 
 const (
-	TokensKey      = "Rates/value/"
-	TokensCountKey = "Rates/count/"
+	AddressesKey      = "Addresses/value/"
+	AddressesCountKey = "Addresses/count/"
 )
-
-// RatesKey returns the store key to retrieve a Rates from the index fields
-func RatesKey(
-	denom string,
-) []byte {
-	var key []byte
-
-	denomBytes := []byte(denom)
-	key = append(key, denomBytes...)
-	key = append(key, []byte("/")...)
-
-	return key
-}
