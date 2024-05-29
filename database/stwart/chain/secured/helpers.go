@@ -35,7 +35,7 @@ func toMsgCreateAddressesDatabase(txHash string, m *secured.MsgCreateAddresses) 
 func toMsgUpdateAddressesDomain(m MsgUpdateAddresses) secured.MsgUpdateAddresses {
 	return secured.MsgUpdateAddresses{
 		Creator: m.Creator,
-		Id:      m.ID,
+		Id:      m.AddressID,
 		Address: m.Addresses,
 	}
 }
@@ -53,7 +53,7 @@ func toMsgUpdateAddressesDomainList(m []MsgUpdateAddresses) []secured.MsgUpdateA
 // toMsgUpdateAddressesDatabase - mapping func to a database model.
 func toMsgUpdateAddressesDatabase(txHash string, m *secured.MsgUpdateAddresses) (MsgUpdateAddresses, error) {
 	return MsgUpdateAddresses{
-		ID:        m.Id,
+		AddressID: m.Id,
 		Creator:   m.Creator,
 		Addresses: m.Address,
 		TxHash:    txHash,
@@ -63,7 +63,7 @@ func toMsgUpdateAddressesDatabase(txHash string, m *secured.MsgUpdateAddresses) 
 // MsgDeleteAddresses - mapping db model to proto model
 func toMsgDeleteAddressesDomain(m MsgDeleteAddresses) secured.MsgDeleteAddresses {
 	return secured.MsgDeleteAddresses{
-		Id:      m.ID,
+		Id:      m.AddressID,
 		Creator: m.Creator,
 	}
 }
@@ -81,8 +81,8 @@ func toMsgDeleteAddressesDomainList(m []MsgDeleteAddresses) []secured.MsgDeleteA
 // toMsgDeleteAddressesDatabase - mapping func to a database model.
 func toMsgDeleteAddressesDatabase(txHash string, m *secured.MsgDeleteAddresses) (MsgDeleteAddresses, error) {
 	return MsgDeleteAddresses{
-		ID:      m.Id,
-		Creator: m.Creator,
-		TxHash:  txHash,
+		AddressID: m.Id,
+		Creator:   m.Creator,
+		TxHash:    txHash,
 	}, nil
 }

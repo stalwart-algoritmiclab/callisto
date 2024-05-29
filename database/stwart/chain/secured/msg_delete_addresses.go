@@ -38,11 +38,11 @@ func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*secured.MsgDe
 
 	q := `
 		INSERT INTO stwart_secured_delete_addresses (
-			 id, tx_hash, creator
+		    address_id, tx_hash, creator
 		) VALUES (
 			$1, $2, $3
 		) RETURNING
-			id, tx_hash, creator
+			id, address_id, tx_hash, creator
 	`
 
 	for _, msg := range msgs {
@@ -51,7 +51,7 @@ func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*secured.MsgDe
 			return err
 		}
 
-		if _, err = r.db.Exec(q, m.ID, m.TxHash, m.Creator); err != nil {
+		if _, err = r.db.Exec(q, m.AddressID, m.TxHash, m.Creator); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}
