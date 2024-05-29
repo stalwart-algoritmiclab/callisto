@@ -38,11 +38,11 @@ func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*secured.MsgUp
 
 	q := `
 		INSERT INTO stwart_secured_update_addresses (
-			 id, tx_hash, creator, addresses
+			address_id, tx_hash, creator, addresses
 		) VALUES (
 			$1, $2, $3, $4
 		) RETURNING
-			id, tx_hash, creator, addresses
+			id, address_id, tx_hash, creator, addresses
 	`
 
 	for _, msg := range msgs {
@@ -51,7 +51,7 @@ func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*secured.MsgUp
 			return err
 		}
 
-		if _, err = r.db.Exec(q, m.ID, m.TxHash, m.Creator, m.Addresses); err != nil {
+		if _, err = r.db.Exec(q, m.AddressID, m.TxHash, m.Creator, m.Addresses); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

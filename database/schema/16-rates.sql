@@ -72,6 +72,9 @@ CREATE INDEX rates_delete_rates_creator_index ON stwart_rates_delete_rates (crea
 CREATE INDEX rates_delete_rates_tx_hash_index ON stwart_rates_delete_rates (tx_hash);
 
 -- +migrate Down
+DROP INDEX rates_delete_rates_tx_hash_index;
+DROP INDEX rates_delete_rates_creator_index;
+DROP TABLE IF EXISTS stwart_rates_delete_rates;
 
 DROP INDEX rates_create_rates_tx_hash_index;
 DROP INDEX rates_create_rates_creator_index;
@@ -84,10 +87,6 @@ DROP TABLE IF EXISTS stwart_rates_create_addresses;
 DROP INDEX rates_update_rates_tx_hash_index;
 DROP INDEX rates_update_rates_creator_index;
 DROP TABLE IF EXISTS stwart_rates_update_rates;
-
-DROP INDEX rates_delete_rates_tx_hash_index;
-DROP INDEX rates_delete_rates_creator_index;
-DROP TABLE IF EXISTS stwart_rates_delete_rates;
 
 DROP INDEX rates_update_addresses_tx_hash_index;
 DROP INDEX rates_update_addresses_creator_index;
