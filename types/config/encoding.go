@@ -5,6 +5,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/types/params"
 
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
