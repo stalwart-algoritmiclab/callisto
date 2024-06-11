@@ -53,15 +53,15 @@ import (
 	remoteexchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
 	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
+	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
+	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
 	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
-	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
-	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
-	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 	ratestypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 type Sources struct {

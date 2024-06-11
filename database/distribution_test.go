@@ -17,6 +17,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/types"
 
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
+
 	bddbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 )
 
