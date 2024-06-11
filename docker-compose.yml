@@ -2,7 +2,7 @@ version: '3.9'
 services:
   hasura:
     container_name: hasura
-    image: hasura/graphql-engine:v2.38.1
+    image: hasura/graphql-engine:v2.40.0
     ports:
     - "8080:8080"
     restart: always

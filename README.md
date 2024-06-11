@@ -30,4 +30,6 @@ This will:
 1. Create a Docker container running a PostgreSQL database.
 2. Run all the tests using that database as support.
 
-
+## About
+Business Source License 1.1 applies.
+Where explicitly indicated, specific components are distributed under different licenses.
