@@ -1,3 +1,9 @@
+/*
+ * SPDX-License-Identifier: BUSL-1.1
+ * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
+ * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
+ */
+
 package database_test
 
 import (
@@ -10,6 +16,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/types"
 
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
+
 	bddbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 )
 

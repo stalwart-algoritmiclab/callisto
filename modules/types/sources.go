@@ -1,3 +1,9 @@
+/*
+ * SPDX-License-Identifier: BUSL-1.1
+ * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
+ * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
+ */
+
 package types
 
 import (
@@ -43,15 +49,15 @@ import (
 	remoteexchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
 	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
+	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
+	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
 	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
-	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
-	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
-	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 	ratestypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 type Sources struct {

@@ -1,3 +1,9 @@
+/*
+ * SPDX-License-Identifier: BUSL-1.1
+ * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
+ * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
+ */
+
 package gov
 
 import (
@@ -9,6 +15,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
+
 	eventsutil "github.com/stalwart-algoritmiclab/callisto/utils/events"
 )
 

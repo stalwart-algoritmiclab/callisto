@@ -1,3 +1,9 @@
+/*
+ * SPDX-License-Identifier: BUSL-1.1
+ * Contributed by  Algoritmic Lab Ltd. Copyright (C) 2024.
+ * Full license is available at https://github.com/stalwart-algoritmiclab/callisto/tree/dev/LICENSES
+ */
+
 package gov
 
 import (
@@ -5,8 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/stalwart-algoritmiclab/callisto/types"
 	"google.golang.org/grpc/codes"
+
+	"github.com/stalwart-algoritmiclab/callisto/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/authz"
