@@ -92,6 +92,11 @@ func (m *Module) scheduler() {
 
 // parseBlock parse block
 func (m *Module) parseBlock(lastBlock uint64) error {
+	if _, _, err := m.parseMissingBlocksAndTransactions(int64(lastBlock)); err != nil {
+		m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
+		return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
+	}
+
 	block, err := m.db.GetBlock(filter.NewFilter().SetArgument(dbtypes.FieldHeight, lastBlock))
 	if err != nil {
 		if errors.As(err, &errs.NotFound{}) {
