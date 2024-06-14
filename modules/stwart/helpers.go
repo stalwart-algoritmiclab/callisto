@@ -198,6 +198,15 @@ func (m *Module) ExportCommit(commit *tmtypes.Commit, vals *tmctypes.ResultValid
 func (m *Module) ExportTxs(txs []*types.Tx) ([]*txtypes.Tx, error) {
 	// Handle all the transactions inside the block
 	for _, tx := range txs {
+		events := make([]sdk.Event, 0)
+
+		for _, ev := range tx.Events {
+			events = append(events, sdk.Event{Type: ev.Type, Attributes: ev.Attributes})
+		}
+
+		msgLog := sdk.NewABCIMessageLog(0, "", events)
+		tx.Logs = sdk.ABCIMessageLogs{msgLog}
+
 		// Save the transaction itself
 		err := m.db.SaveTx(tx)
 		if err != nil {
