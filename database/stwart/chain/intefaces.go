@@ -11,6 +11,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
@@ -32,6 +33,13 @@ type (
 	Faucet interface {
 		GetAllMsgIssue(filter filter.Filter) ([]faucet.MsgIssue, error)
 		InsertMsgIssue(hash string, msgs ...*faucet.MsgIssue) error
+	}
+
+	// Feepolicy - describes an interface for working with feepolicy database models.
+	Feepolicy interface {
+		InsertMsgCreateTariffs(height int64, hash string, msgs ...*feepolicy.MsgCreateTariffs) error
+		InsertMsgUpdateTariffs(height int64, hash string, msgs ...*feepolicy.MsgUpdateTariffs) error
+		InsertDeleteMsgDeleteTariffs(height int64, hash string, msgs ...*feepolicy.MsgDeleteTariffs) error
 	}
 
 	// Core - describes an interface for working with database models.

@@ -19,6 +19,8 @@ import (
 	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy"
+	feepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates"
@@ -58,6 +60,7 @@ func NewModule(
 	securedSource securedsource.Source,
 	ratesSource ratessource.Source,
 	coreSource coresource.Source,
+	feepolicySource feepolicysource.Source,
 ) *Module {
 	m := &Module{
 		cdc:           cdc,
@@ -72,6 +75,7 @@ func NewModule(
 			secured.NewModule(securedSource, cdc, db),
 			rates.NewModule(ratesSource, cdc, db),
 			core.NewModule(coreSource, cdc, db),
+			feepolicy.NewModule(feepolicySource, cdc, db),
 		},
 	}
 
