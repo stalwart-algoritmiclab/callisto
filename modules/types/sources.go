@@ -49,6 +49,8 @@ import (
 	remoteexchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
 	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
+	feepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source"
+	remotefeepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source/remote"
 	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
 	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
@@ -56,6 +58,7 @@ import (
 	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	feepolicytypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 	ratestypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
 	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
@@ -73,6 +76,7 @@ type Sources struct {
 	SecuredSource   securedsource.Source
 	CoreSource      coresource.Source
 	RatesSource     ratessource.Source
+	FeepolicySource feepolicysource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, encodingConfig params.EncodingConfig) (*Sources, error) {
@@ -150,5 +154,6 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		RatesSource:     remoteratessource.NewSource(source, ratestypes.NewQueryClient(source.GrpcConn)),
 		SecuredSource:   remotesecuredsource.NewSource(source, securedtypes.NewQueryClient(source.GrpcConn)),
 		CoreSource:      remotecoreSource.NewSource(source, coretypes.NewQueryClient(source.GrpcConn)),
+		FeepolicySource: remotefeepolicysource.NewSource(source, feepolicytypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }

@@ -40,7 +40,7 @@ func (m *Module) parseMissingBlocksAndTransactions(height int64) (dbtypes.BlockR
 
 	txs, err := m.node.Txs(block)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, fmt.Errorf("failed to get transactions for block: %s", err)
+		return dbtypes.BlockRow{}, []*txtypes.Tx{}, m.handleErrors(err)
 	}
 
 	vals, err := m.node.Validators(height)
