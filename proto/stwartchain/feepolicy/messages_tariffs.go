@@ -78,3 +78,15 @@ func (msg *MsgDeleteTariffs) ValidateBasic() error {
 	}
 	return nil
 }
+
+func (msg *MsgCreateTariffs) GetSigners() []sdk.AccAddress {
+	return []sdk.AccAddress{sdk.MustAccAddressFromBech32(msg.Creator)}
+}
+
+func (msg *MsgUpdateTariffs) GetSigners() []sdk.AccAddress {
+	return []sdk.AccAddress{sdk.MustAccAddressFromBech32(msg.Creator)}
+}
+
+func (msg *MsgDeleteTariffs) GetSigners() []sdk.AccAddress {
+	return []sdk.AccAddress{sdk.MustAccAddressFromBech32(msg.Creator)}
+}

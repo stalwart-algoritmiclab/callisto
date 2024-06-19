@@ -22,12 +22,6 @@ func (m *Module) HandleMsg(index int, msg sdk.Msg, tx *juno.Tx) error {
 		return m.handleMsgUpdateTariffs(tx, index, feepolicyMsg)
 	case *feepolicy.MsgDeleteTariffs:
 		return m.handleMsgDeleteTariffs(tx, index, feepolicyMsg)
-	case *feepolicy.MsgCreateAddresses:
-		return m.handleMsgCreateAddresses(tx, index, feepolicyMsg)
-	case *feepolicy.MsgUpdateAddresses:
-		return m.handleMsgUpdateAddresses(tx, index, feepolicyMsg)
-	case *feepolicy.MsgDeleteAddresses:
-		return m.handleMsgDeleteAddresses(tx, index, feepolicyMsg)
 	default:
 		return nil
 	}

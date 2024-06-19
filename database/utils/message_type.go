@@ -32,7 +32,7 @@ const (
 
 	// Stalwart rates module event types
 
-	// Stalwart referrals module event types
+	// Stalwart referral module event types
 
 	// Stalwart secured module event types
 

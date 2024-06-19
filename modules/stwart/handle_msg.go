@@ -10,83 +10,46 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"sync"
 	"time"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/forbole/juno/v5/modules"
 	"github.com/forbole/juno/v5/types"
-	junoconf "github.com/forbole/juno/v5/types/config"
 
 	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 )
 
-const intervalLastBlock = 2 * time.Second
-
 // scheduler runs the scheduler
 func (m *Module) scheduler() {
-	ticker := time.NewTicker(intervalLastBlock)
-	defer ticker.Stop()
-
-	for range ticker.C {
-		// get the latest-parsed block from a database
-		lastRepoBlock, err := m.lastBlockRepo.Get()
+	for {
+		lastBlock, err := m.lastBlockRepo.Get()
 		if err != nil {
-			m.logger.Error("Fail lastBlockRepo.Get", "module", m.Name(), "error", err)
-			os.Exit(1)
-		}
-
-		// get the latest block from node
-		lastNodeBlockInt, err := m.node.LatestHeight()
-		if err != nil {
-			m.logger.Error("Fail node.LatestHeight", "module", m.Name(), "error", err)
-			os.Exit(1)
-		}
-
-		lastNodeBlock := uint64(lastNodeBlockInt)
-
-		// compare the latest block in the database and the latest block in the node
-		if lastRepoBlock >= lastNodeBlock {
+			m.logger.Error("Fail lastBlockRepo.Get", "module", "stalwart", "error", err)
 			continue
 		}
 
-		wg := &sync.WaitGroup{}
-		blockChan := make(chan uint64, lastNodeBlock-lastRepoBlock)
+		lastBlock++
 
-		numWorkers := int(junoconf.Cfg.Parser.Workers)
-		for i := 0; i < numWorkers; i++ {
-			wg.Add(1)
+		if err := m.parseBlock(lastBlock); err != nil {
+			time.Sleep(time.Second)
 
-			// worker function to process blocks
-			go func() {
-				defer wg.Done()
-				for height := range blockChan {
-					if err = m.parseBlock(height); err != nil {
-						if errors.As(err, &errs.NotFound{}) {
-							continue
-						}
+			if errors.Is(err, errs.NotFound{}) {
+				m.logger.Error("Fail parseBlock", "module", "stalwart", "error", err)
+				continue
+			}
 
-						m.logger.Error("Fail parseBlock", "module", m.Name(), "error", err)
-						continue
-					}
-
-					if err = m.lastBlockRepo.Update(height); err != nil {
-						m.logger.Error("Fail lastBlockRepo.Update", "module", m.Name(), "error", err)
-						os.Exit(1)
-					}
-				}
-			}()
+			if _, _, err := m.parseMissingBlocksAndTransactions(int64(lastBlock)); err != nil {
+				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
+				continue
+			}
 		}
 
-		// distribute blocks to workers
-		for i := lastRepoBlock + 1; i <= lastNodeBlock; i++ {
-			blockChan <- i
+		if err = m.lastBlockRepo.Update(lastBlock); err != nil {
+			m.logger.Error("Fail lastBlockRepo.Update", "module", "stalwart", "error", err)
+			os.Exit(1)
 		}
-
-		close(blockChan)
-		wg.Wait()
 	}
 }
 
@@ -95,10 +58,6 @@ func (m *Module) parseBlock(lastBlock uint64) error {
 	block, err := m.db.GetBlock(filter.NewFilter().SetArgument(dbtypes.FieldHeight, lastBlock))
 	if err != nil {
 		if errors.As(err, &errs.NotFound{}) {
-			if block, _, err = m.parseMissingBlocksAndTransactions(int64(lastBlock)); err != nil {
-				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
-				return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
-			}
 			return err
 		}
 
@@ -116,13 +75,14 @@ func (m *Module) parseBlock(lastBlock uint64) error {
 
 // parseTx parse txs from block
 func (m *Module) parseTx(block dbtypes.BlockRow) error {
+	if _, _, err := m.parseMissingBlocksAndTransactions(block.Height); err != nil {
+		m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
+		return m.handleErrors(err)
+	}
+
 	txs, err := m.db.GetTransactions(filter.NewFilter().SetArgument(dbtypes.FieldHeight, block.Height))
 	if err != nil {
 		if errors.As(err, &errs.NotFound{}) {
-			if block, _, err = m.parseMissingBlocksAndTransactions(block.Height); err != nil {
-				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
-				return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
-			}
 			return err
 		}
 
@@ -130,11 +90,6 @@ func (m *Module) parseTx(block dbtypes.BlockRow) error {
 	}
 
 	if err = block.CheckTxNumCount(int64(len(txs))); err != nil {
-		if _, txs, err = m.parseMissingBlocksAndTransactions(block.Height); err != nil {
-			m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
-			return errs.Internal{Cause: "Fail parseMissingBlocksAndTransactions, error: " + err.Error()}
-		}
-
 		if err = block.CheckTxNumCount(int64(len(txs))); err != nil {
 			return err
 		}
