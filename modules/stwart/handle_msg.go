@@ -40,10 +40,8 @@ func (m *Module) scheduler() {
 				continue
 			}
 
-			if _, _, err := m.parseMissingBlocksAndTransactions(int64(lastBlock)); err != nil {
-				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
-				continue
-			}
+			m.logger.Error("Fail parseBlock", "module", "stalwart", "error", err)
+			continue
 		}
 
 		if err = m.lastBlockRepo.Update(lastBlock); err != nil {
