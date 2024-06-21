@@ -63,15 +63,3 @@ func (msg *MsgDeleteAddresses) ValidateBasic() error {
 	}
 	return nil
 }
-
-func (msg *MsgCreateAddresses) GetSigners() []sdk.AccAddress {
-	return []sdk.AccAddress{sdk.MustAccAddressFromBech32(msg.Creator)}
-}
-
-func (msg *MsgUpdateAddresses) GetSigners() []sdk.AccAddress {
-	return []sdk.AccAddress{sdk.MustAccAddressFromBech32(msg.Creator)}
-}
-
-func (msg *MsgDeleteAddresses) GetSigners() []sdk.AccAddress {
-	return []sdk.AccAddress{sdk.MustAccAddressFromBech32(msg.Creator)}
-}

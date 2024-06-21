@@ -4,7 +4,7 @@
  * Full license is available at https://github.com/stalwart-algoritmiclab/stwart-chain-go/tree/main/LICENSES
  */
 
-package feepolicy
+package referrals
 
 import (
 	errorsmod "cosmossdk.io/errors"
@@ -12,22 +12,24 @@ import (
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
-var _ sdk.Msg = &MsgCreateTariffs{}
+var _ sdk.Msg = &MsgCreateUser{}
 
-func NewMsgCreateTariffs(
+func NewMsgCreateUser(
 	creator string,
-	denom string,
-	tariff *Tariff,
+	accountAddress string,
+	referrer string,
+	referrals []string,
 
-) *MsgCreateTariffs {
-	return &MsgCreateTariffs{
-		Creator: creator,
-		Denom:   denom,
-		Tariffs: tariff,
+) *MsgCreateUser {
+	return &MsgCreateUser{
+		Creator:        creator,
+		AccountAddress: accountAddress,
+		Referrer:       referrer,
+		Referrals:      referrals,
 	}
 }
 
-func (msg *MsgCreateTariffs) ValidateBasic() error {
+func (msg *MsgCreateUser) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Creator)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
@@ -35,22 +37,24 @@ func (msg *MsgCreateTariffs) ValidateBasic() error {
 	return nil
 }
 
-var _ sdk.Msg = &MsgUpdateTariffs{}
+var _ sdk.Msg = &MsgUpdateUser{}
 
-func NewMsgUpdateTariffs(
+func NewMsgUpdateUser(
 	creator string,
-	denom string,
-	tariff *Tariff,
+	accountAddress string,
+	referrer string,
+	referrals []string,
 
-) *MsgUpdateTariffs {
-	return &MsgUpdateTariffs{
-		Creator: creator,
-		Denom:   denom,
-		Tariffs: tariff,
+) *MsgUpdateUser {
+	return &MsgUpdateUser{
+		Creator:        creator,
+		AccountAddress: accountAddress,
+		Referrer:       referrer,
+		Referrals:      referrals,
 	}
 }
 
-func (msg *MsgUpdateTariffs) ValidateBasic() error {
+func (msg *MsgUpdateUser) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Creator)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
@@ -58,20 +62,20 @@ func (msg *MsgUpdateTariffs) ValidateBasic() error {
 	return nil
 }
 
-var _ sdk.Msg = &MsgDeleteTariffs{}
+var _ sdk.Msg = &MsgDeleteUser{}
 
-func NewMsgDeleteTariffs(
+func NewMsgDeleteUser(
 	creator string,
-	denom string,
+	accountAddress string,
 
-) *MsgDeleteTariffs {
-	return &MsgDeleteTariffs{
-		Creator: creator,
-		Denom:   denom,
+) *MsgDeleteUser {
+	return &MsgDeleteUser{
+		Creator:        creator,
+		AccountAddress: accountAddress,
 	}
 }
 
-func (msg *MsgDeleteTariffs) ValidateBasic() error {
+func (msg *MsgDeleteUser) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Creator)
 	if err != nil {
 		return errorsmod.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
