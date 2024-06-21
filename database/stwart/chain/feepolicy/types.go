@@ -13,15 +13,42 @@ import (
 )
 
 const (
-	tableMsgCreateTariffs = "stwart_feepolicy_msg_create_tariffs"
-	tableMsgUpdateTariffs = "stwart_feepolicy_msg_update_tariffs"
-	tableMsgDeleteTariffs = "stwart_feepolicy_msg_delete_tariffs"
-	tableTariffs          = "stwart_feepolicy_tariffs"
+	tableMsgCreateTariffs   = "stwart_feepolicy_msg_create_tariffs"
+	tableMsgUpdateTariffs   = "stwart_feepolicy_msg_update_tariffs"
+	tableMsgDeleteTariffs   = "stwart_feepolicy_msg_delete_tariffs"
+	tableTariffs            = "stwart_feepolicy_tariffs"
+	tableMsgCreateAddresses = "stwart_feepolicy_create_addresses"
+	tableMsgUpdateAddresses = "stwart_feepolicy_update_addresses"
+	tableMsgDeleteAddresses = "stwart_feepolicy_delete_addresses"
 )
 
-// MsgCreateTariffs table for feepolicy module in the database
 type (
-	// MsgCreateTariffs table for feepolicy module in the database
+	// MsgCreateAddresses - db model for 'stwart_feepolicy_create_addresses'
+	MsgCreateAddresses struct {
+		ID      uint64 `db:"id"`
+		Creator string `db:"creator"`
+		Address string `db:"address"`
+		TxHash  string `db:"tx_hash"`
+	}
+
+	// MsgUpdateAddresses - db model for 'stwart_feepolicy_update_addresses'
+	MsgUpdateAddresses struct {
+		ID        uint64 `db:"id"`
+		Creator   string `db:"creator"`
+		Address   string `db:"address"`
+		AddressID uint64 `db:"address_id"`
+		TxHash    string `db:"tx_hash"`
+	}
+
+	// MsgDeleteAddresses - db model for 'stwart_feepolicy_delete_addresses'
+	MsgDeleteAddresses struct {
+		ID        uint64 `db:"id"`
+		Creator   string `db:"creator"`
+		AddressID uint64 `db:"address_id"`
+		TxHash    string `db:"tx_hash"`
+	}
+
+	// MsgCreateTariffs - db model for 'stwart_feepolicy_msg_create_tariffs'
 	MsgCreateTariffs struct {
 		ID      int    `db:"id"`
 		Denom   string `db:"denom"`
@@ -29,7 +56,7 @@ type (
 		Tariffs Tariff `db:"tariff_detail"`
 	}
 
-	// MsgUpdateTariffs table for feepolicy module in the database
+	// MsgUpdateTariffs - db model for 'stwart_feepolicy_msg_update_tariffs'
 	MsgUpdateTariffs struct {
 		ID      int    `db:"id"`
 		Denom   string `db:"denom"`
@@ -37,7 +64,7 @@ type (
 		Tariffs Tariff `db:"tariff_detail"`
 	}
 
-	// MsgDeleteTariffs table for feepolicy module in the database
+	// MsgDeleteTariffs - db model for 'stwart_feepolicy_msg_delete_tariffs'
 	MsgDeleteTariffs struct {
 		ID       int    `db:"id"`
 		Creator  string `db:"creator"`
@@ -46,7 +73,7 @@ type (
 		FeeID    string `db:"fee_id"`
 	}
 
-	// Tariff table for feepolicy module in the database
+	// Tariff - db model for 'stwart_feepolicy_tariffs'
 	Tariff struct {
 		ID            int    `db:"id"`
 		TariffID      uint64 `db:"tariff_id"`
@@ -56,7 +83,7 @@ type (
 		Fees          Fees   `db:"fees"` // Используем тип Fees для хранения JSON данных
 	}
 
-	// Fee table for feepolicy module in the database
+	// Fee json struct for Fee
 	Fee struct {
 		AmountFrom  string `json:"amountFrom"`
 		Fee         string `json:"fee"`

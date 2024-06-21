@@ -21,10 +21,12 @@ import (
 	faucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy"
 	feepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source"
+	referralsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates"
 	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 )
@@ -61,6 +63,7 @@ func NewModule(
 	ratesSource ratessource.Source,
 	coreSource coresource.Source,
 	feepolicySource feepolicysource.Source,
+	referralsSource referralsource.Source,
 ) *Module {
 	m := &Module{
 		cdc:           cdc,
@@ -76,6 +79,7 @@ func NewModule(
 			rates.NewModule(ratesSource, cdc, db),
 			core.NewModule(coreSource, cdc, db),
 			feepolicy.NewModule(feepolicySource, cdc, db),
+			referrals.NewModule(referralsSource, cdc, db),
 		},
 	}
 

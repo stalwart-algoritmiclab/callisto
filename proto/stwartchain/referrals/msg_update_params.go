@@ -4,7 +4,7 @@
  * Full license is available at https://github.com/stalwart-algoritmiclab/stwart-chain-go/tree/main/LICENSES
  */
 
-package feepolicy
+package referrals
 
 import (
 	errorsmod "cosmossdk.io/errors"

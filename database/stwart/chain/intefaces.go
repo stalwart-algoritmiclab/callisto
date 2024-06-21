@@ -13,6 +13,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
@@ -40,6 +41,9 @@ type (
 		InsertMsgCreateTariffs(height int64, hash string, msgs ...*feepolicy.MsgCreateTariffs) error
 		InsertMsgUpdateTariffs(height int64, hash string, msgs ...*feepolicy.MsgUpdateTariffs) error
 		InsertDeleteMsgDeleteTariffs(height int64, hash string, msgs ...*feepolicy.MsgDeleteTariffs) error
+		InsertMsgCreateAddresses(hash string, msgs ...*feepolicy.MsgCreateAddresses) error
+		InsertMsgUpdateAddresses(hash string, msgs ...*feepolicy.MsgUpdateAddresses) error
+		InsertMsgDeleteAddresses(hash string, msgs ...*feepolicy.MsgDeleteAddresses) error
 	}
 
 	// Core - describes an interface for working with database models.
@@ -94,5 +98,13 @@ type (
 
 		GetAllMsgUpdateAddresses(filter filter.Filter) ([]secured.MsgUpdateAddresses, error)
 		InsertMsgUpdateAddresses(hash string, msgs ...*secured.MsgUpdateAddresses) error
+	}
+
+	// Referrals - describes an interface for working with referrals database models.
+	Referrals interface {
+		InsertMsgCreateUser(hash string, msgs ...*referrals.MsgCreateUser) error
+		InsertMsgUpdateUser(hash string, msgs ...*referrals.MsgUpdateUser) error
+		InsertMsgDeleteUser(hash string, msgs ...*referrals.MsgDeleteUser) error
+		InsertMsgSetReferrer(hash string, msgs ...*referrals.MsgSetReferrer) error
 	}
 )
