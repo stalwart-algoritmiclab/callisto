@@ -16,6 +16,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
 	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
@@ -36,6 +37,7 @@ func MakeEncodingConfig(managers []module.BasicManager) func() params.EncodingCo
 		rates.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		secured.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		feepolicy.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		referrals.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		return encodingConfig
 	}
 }

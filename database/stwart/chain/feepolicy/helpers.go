@@ -71,3 +71,31 @@ func toFeesDatabase(m *feepolicy.Fees) Fee {
 		ID:          m.Id,
 	}
 }
+
+// toMsgCreateAddressesDatabase - mapping proto model to db model
+func toMsgCreateAddressesDatabase(hash string, m *feepolicy.MsgCreateAddresses) (MsgCreateAddresses, error) {
+	return MsgCreateAddresses{
+		Creator: m.Creator,
+		Address: m.Address,
+		TxHash:  hash,
+	}, nil
+}
+
+// toMsgUpdateAddressesDatabase - mapping proto model to db model
+func toMsgUpdateAddressesDatabase(hash string, m *feepolicy.MsgUpdateAddresses) (MsgUpdateAddresses, error) {
+	return MsgUpdateAddresses{
+		Creator:   m.Creator,
+		Address:   m.Address,
+		AddressID: m.Id,
+		TxHash:    hash,
+	}, nil
+}
+
+// toMsgDeleteAddressesDatabase - mapping proto model to db model
+func toMsgDeleteAddressesDatabase(hash string, m *feepolicy.MsgDeleteAddresses) (MsgDeleteAddresses, error) {
+	return MsgDeleteAddresses{
+		Creator:   m.Creator,
+		AddressID: m.Id,
+		TxHash:    hash,
+	}, nil
+}
