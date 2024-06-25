@@ -7,31 +7,30 @@
 package main
 
 import (
-	"cosmossdk.io/simapp"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/forbole/juno/v5/cmd"
-	initcmd "github.com/forbole/juno/v5/cmd/init"
-	parsetypes "github.com/forbole/juno/v5/cmd/parse/types"
-	startcmd "github.com/forbole/juno/v5/cmd/start"
-	"github.com/forbole/juno/v5/modules/messages"
-	_ "go.uber.org/automaxprocs"
+	"github.com/forbole/juno/v6/cmd"
+	initcmd "github.com/forbole/juno/v6/cmd/init"
+	parsetypes "github.com/forbole/juno/v6/cmd/parse/types"
+	startcmd "github.com/forbole/juno/v6/cmd/start"
+	"github.com/forbole/juno/v6/modules/messages"
 
-	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
-	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
-	vault "github.com/stalwart-algoritmiclab/callisto/config"
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	"github.com/stalwart-algoritmiclab/callisto/modules"
-	"github.com/stalwart-algoritmiclab/callisto/types/config"
+	migratecmd "github.com/forbole/callisto/v4/cmd/migrate"
+	parsecmd "github.com/forbole/callisto/v4/cmd/parse"
+	"github.com/forbole/callisto/v4/utils"
+
+	"github.com/forbole/callisto/v4/types/config"
+
+	"github.com/forbole/callisto/v4/database"
+	"github.com/forbole/callisto/v4/modules"
 )
 
 func main() {
 	initCfg := initcmd.NewConfig().
 		WithConfigCreator(config.Creator)
 
+	cdc := utils.GetCodec()
 	parseCfg := parsetypes.NewConfig().
-		WithDBBuilder(database.Builder).
-		WithEncodingConfigBuilder(config.MakeEncodingConfig(getBasicManagers())).
-		WithRegistrar(modules.NewRegistrar(getAddressesParser()))
+		WithDBBuilder(database.Builder(cdc)).
+		WithRegistrar(modules.NewRegistrar(getAddressesParser(), cdc))
 
 	cfg := cmd.NewConfig("callisto").
 		WithInitConfig(initCfg).
@@ -43,7 +42,6 @@ func main() {
 	rootCmd.AddCommand(
 		cmd.VersionCmd(),
 		initcmd.NewInitCmd(cfg.GetInitConfig()),
-		vault.CheckVaultConfig(cfg.GetName(), startcmd.NewStartCmd(cfg.GetParseConfig())),
 		parsecmd.NewParseCmd(cfg.GetParseConfig()),
 		migratecmd.NewMigrateCmd(cfg.GetName(), cfg.GetParseConfig()),
 		startcmd.NewStartCmd(cfg.GetParseConfig()),
@@ -53,15 +51,6 @@ func main() {
 	err := executor.Execute()
 	if err != nil {
 		panic(err)
-	}
-}
-
-// getBasicManagers returns the various basic managers that are used to register the encoding to
-// support custom messages.
-// This should be edited by custom implementations if needed.
-func getBasicManagers() []module.BasicManager {
-	return []module.BasicManager{
-		simapp.ModuleBasics,
 	}
 }
 

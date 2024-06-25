@@ -9,10 +9,14 @@ package mint
 import (
 	"fmt"
 
-	parsecmdtypes "github.com/forbole/juno/v5/cmd/parse/types"
-	"github.com/forbole/juno/v5/types/config"
+	parsecmdtypes "github.com/forbole/juno/v6/cmd/parse/types"
+	"github.com/forbole/juno/v6/types/config"
 	"github.com/spf13/cobra"
 
+	"github.com/forbole/callisto/v4/database"
+	"github.com/forbole/callisto/v4/modules/mint"
+	modulestypes "github.com/forbole/callisto/v4/modules/types"
+	"github.com/forbole/callisto/v4/utils"
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/modules/mint"
 	modulestypes "github.com/stalwart-algoritmiclab/callisto/modules/types"
@@ -29,7 +33,8 @@ func inflationCmd(parseConfig *parsecmdtypes.Config) *cobra.Command {
 				return err
 			}
 
-			sources, err := modulestypes.BuildSources(config.Cfg.Node, parseCtx.EncodingConfig)
+			cdc := utils.GetCodec()
+			sources, err := modulestypes.BuildSources(config.Cfg.Node, cdc)
 			if err != nil {
 				return err
 			}
@@ -38,7 +43,7 @@ func inflationCmd(parseConfig *parsecmdtypes.Config) *cobra.Command {
 			db := database.Cast(parseCtx.Database)
 
 			// Build mint module
-			mintModule := mint.NewModule(sources.MintSource, parseCtx.EncodingConfig.Codec, db)
+			mintModule := mint.NewModule(sources.MintSource, cdc, db)
 
 			err = mintModule.UpdateInflation()
 			if err != nil {

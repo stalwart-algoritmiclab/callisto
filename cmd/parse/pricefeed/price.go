@@ -9,12 +9,13 @@ package pricefeed
 import (
 	"fmt"
 
-	parsecmdtypes "github.com/forbole/juno/v5/cmd/parse/types"
-	"github.com/forbole/juno/v5/types/config"
+	parsecmdtypes "github.com/forbole/juno/v6/cmd/parse/types"
+	"github.com/forbole/juno/v6/types/config"
 	"github.com/spf13/cobra"
 
-	"github.com/stalwart-algoritmiclab/callisto/database"
-	"github.com/stalwart-algoritmiclab/callisto/modules/pricefeed"
+	"github.com/forbole/callisto/v4/database"
+	"github.com/forbole/callisto/v4/modules/pricefeed"
+	"github.com/forbole/callisto/v4/utils"
 )
 
 // priceCmd returns the Cobra command allowing to refresh token price
@@ -28,11 +29,13 @@ func priceCmd(parseConfig *parsecmdtypes.Config) *cobra.Command {
 				return err
 			}
 
+			cdc := utils.GetCodec()
+
 			// Get the database
 			db := database.Cast(parseCtx.Database)
 
 			// Build pricefeed module
-			pricefeedModule := pricefeed.NewModule(config.Cfg, parseCtx.EncodingConfig.Codec, db)
+			pricefeedModule := pricefeed.NewModule(config.Cfg, cdc, db)
 
 			err = pricefeedModule.RunAdditionalOperations()
 			if err != nil {
