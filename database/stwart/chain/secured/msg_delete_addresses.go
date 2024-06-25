@@ -10,15 +10,15 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
+	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 )
 
 // GetAllMsgDeleteAddresses - method that get data from a db (stwart_secured_delete_addresses).
-func (r Repository) GetAllMsgDeleteAddresses(filter filter.Filter) ([]secured.MsgDeleteAddresses, error) {
+func (r Repository) GetAllMsgDeleteAddresses(filter filter.Filter) ([]types.MsgDeleteAddresses, error) {
 	query, args := filter.Build(tableDeleteAddresses)
 
 	var result []MsgDeleteAddresses
@@ -37,7 +37,7 @@ func (r Repository) GetAllMsgDeleteAddresses(filter filter.Filter) ([]secured.Ms
 }
 
 // InsertMsgDeleteAddresses - insert a new MsgDeleteAddresses in a database (stwart_secured_delete_addresses).
-func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*secured.MsgDeleteAddresses) error {
+func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*types.MsgDeleteAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

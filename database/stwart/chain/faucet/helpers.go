@@ -7,20 +7,20 @@
 package faucet
 
 import (
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
 )
 
-// MsgIssue - mapping db model to proto model
-func toMsgIssueDomain(m MsgIssue) faucet.MsgIssue {
-	return faucet.MsgIssue{
+// MsgIssue - mapping db model to model
+func toMsgIssueDomain(m MsgIssue) types.MsgIssue {
+	return types.MsgIssue{
 		Creator: m.Creator,
 		Address: m.Address,
 	}
 }
 
-// toMsgIssueDomainList - mapping func to a proto list.
-func toMsgIssueDomainList(m []MsgIssue) []faucet.MsgIssue {
-	res := make([]faucet.MsgIssue, 0, len(m))
+// toMsgIssueDomainList - mapping func to a list.
+func toMsgIssueDomainList(m []MsgIssue) []types.MsgIssue {
+	res := make([]types.MsgIssue, 0, len(m))
 	for _, msg := range m {
 		res = append(res, toMsgIssueDomain(msg))
 	}
@@ -29,7 +29,7 @@ func toMsgIssueDomainList(m []MsgIssue) []faucet.MsgIssue {
 }
 
 // toMsgIssueDatabase - mapping func to a database model.
-func toMsgIssueDatabase(txHash string, m *faucet.MsgIssue) (MsgIssue, error) {
+func toMsgIssueDatabase(txHash string, m *types.MsgIssue) (MsgIssue, error) {
 	return MsgIssue{
 		Creator: m.Creator,
 		Address: m.Address,

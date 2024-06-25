@@ -7,22 +7,21 @@
 package referrals
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
+	juno "github.com/forbole/juno/v6/types"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
 )
 
 // handleMsgCreateUser handles a MsgCreateUser message
-func (m *Module) handleMsgCreateUser(tx *juno.Tx, msg *referrals.MsgCreateUser) error {
+func (m *Module) handleMsgCreateUser(tx *juno.Transaction, msg *types.MsgCreateUser) error {
 	return m.referralsRepo.InsertMsgCreateUser(tx.TxHash, msg)
 }
 
 // handleMsgUpdateUser handles a MsgUpdateUser message
-func (m *Module) handleMsgUpdateUser(tx *juno.Tx, msg *referrals.MsgUpdateUser) error {
+func (m *Module) handleMsgUpdateUser(tx *juno.Transaction, msg *types.MsgUpdateUser) error {
 	return m.referralsRepo.InsertMsgUpdateUser(tx.TxHash, msg)
 }
 
 // handleMsgDeleteUser handles a MsgDeleteUser message
-func (m *Module) handleMsgDeleteUser(tx *juno.Tx, msg *referrals.MsgDeleteUser) error {
+func (m *Module) handleMsgDeleteUser(tx *juno.Transaction, msg *types.MsgDeleteUser) error {
 	return m.referralsRepo.InsertMsgDeleteUser(tx.TxHash, msg)
 }

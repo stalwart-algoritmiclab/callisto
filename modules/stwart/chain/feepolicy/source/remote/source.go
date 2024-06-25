@@ -7,10 +7,10 @@
 package remote
 
 import (
-	"github.com/forbole/juno/v5/node/remote"
+	"github.com/forbole/juno/v6/node/remote"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 )
 
 var (
@@ -20,11 +20,11 @@ var (
 // Source represents the implementation of the QueryClient that works on a remote node
 type Source struct {
 	*remote.Source
-	client feepolicy.QueryClient
+	client types.QueryClient
 }
 
 // NewSource builds a new Source instance
-func NewSource(source *remote.Source, feepolicyClient feepolicy.QueryClient) *Source {
+func NewSource(source *remote.Source, feepolicyClient types.QueryClient) *Source {
 	return &Source{
 		Source: source,
 		client: feepolicyClient,

@@ -7,12 +7,12 @@
 package exchanger
 
 import (
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
 )
 
-// MsgExchange - mapping db model to proto model
-func toMsgExchangeDomain(m MsgExchange) exchanger.MsgExchange {
-	return exchanger.MsgExchange{
+// MsgExchange - mapping db model to model
+func toMsgExchangeDomain(m MsgExchange) types.MsgExchange {
+	return types.MsgExchange{
 		Creator: m.Creator,
 		Denom:   m.Denom,
 		Amount:  m.Amount,
@@ -20,9 +20,9 @@ func toMsgExchangeDomain(m MsgExchange) exchanger.MsgExchange {
 	}
 }
 
-// toMsgExchangeDomainList - mapping func to a proto list.
-func toMsgExchangeDomainList(m []MsgExchange) []exchanger.MsgExchange {
-	res := make([]exchanger.MsgExchange, 0, len(m))
+// toMsgExchangeDomainList - mapping func to a list.
+func toMsgExchangeDomainList(m []MsgExchange) []types.MsgExchange {
+	res := make([]types.MsgExchange, 0, len(m))
 	for _, msg := range m {
 		res = append(res, toMsgExchangeDomain(msg))
 	}
@@ -31,7 +31,7 @@ func toMsgExchangeDomainList(m []MsgExchange) []exchanger.MsgExchange {
 }
 
 // toMsgExchangeDatabase - mapping func to a database model.
-func toMsgExchangeDatabase(txHash string, m *exchanger.MsgExchange) (MsgExchange, error) {
+func toMsgExchangeDatabase(txHash string, m *types.MsgExchange) (MsgExchange, error) {
 	return MsgExchange{
 		TxHash:  txHash,
 		Creator: m.Creator,

@@ -12,11 +12,11 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/jmoiron/sqlx"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 )
 
 var _ chain.Core = &Repository{}
@@ -37,7 +37,7 @@ func NewRepository(db *sqlx.DB, cdc codec.Codec) *Repository {
 	}
 }
 
-func (r Repository) GetAllMsgIssue(filter filter.Filter) ([]core.MsgIssue, error) {
+func (r Repository) GetAllMsgIssue(filter filter.Filter) ([]types.MsgIssue, error) {
 	query, args := filter.Build(tableIssue)
 
 	var result []MsgIssue
@@ -56,7 +56,7 @@ func (r Repository) GetAllMsgIssue(filter filter.Filter) ([]core.MsgIssue, error
 
 }
 
-func (r Repository) InsertMsgIssue(hash string, msgs ...*core.MsgIssue) error {
+func (r Repository) InsertMsgIssue(hash string, msgs ...*types.MsgIssue) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -87,7 +87,7 @@ func (r Repository) InsertMsgIssue(hash string, msgs ...*core.MsgIssue) error {
 	return nil
 }
 
-func (r Repository) GetAllMsgWithdraw(filter filter.Filter) ([]core.MsgWithdraw, error) {
+func (r Repository) GetAllMsgWithdraw(filter filter.Filter) ([]types.MsgWithdraw, error) {
 	query, args := filter.Build(tableWithdraw)
 
 	var result []MsgWithdraw
@@ -105,7 +105,7 @@ func (r Repository) GetAllMsgWithdraw(filter filter.Filter) ([]core.MsgWithdraw,
 	return toMsgWithdrawDomainList(result), nil
 }
 
-func (r Repository) InsertMsgWithdraw(hash string, msgs ...*core.MsgWithdraw) error {
+func (r Repository) InsertMsgWithdraw(hash string, msgs ...*types.MsgWithdraw) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -136,7 +136,7 @@ func (r Repository) InsertMsgWithdraw(hash string, msgs ...*core.MsgWithdraw) er
 	return nil
 }
 
-func (r Repository) GetAllMsgRefund(filter filter.Filter) ([]core.MsgRefund, error) {
+func (r Repository) GetAllMsgRefund(filter filter.Filter) ([]types.MsgRefund, error) {
 	query, args := filter.Build(tableRefund)
 
 	var result []MsgRefund
@@ -154,7 +154,7 @@ func (r Repository) GetAllMsgRefund(filter filter.Filter) ([]core.MsgRefund, err
 	return toMsgRefundDomainList(result), nil
 }
 
-func (r Repository) InsertMsgRefund(hash string, msgs ...*core.MsgRefund) error {
+func (r Repository) InsertMsgRefund(hash string, msgs ...*types.MsgRefund) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -185,7 +185,7 @@ func (r Repository) InsertMsgRefund(hash string, msgs ...*core.MsgRefund) error 
 	return nil
 }
 
-func (r Repository) GetAllMsgFees(filter filter.Filter) ([]core.MsgFees, error) {
+func (r Repository) GetAllMsgFees(filter filter.Filter) ([]types.MsgFees, error) {
 	query, args := filter.Build(tableFees)
 
 	var result []MsgFees
@@ -203,7 +203,7 @@ func (r Repository) GetAllMsgFees(filter filter.Filter) ([]core.MsgFees, error) 
 	return toMsgFeesDomainList(result), nil
 }
 
-func (r Repository) InsertMsgFees(hash string, msgs ...*core.MsgFees) error {
+func (r Repository) InsertMsgFees(hash string, msgs ...*types.MsgFees) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -234,7 +234,7 @@ func (r Repository) InsertMsgFees(hash string, msgs ...*core.MsgFees) error {
 	return nil
 }
 
-func (r Repository) GetAllMsgRefReward(filter filter.Filter) ([]core.MsgRefReward, error) {
+func (r Repository) GetAllMsgRefReward(filter filter.Filter) ([]types.MsgRefReward, error) {
 	query, args := filter.Build(tableRefReward)
 
 	var result []MsgRefReward
@@ -252,7 +252,7 @@ func (r Repository) GetAllMsgRefReward(filter filter.Filter) ([]core.MsgRefRewar
 	return toMsgRefRewardDomainList(result), nil
 }
 
-func (r Repository) InsertMsgRefReward(hash string, msgs ...*core.MsgRefReward) error {
+func (r Repository) InsertMsgRefReward(hash string, msgs ...*types.MsgRefReward) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -283,7 +283,7 @@ func (r Repository) InsertMsgRefReward(hash string, msgs ...*core.MsgRefReward) 
 	return nil
 }
 
-func (r Repository) GetAllMsgSend(filter filter.Filter) ([]core.MsgSend, error) {
+func (r Repository) GetAllMsgSend(filter filter.Filter) ([]types.MsgSend, error) {
 	query, args := filter.Build(tableSend)
 
 	var result []MsgSend
@@ -301,7 +301,7 @@ func (r Repository) GetAllMsgSend(filter filter.Filter) ([]core.MsgSend, error) 
 	return toMsgSendDomainList(result), nil
 }
 
-func (r Repository) InsertMsgSend(hash string, msgs ...*core.MsgSend) error {
+func (r Repository) InsertMsgSend(hash string, msgs ...*types.MsgSend) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
