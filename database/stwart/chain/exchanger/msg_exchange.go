@@ -10,14 +10,15 @@ import (
 	"database/sql"
 	"errors"
 
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
+
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
 )
 
 // GetAllMsgExchange - method that get data from a db (stwartchain_exchanger).
-func (r Repository) GetAllMsgExchange(filter filter.Filter) ([]exchanger.MsgExchange, error) {
+func (r Repository) GetAllMsgExchange(filter filter.Filter) ([]types.MsgExchange, error) {
 	query, args := filter.Build(tableExchange)
 
 	var result []MsgExchange
@@ -36,7 +37,7 @@ func (r Repository) GetAllMsgExchange(filter filter.Filter) ([]exchanger.MsgExch
 }
 
 // InsertMsgExchange - insert a new MsgExchange in a database (stwartchain_exchanger).
-func (r Repository) InsertMsgExchange(hash string, msgs ...*exchanger.MsgExchange) error {
+func (r Repository) InsertMsgExchange(hash string, msgs ...*types.MsgExchange) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

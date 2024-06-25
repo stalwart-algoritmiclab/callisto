@@ -52,6 +52,9 @@ const (
 
 	// Cosmos bank module event types
 	Cosmos_bank_MsgSend = "cosmos.bank.v1beta1.MsgSend"
+
+	// IBC core module event types
+	Ibc_core_client_v1_MsgUpdateClient = "ibc.core.client.v1.MsgUpdateClient"
 )
 
 // MessageTypeLists - return list of message types
@@ -87,12 +90,12 @@ func MessageTypeLists() []types.MessageType {
 			Label:  utils.GetMsgFromTypeURL(Stwartchain_core_MsgWithdraw),
 			Height: 114047,
 		},
-		// {
-		// 	Type:   "ibc.core.client.v1.MsgUpdateClient",
-		// 	Module: utils.GetModuleNameFromTypeURL("ibc.core.client.v1.MsgUpdateClient"),
-		// 	Label:  utils.GetMsgFromTypeURL("ibc.core.client.v1.MsgUpdateClient"),
-		// 	Height: 18734,
-		// },
+		{
+			Type:   Ibc_core_client_v1_MsgUpdateClient,
+			Module: utils.GetModuleNameFromTypeURL(Ibc_core_client_v1_MsgUpdateClient),
+			Label:  utils.GetMsgFromTypeURL(Ibc_core_client_v1_MsgUpdateClient),
+			Height: 18734,
+		},
 		{
 			Type:   Stwartchain_feepolicy_MsgCreateTariffs,
 			Module: utils.GetModuleNameFromTypeURL(Stwartchain_feepolicy_MsgCreateTariffs),

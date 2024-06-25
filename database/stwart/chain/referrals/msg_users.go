@@ -7,13 +7,14 @@
 package referrals
 
 import (
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
+
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
 )
 
 // InsertMsgCreateUser - insert a new MsgCreateUser into the database (stwart_referrals_create_user).
-func (r Repository) InsertMsgCreateUser(hash string, msgs ...*referrals.MsgCreateUser) error {
+func (r Repository) InsertMsgCreateUser(hash string, msgs ...*types.MsgCreateUser) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -40,7 +41,7 @@ func (r Repository) InsertMsgCreateUser(hash string, msgs ...*referrals.MsgCreat
 }
 
 // InsertMsgUpdateUser - insert a new MsgUpdateUser into the database (stwart_referrals_update_user).
-func (r Repository) InsertMsgUpdateUser(hash string, msgs ...*referrals.MsgUpdateUser) error {
+func (r Repository) InsertMsgUpdateUser(hash string, msgs ...*types.MsgUpdateUser) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -67,7 +68,7 @@ func (r Repository) InsertMsgUpdateUser(hash string, msgs ...*referrals.MsgUpdat
 }
 
 // InsertMsgDeleteUser - insert a new MsgDeleteUser into the database (stwart_referrals_delete_user).
-func (r Repository) InsertMsgDeleteUser(hash string, msgs ...*referrals.MsgDeleteUser) error {
+func (r Repository) InsertMsgDeleteUser(hash string, msgs ...*types.MsgDeleteUser) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

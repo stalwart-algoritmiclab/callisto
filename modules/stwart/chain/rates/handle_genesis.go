@@ -11,8 +11,7 @@ import (
 
 	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/rs/zerolog/log"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
 )
 
 const moduleName = "rates"
@@ -22,7 +21,7 @@ func (m *Module) HandleGenesis(doc *tmtypes.GenesisDoc, appState map[string]json
 	log.Debug().Str("module", moduleName).Msg("parsing genesis")
 
 	// Unmarshal the rates state
-	var ratesState rates.GenesisState
+	var ratesState types.GenesisState
 	if err := m.cdc.UnmarshalJSON(appState[moduleName], &ratesState); err != nil {
 		return err
 	}

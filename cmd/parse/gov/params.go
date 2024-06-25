@@ -6,14 +6,14 @@ import (
 	parsecmdtypes "github.com/forbole/juno/v6/cmd/parse/types"
 	"github.com/forbole/juno/v6/types/config"
 
-	"github.com/forbole/callisto/v4/database"
-	"github.com/forbole/callisto/v4/modules/distribution"
-	"github.com/forbole/callisto/v4/modules/gov"
-	"github.com/forbole/callisto/v4/modules/mint"
-	"github.com/forbole/callisto/v4/modules/slashing"
-	"github.com/forbole/callisto/v4/modules/staking"
-	modulestypes "github.com/forbole/callisto/v4/modules/types"
-	"github.com/forbole/callisto/v4/utils"
+	"github.com/stalwart-algoritmiclab/callisto/database"
+	"github.com/stalwart-algoritmiclab/callisto/modules/distribution"
+	"github.com/stalwart-algoritmiclab/callisto/modules/gov"
+	"github.com/stalwart-algoritmiclab/callisto/modules/mint"
+	"github.com/stalwart-algoritmiclab/callisto/modules/slashing"
+	"github.com/stalwart-algoritmiclab/callisto/modules/staking"
+	modulestypes "github.com/stalwart-algoritmiclab/callisto/modules/types"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 func paramsCmd(parseConfig *parsecmdtypes.Config) *cobra.Command {

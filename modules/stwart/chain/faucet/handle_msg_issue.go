@@ -7,12 +7,11 @@
 package faucet
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
+	juno "github.com/forbole/juno/v6/types"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
 )
 
 // handleMsgIssue allows to properly handle a MsgIssue
-func (m *Module) handleMsgIssue(tx *juno.Tx, _ int, msg *faucet.MsgIssue) error {
+func (m *Module) handleMsgIssue(tx *juno.Transaction, _ int, msg *types.MsgIssue) error {
 	return m.faucetRepo.InsertMsgIssue(tx.TxHash, msg)
 }

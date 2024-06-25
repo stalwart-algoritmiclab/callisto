@@ -10,12 +10,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
+	"github.com/stalwart-algoritmiclab/callisto/modules/stwart"
 	"github.com/stalwart-algoritmiclab/callisto/modules/types"
 
 	"github.com/forbole/juno/v6/modules/pruning"
 	"github.com/forbole/juno/v6/modules/telemetry"
 
-	"github.com/forbole/callisto/v4/modules/slashing"
+	"github.com/stalwart-algoritmiclab/callisto/modules/slashing"
 
 	jmodules "github.com/forbole/juno/v6/modules"
 	"github.com/forbole/juno/v6/modules/messages"
@@ -97,7 +98,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 	govModule := gov.NewModule(sources.GovSource, distrModule, mintModule, slashingModule, stakingModule, r.cdc, db)
 	upgradeModule := upgrade.NewModule(db, stakingModule)
 	stwartModule := stwart.NewModule(
-		cdc,
+		r.cdc,
 		db,
 		ctx.Proxy,
 		ctx.Logger,

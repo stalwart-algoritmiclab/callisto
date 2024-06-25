@@ -10,6 +10,7 @@ import (
 	"fmt"
 
 	"github.com/forbole/juno/v6/node/remote"
+	faucettypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -25,6 +26,13 @@ import (
 	"github.com/forbole/juno/v6/node/local"
 
 	nodeconfig "github.com/forbole/juno/v6/node/config"
+
+	coretypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
+	exchangertypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
+	feepolicytypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
+	ratestypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
+	referralstypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
+	securedtypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
 
 	banksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
 	localbanksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source/local"
@@ -44,9 +52,6 @@ import (
 	stakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source"
 	localstakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/local"
 	remotestakingsource "github.com/stalwart-algoritmiclab/callisto/modules/staking/source/remote"
-	"github.com/stalwart-algoritmiclab/callisto/utils/simapp"
-	exchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
-	remoteexchangerSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source/remote"
 	coresource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
 	remotecoreSource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source/remote"
 	exchangersource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/exchanger/source"
@@ -61,13 +66,7 @@ import (
 	remotereferralsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source/remote"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
-	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
-	exchangertypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
-	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
-	feepolicytypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
-	ratestypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
-	referralstypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
-	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	"github.com/stalwart-algoritmiclab/callisto/utils/simapp"
 )
 
 type Sources struct {

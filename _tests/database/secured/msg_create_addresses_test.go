@@ -10,14 +10,14 @@ import (
 	"testing"
 
 	gofakeit "github.com/brianvoe/gofakeit/v6"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
 
 	d "github.com/stalwart-algoritmiclab/callisto/_tests/database"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 func TestRepository_InsertMsgCreateAddresses(t *testing.T) {
 	type args struct {
-		msg  []*secured.MsgCreateAddresses
+		msg  []*types.MsgCreateAddresses
 		hash string
 	}
 	tests := []struct {
@@ -28,7 +28,7 @@ func TestRepository_InsertMsgCreateAddresses(t *testing.T) {
 		{
 			name: "[success] InsertToCreateAddresses single",
 			args: args{
-				msg: []*secured.MsgCreateAddresses{
+				msg: []*types.MsgCreateAddresses{
 					{
 						Address: []string{"stwart14pduuu5szx6dp9zwwj33fwkevtw638pnrguh5z"},
 						Creator: d.TestAddressCreator,
@@ -40,7 +40,7 @@ func TestRepository_InsertMsgCreateAddresses(t *testing.T) {
 		{
 			name: "[success] InsertToCreateAddresses multiple",
 			args: args{
-				msg: []*secured.MsgCreateAddresses{
+				msg: []*types.MsgCreateAddresses{
 					{
 						Address: []string{
 							"stwart1hdl6ny2kdpvth9p7u43ar9qer7tcvualelp0at",
