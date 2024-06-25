@@ -53,6 +53,8 @@ import (
 	remotefeepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source/remote"
 	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
 	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
+	referralsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source"
+	remotereferralsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source/remote"
 	securedsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source"
 	remotesecuredsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/secured/source/remote"
 	coretypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
@@ -60,6 +62,7 @@ import (
 	faucettypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 	feepolicytypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 	ratestypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	referralstypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
 	securedtypes "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
@@ -77,6 +80,7 @@ type Sources struct {
 	CoreSource      coresource.Source
 	RatesSource     ratessource.Source
 	FeepolicySource feepolicysource.Source
+	ReferralSource  referralsource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, encodingConfig params.EncodingConfig) (*Sources, error) {
@@ -155,5 +159,6 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		SecuredSource:   remotesecuredsource.NewSource(source, securedtypes.NewQueryClient(source.GrpcConn)),
 		CoreSource:      remotecoreSource.NewSource(source, coretypes.NewQueryClient(source.GrpcConn)),
 		FeepolicySource: remotefeepolicysource.NewSource(source, feepolicytypes.NewQueryClient(source.GrpcConn)),
+		ReferralSource:  remotereferralsource.NewSource(source, referralstypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }

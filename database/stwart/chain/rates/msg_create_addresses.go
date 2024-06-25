@@ -68,6 +68,7 @@ func (r Repository) InsertMsgCreateAddresses(hash string, msgs ...*rates.MsgCrea
 	return nil
 }
 
+// GetAllMsgUpdateAddresses - method that get data from a db (stwartchain_rates_update_addresses).
 func (r Repository) GetAllMsgUpdateAddresses(filter filter.Filter) ([]rates.MsgUpdateAddresses, error) {
 	query, args := filter.Build(tableUpdateAddresses)
 
@@ -87,6 +88,7 @@ func (r Repository) GetAllMsgUpdateAddresses(filter filter.Filter) ([]rates.MsgU
 
 }
 
+// InsertMsgUpdateAddresses - insert a new MsgUpdateAddresses in a database (stwartchain_rates_update_addresses).
 func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*rates.MsgUpdateAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
@@ -118,6 +120,8 @@ func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*rates.MsgUpda
 	return nil
 
 }
+
+// GetAllMsgDeleteAddresses - method that get data from a db (stwartchain_rates_delete_addresses).
 func (r Repository) GetAllMsgDeleteAddresses(filter filter.Filter) ([]rates.MsgDeleteAddresses, error) {
 	query, args := filter.Build(tableDeleteAddresses)
 
@@ -136,6 +140,7 @@ func (r Repository) GetAllMsgDeleteAddresses(filter filter.Filter) ([]rates.MsgD
 	return toMsgDeleteAddressesDomainList(result), nil
 }
 
+// InsertMsgDeleteAddresses - insert a new MsgDeleteAddresses in a database (stwartchain_rates_delete_addresses).
 func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*rates.MsgDeleteAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
