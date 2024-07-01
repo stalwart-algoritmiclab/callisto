@@ -22,30 +22,39 @@ import (
 // scheduler runs the scheduler
 func (m *Module) scheduler() {
 	for {
+		// get the latest-parsed block from a database
 		lastBlock, err := m.lastBlockRepo.Get()
 		if err != nil {
-			m.logger.Error("Fail lastBlockRepo.Get", "module", "stalwart", "error", err)
+			m.logger.Error("Fail lastBlockRepo.Get", "module", m.Name(), "error", err)
 			continue
 		}
 
 		lastBlock++
 
+		// get the latest block from node
+		lastBlockHeight, err := m.node.LatestHeight()
+		if err != nil {
+			return
+		}
+
+		if lastBlock > uint64(lastBlockHeight) {
+			continue
+		}
+
 		if err := m.parseBlock(lastBlock); err != nil {
-			time.Sleep(2 * time.Second)
+			time.Sleep(time.Second)
 
 			if errors.Is(err, errs.NotFound{}) {
-				m.logger.Error("Fail parseBlock", "module", "stalwart", "error", err)
+				m.logger.Error("Fail parseBlock", "module", m.Name(), "error", err)
 				continue
 			}
 
-			if _, _, err := m.parseMissingBlocksAndTransactions(int64(lastBlock)); err != nil {
-				m.logger.Error("Fail parseMissingBlocksAndTransactions", "module", m.Name(), "error", err)
-				continue
-			}
+			m.logger.Error("Fail parseBlock", "module", m.Name(), "error", err)
+			continue
 		}
 
 		if err = m.lastBlockRepo.Update(lastBlock); err != nil {
-			m.logger.Error("Fail lastBlockRepo.Update", "module", "stalwart", "error", err)
+			m.logger.Error("Fail lastBlockRepo.Update", "module", m.Name(), "error", err)
 			os.Exit(1)
 		}
 	}

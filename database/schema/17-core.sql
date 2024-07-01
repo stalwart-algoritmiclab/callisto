@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS stwart_core_fees
 (
     id        SERIAL NOT NULL PRIMARY KEY,
-    tx_hash   TEXT   NOT NULL,
+    tx_hash   TEXT   NOT NULL UNIQUE,
     creator   TEXT   NOT NULL,
     comission TEXT   NOT NULL,
     address   TEXT   NOT NULL
@@ -14,7 +14,7 @@ CREATE INDEX core_fees_tx_hash_index ON stwart_core_fees (tx_hash);
 CREATE TABLE IF NOT EXISTS stwart_core_issue
 (
     id      SERIAL NOT NULL PRIMARY KEY,
-    tx_hash TEXT   NOT NULL,
+    tx_hash TEXT   NOT NULL UNIQUE,
     creator TEXT   NOT NULL,
     denom   TEXT   NOT NULL,
     amount  TEXT   NOT NULL,
@@ -27,7 +27,7 @@ CREATE INDEX core_issue_tx_hash_index ON stwart_core_issue (tx_hash);
 CREATE TABLE IF NOT EXISTS stwart_core_refreward
 (
     id       SERIAL NOT NULL PRIMARY KEY,
-    tx_hash  TEXT   NOT NULL,
+    tx_hash  TEXT   NOT NULL UNIQUE,
     creator  TEXT   NOT NULL,
     amount   TEXT   NOT NULL,
     referrer TEXT   NOT NULL
@@ -39,7 +39,7 @@ CREATE INDEX core_refreward_tx_hash_index ON stwart_core_refreward (tx_hash);
 CREATE TABLE IF NOT EXISTS stwart_core_refund
 (
     id           SERIAL NOT NULL PRIMARY KEY,
-    tx_hash      TEXT   NOT NULL,
+    tx_hash      TEXT   NOT NULL UNIQUE,
     creator      TEXT   NOT NULL,
     amount       TEXT   NOT NULL,
     from_address TEXT   NOT NULL,
@@ -52,7 +52,7 @@ CREATE INDEX core_refund_tx_hash_index ON stwart_core_refund (tx_hash);
 CREATE TABLE IF NOT EXISTS stwart_core_send
 (
     id      SERIAL NOT NULL PRIMARY KEY,
-    tx_hash TEXT   NOT NULL,
+    tx_hash TEXT   NOT NULL UNIQUE,
     creator TEXT   NOT NULL,
     from_address TEXT   NOT NULL,
     to_address   TEXT   NOT NULL,
@@ -66,7 +66,7 @@ CREATE INDEX core_send_tx_hash_index ON stwart_core_send (tx_hash);
 CREATE TABLE IF NOT EXISTS stwart_core_withdraw
 (
     id      SERIAL NOT NULL PRIMARY KEY,
-    tx_hash TEXT   NOT NULL,
+    tx_hash TEXT   NOT NULL UNIQUE,
     creator TEXT   NOT NULL,
     amount  TEXT   NOT NULL,
     denom   TEXT   NOT NULL,

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS stwart_rates_create_addresses
     id      SERIAL NOT NULL PRIMARY KEY,
     creator TEXT   NOT NULL,
     address TEXT[] NOT NULL,
-    tx_hash TEXT   NOT NULL
+    tx_hash TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX rates_create_addresses_creator_index ON stwart_rates_create_addresses (creator);
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS stwart_rates_update_addresses
     creator    TEXT   NOT NULL,
     address_id BIGINT NOT NULL,
     address    TEXT[] NOT NULL,
-    tx_hash    TEXT   NOT NULL
+    tx_hash    TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX rates_update_addresses_creator_index ON stwart_rates_update_addresses (creator);
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS stwart_rates_delete_addresses
     id         SERIAL NOT NULL PRIMARY KEY,
     creator    TEXT   NOT NULL,
     address_id BIGINT NOT NULL,
-    tx_hash    TEXT   NOT NULL
+    tx_hash    TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX rates_delete_addresses_creator_index ON stwart_rates_delete_addresses (creator);
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS stwart_rates_create_rates
     decimals NUMERIC NOT NULL,
     denom    TEXT    NOT NULL,
     rate     TEXT    NOT NULL,
-    tx_hash  TEXT    NOT NULL
+    tx_hash  TEXT    NOT NULL UNIQUE
 );
 
 CREATE INDEX rates_create_rates_creator_index ON stwart_rates_create_rates (creator);
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS stwart_rates_update_rates
     creator TEXT   NOT NULL,
     denom   TEXT   NOT NULL,
     rate    TEXT   NOT NULL,
-    tx_hash TEXT   NOT NULL
+    tx_hash TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX rates_update_rates_creator_index ON stwart_rates_update_rates (creator);
@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS stwart_rates_delete_rates
     id      SERIAL NOT NULL PRIMARY KEY,
     creator TEXT   NOT NULL,
     denom   TEXT   NOT NULL,
-    tx_hash TEXT   NOT NULL
+    tx_hash TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX rates_delete_rates_creator_index ON stwart_rates_delete_rates (creator);

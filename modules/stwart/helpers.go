@@ -195,9 +195,17 @@ func (m *Module) ExportCommit(commit *tmtypes.Commit, vals *tmctypes.ResultValid
 // ExportTxs accepts a slice of transactions and persists then inside the database.
 // An error is returned if the write fails.
 func (m *Module) ExportTxs(txs []*types.Transaction) ([]*txtypes.Transaction, error) {
-
 	// handle all transactions inside the block
 	for _, tx := range txs {
+		events := make([]sdk.Event, 0)
+
+		for _, ev := range tx.Events {
+			events = append(events, sdk.Event{Type: ev.Type, Attributes: ev.Attributes})
+		}
+
+		msgLog := sdk.NewABCIMessageLog(0, "", events)
+		tx.Logs = sdk.ABCIMessageLogs{msgLog}
+
 		// save the transaction
 		err := m.saveTx(tx)
 		if err != nil {

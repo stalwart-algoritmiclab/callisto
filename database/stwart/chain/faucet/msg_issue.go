@@ -58,7 +58,7 @@ func (r Repository) InsertMsgIssue(hash string, msgs ...*types.MsgIssue) error {
 			return err
 		}
 
-		if _, err := r.db.Exec(q, m.TxHash, m.Creator, m.Address); err != nil {
+		if _, err := r.db.Exec(q, m.Creator, m.Address, m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

@@ -28,6 +28,7 @@ func (m *Module) HandleMsg(index int, msg juno.Message, tx *juno.Transaction) er
 	if _, ok := msgFilter[msg.GetType()]; !ok {
 		return nil
 	}
+
 	switch msg.GetType() {
 	case "/stwartchain.core.MsgWithdraw":
 		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgWithdraw{})

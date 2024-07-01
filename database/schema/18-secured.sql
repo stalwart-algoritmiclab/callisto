@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS stwart_secured_create_addresses
 (
     id        BIGSERIAL NOT NULL PRIMARY KEY,
     creator   TEXT      NOT NULL,
-    tx_hash   TEXT      NOT NULL,
+    tx_hash   TEXT      NOT NULL UNIQUE,
     addresses TEXT[]    NOT NULL
 );
 
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS stwart_secured_update_addresses
     id         BIGSERIAL NOT NULL PRIMARY KEY,
     address_id BIGINT    NOT NULL,
     creator    TEXT      NOT NULL,
-    tx_hash    TEXT      NOT NULL,
+    tx_hash    TEXT      NOT NULL UNIQUE,
     addresses  TEXT[]    NOT NULL
 );
 
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS stwart_secured_delete_addresses
     id         BIGSERIAL  NOT NULL PRIMARY KEY,
     address_id BIGINT     NOT NULL,
     creator    TEXT       NOT NULL,
-    tx_hash    TEXT       NOT NULL
+    tx_hash    TEXT       NOT NULL UNIQUE
 );
 
 CREATE INDEX secured_delete_addresses_creator_index ON stwart_secured_delete_addresses (creator);
