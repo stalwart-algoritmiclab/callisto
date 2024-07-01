@@ -14,21 +14,21 @@ import (
 // Stalwart module types
 const (
 	// Stalwart feepolicy module event types
-	Stwartchain_feepolicy_MsgCreateTariffs = "stwartchain.feepolicy.MsgCreateTariffs"
-	Stwartchain_feepolicy_MsgUpdateTariffs = "stwartchain.feepolicy.MsgUpdateTariffs"
-	Stwartchain_feepolicy_MsgDeleteTariffs = "stwartchain.feepolicy.MsgDeleteTariffs"
+	Stwartchain_feepolicy_MsgCreateTariffs = "/stwartchain.feepolicy.MsgCreateTariffs"
+	Stwartchain_feepolicy_MsgUpdateTariffs = "/stwartchain.feepolicy.MsgUpdateTariffs"
+	Stwartchain_feepolicy_MsgDeleteTariffs = "/stwartchain.feepolicy.MsgDeleteTariffs"
 
 	// Stalwart stats module event types
 
 	// Stalwart core module event types
-	Stwartchain_core_MsgWithdraw = "stwartchain.core.MsgWithdraw"
-	Stwartchain_core_MsgIssue    = "stwartchain.core.MsgIssue"
+	Stwartchain_core_MsgWithdraw = "/stwartchain.core.MsgWithdraw"
+	Stwartchain_core_MsgIssue    = "/stwartchain.core.MsgIssue"
 
 	// Stalwart exchanger module event types
-	Stwartchain_exchanger_MsgExchange = "stwartchain.exchanger.MsgExchange"
+	Stwartchain_exchanger_MsgExchange = "/stwartchain.exchanger.MsgExchange"
 
 	// Stalwart faucet module event types
-	Stwartchain_faucet_MsgIssue = "stwartchain.faucet.MsgIssue"
+	Stwartchain_faucet_MsgIssue = "/stwartchain.faucet.MsgIssue"
 
 	// Stalwart rates module event types
 
@@ -48,13 +48,13 @@ const (
 // Cosmos module types
 const (
 	// Cosmos slashing module event types
-	Cosmos_slashing_MsgUnjail = "cosmos.slashing.v1beta1.MsgUnjail"
+	Cosmos_slashing_MsgUnjail = "/cosmos.slashing.v1beta1.MsgUnjail"
 
 	// Cosmos bank module event types
-	Cosmos_bank_MsgSend = "cosmos.bank.v1beta1.MsgSend"
+	Cosmos_bank_MsgSend = "/cosmos.bank.v1beta1.MsgSend"
 
 	// IBC core module event types
-	Ibc_core_client_v1_MsgUpdateClient = "ibc.core.client.v1.MsgUpdateClient"
+	Ibc_core_client_v1_MsgUpdateClient = "/ibc.core.client.v1.MsgUpdateClient"
 )
 
 // MessageTypeLists - return list of message types

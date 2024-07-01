@@ -14,7 +14,7 @@ import (
 )
 
 var msgFilter = map[string]bool{
-	"/stwartchain.core.MsgIssue": true,
+	"/stwartchain.faucet.MsgIssue": true,
 }
 
 // HandleMsg implements MessageModule
@@ -24,7 +24,7 @@ func (m *Module) HandleMsg(index int, msg juno.Message, tx *juno.Transaction) er
 	}
 
 	switch msg.GetType() {
-	case "/stwartchain.core.MsgIssue":
+	case "/stwartchain.faucet.MsgIssue":
 		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgIssue{})
 		return m.handleMsgIssue(tx, index, cosmosMsg)
 	default:

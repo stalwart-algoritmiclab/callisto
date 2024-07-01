@@ -15,7 +15,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
 	authzmodule "github.com/cosmos/cosmos-sdk/x/authz/module"
 	"github.com/cosmos/cosmos-sdk/x/bank"
-	consensus "github.com/cosmos/cosmos-sdk/x/consensus"
+	"github.com/cosmos/cosmos-sdk/x/consensus"
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	distr "github.com/cosmos/cosmos-sdk/x/distribution"
 	"github.com/cosmos/cosmos-sdk/x/genutil"
@@ -29,6 +29,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/cosmos/gogoproto/proto"
+	core "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/module"
+	exchanger "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/module"
+	faucet "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/module"
+	feepolicy "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/module"
+	rates "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/module"
+	referral "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/module"
+	secured "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/module"
 )
 
 var once sync.Once
@@ -70,6 +77,13 @@ func getBasicManagers() module.BasicManager {
 		groupmodule.AppModuleBasic{},
 		vesting.AppModuleBasic{},
 		consensus.AppModuleBasic{},
+		core.AppModuleBasic{},
+		exchanger.AppModuleBasic{},
+		faucet.AppModuleBasic{},
+		feepolicy.AppModuleBasic{},
+		rates.AppModuleBasic{},
+		referral.AppModuleBasic{},
+		secured.AppModuleBasic{},
 	)
 }
 

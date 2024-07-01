@@ -17,8 +17,6 @@ import (
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/rs/zerolog/log"
-
-	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 // HandleBlock implements BlockModule
