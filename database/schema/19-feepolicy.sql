@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS stwart_feepolicy_create_addresses
     id      SERIAL NOT NULL PRIMARY KEY,
     creator TEXT   NOT NULL,
     address TEXT   NOT NULL,
-    tx_hash TEXT   NOT NULL
+    tx_hash TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX feepolicy_create_addresses_creator_index ON stwart_feepolicy_create_addresses (creator);
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS stwart_feepolicy_update_addresses
     creator    TEXT   NOT NULL,
     address_id BIGINT NOT NULL,
     address    TEXT   NOT NULL,
-    tx_hash    TEXT   NOT NULL
+    tx_hash    TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX feepolicy_update_addresses_creator_index ON stwart_feepolicy_update_addresses (creator);
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS stwart_feepolicy_delete_addresses
     id         SERIAL NOT NULL PRIMARY KEY,
     creator    TEXT   NOT NULL,
     address_id BIGINT NOT NULL,
-    tx_hash    TEXT   NOT NULL
+    tx_hash    TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX feepolicy_delete_addresses_creator_index ON stwart_feepolicy_delete_addresses (creator);

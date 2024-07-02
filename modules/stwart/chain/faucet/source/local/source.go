@@ -7,10 +7,10 @@
 package local
 
 import (
-	"github.com/forbole/juno/v5/node/local"
+	"github.com/forbole/juno/v6/node/local"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 )
 
 var (
@@ -20,11 +20,11 @@ var (
 // Source represents the implementation of the QueryServer that works on a local node
 type Source struct {
 	*local.Source
-	faucetServer faucet.QueryServer
+	faucetServer types.QueryServer
 }
 
 // NewSource builds a new Source instance
-func NewSource(source *local.Source, faucetServer faucet.QueryServer) *Source {
+func NewSource(source *local.Source, faucetServer types.QueryServer) *Source {
 	return &Source{
 		Source:       source,
 		faucetServer: faucetServer,

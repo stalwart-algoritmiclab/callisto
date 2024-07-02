@@ -7,7 +7,7 @@
 package config
 
 import (
-	junoconf "github.com/forbole/juno/v5/types/config"
+	junoconf "github.com/forbole/juno/v6/types/config"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
 

@@ -17,11 +17,11 @@ import (
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
 	"github.com/rs/zerolog/log"
 
+	upgradetypes "cosmossdk.io/x/upgrade/types"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	proposaltypes "github.com/cosmos/cosmos-sdk/x/params/types/proposal"
 	slashingtypes "github.com/cosmos/cosmos-sdk/x/slashing/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 	"google.golang.org/grpc/codes"
 
 	"github.com/stalwart-algoritmiclab/callisto/types"

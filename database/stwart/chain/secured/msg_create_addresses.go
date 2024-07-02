@@ -10,15 +10,15 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
+	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 )
 
 // GetAllMsgCreateAddresses - method that get data from a db (stwart_secured_create_addresses).
-func (r Repository) GetAllMsgCreateAddresses(filter filter.Filter) ([]secured.MsgCreateAddresses, error) {
+func (r Repository) GetAllMsgCreateAddresses(filter filter.Filter) ([]types.MsgCreateAddresses, error) {
 	query, args := filter.Build(tableCreateAddresses)
 
 	var result []MsgCreateAddresses
@@ -37,7 +37,7 @@ func (r Repository) GetAllMsgCreateAddresses(filter filter.Filter) ([]secured.Ms
 }
 
 // InsertMsgCreateAddresses - insert a new MsgCreateAddresses in a database (stwart_secured_create_addresses).
-func (r Repository) InsertMsgCreateAddresses(hash string, msgs ...*secured.MsgCreateAddresses) error {
+func (r Repository) InsertMsgCreateAddresses(hash string, msgs ...*types.MsgCreateAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

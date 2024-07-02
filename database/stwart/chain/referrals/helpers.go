@@ -6,10 +6,12 @@
 
 package referrals
 
-import "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
+import (
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
+)
 
 // toMsgCreateUserDatabase converts MsgCreateUser to MsgCreateUserDatabase
-func toMsgCreateUserDatabase(hash string, msg *referrals.MsgCreateUser) MsgCreateUser {
+func toMsgCreateUserDatabase(hash string, msg *types.MsgCreateUser) MsgCreateUser {
 	return MsgCreateUser{
 		Creator:        msg.Creator,
 		AccountAddress: msg.AccountAddress,
@@ -20,7 +22,7 @@ func toMsgCreateUserDatabase(hash string, msg *referrals.MsgCreateUser) MsgCreat
 }
 
 // toMsgUpdateUserDatabase converts MsgUpdateUser to MsgUpdateUserDatabase
-func toMsgUpdateUserDatabase(hash string, msg *referrals.MsgUpdateUser) MsgUpdateUser {
+func toMsgUpdateUserDatabase(hash string, msg *types.MsgUpdateUser) MsgUpdateUser {
 	return MsgUpdateUser{
 		Creator:        msg.Creator,
 		AccountAddress: msg.AccountAddress,
@@ -31,7 +33,7 @@ func toMsgUpdateUserDatabase(hash string, msg *referrals.MsgUpdateUser) MsgUpdat
 }
 
 // toMsgDeleteUserDatabase converts MsgDeleteUser to MsgDeleteUserDatabase
-func toMsgDeleteUserDatabase(hash string, msg *referrals.MsgDeleteUser) MsgDeleteUser {
+func toMsgDeleteUserDatabase(hash string, msg *types.MsgDeleteUser) MsgDeleteUser {
 	return MsgDeleteUser{
 		Creator:        msg.Creator,
 		AccountAddress: msg.AccountAddress,
@@ -40,7 +42,7 @@ func toMsgDeleteUserDatabase(hash string, msg *referrals.MsgDeleteUser) MsgDelet
 }
 
 // toMsgSetReferrerDatabase converts MsgSetReferrer to MsgSetReferrerDatabase
-func toMsgSetReferrerDatabase(hash string, msg *referrals.MsgSetReferrer) MsgSetReferrer {
+func toMsgSetReferrerDatabase(hash string, msg *types.MsgSetReferrer) MsgSetReferrer {
 	return MsgSetReferrer{
 		Creator:  msg.Creator,
 		Referrer: msg.ReferrerAddress,

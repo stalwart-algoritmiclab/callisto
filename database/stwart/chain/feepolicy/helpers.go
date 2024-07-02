@@ -6,10 +6,12 @@
 
 package feepolicy
 
-import "github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
+import (
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
+)
 
-// toMsgCreateTariffsDataBase - mapping proto model to db model
-func toMsgCreateTariffsDataBase(tariff *feepolicy.MsgCreateTariffs) MsgCreateTariffs {
+// toMsgCreateTariffsDataBase - mapping model to db model
+func toMsgCreateTariffsDataBase(tariff *types.MsgCreateTariffs) MsgCreateTariffs {
 	return MsgCreateTariffs{
 		Creator: tariff.Creator,
 		Denom:   tariff.Denom,
@@ -18,8 +20,8 @@ func toMsgCreateTariffsDataBase(tariff *feepolicy.MsgCreateTariffs) MsgCreateTar
 
 }
 
-// toMsgDeleteTariffsDataBase - mapping proto model to db model
-func toMsgDeleteTariffsDataBase(tariff *feepolicy.MsgDeleteTariffs) MsgDeleteTariffs {
+// toMsgDeleteTariffsDataBase - mapping model to db model
+func toMsgDeleteTariffsDataBase(tariff *types.MsgDeleteTariffs) MsgDeleteTariffs {
 	return MsgDeleteTariffs{
 		Creator:  tariff.Creator,
 		Denom:    tariff.Denom,
@@ -28,8 +30,8 @@ func toMsgDeleteTariffsDataBase(tariff *feepolicy.MsgDeleteTariffs) MsgDeleteTar
 	}
 }
 
-// toMsgUpdateTariffsDataBase - mapping proto model to db model
-func toMsgUpdateTariffsDataBase(tariff *feepolicy.MsgUpdateTariffs) MsgUpdateTariffs {
+// toMsgUpdateTariffsDataBase - mapping model to db model
+func toMsgUpdateTariffsDataBase(tariff *types.MsgUpdateTariffs) MsgUpdateTariffs {
 	return MsgUpdateTariffs{
 		Creator: tariff.Creator,
 		Denom:   tariff.Denom,
@@ -37,8 +39,8 @@ func toMsgUpdateTariffsDataBase(tariff *feepolicy.MsgUpdateTariffs) MsgUpdateTar
 	}
 }
 
-// toTariffDatabase - mapping proto model to db model
-func toTariffDatabase(m *feepolicy.Tariff) Tariff {
+// toTariffDatabase - mapping model to db model
+func toTariffDatabase(m *types.Tariff) Tariff {
 	return Tariff{
 		Denom:         m.Denom,
 		TariffID:      m.Id,
@@ -48,8 +50,8 @@ func toTariffDatabase(m *feepolicy.Tariff) Tariff {
 	}
 }
 
-// toFeesDatabaseList - mapping proto list to db list
-func toFeesDatabaseList(m []*feepolicy.Fees) Fees {
+// toFeesDatabaseList - mapping list to db list
+func toFeesDatabaseList(m []*types.Fees) Fees {
 	res := make(Fees, 0, len(m))
 	for _, fee := range m {
 		res = append(res, toFeesDatabase(fee))
@@ -58,8 +60,8 @@ func toFeesDatabaseList(m []*feepolicy.Fees) Fees {
 	return res
 }
 
-// toFeesDatabase - mapping proto model to db model
-func toFeesDatabase(m *feepolicy.Fees) Fee {
+// toFeesDatabase - mapping model to db model
+func toFeesDatabase(m *types.Fees) Fee {
 	return Fee{
 		AmountFrom:  m.AmountFrom,
 		Fee:         m.Fee,
@@ -72,8 +74,8 @@ func toFeesDatabase(m *feepolicy.Fees) Fee {
 	}
 }
 
-// toMsgCreateAddressesDatabase - mapping proto model to db model
-func toMsgCreateAddressesDatabase(hash string, m *feepolicy.MsgCreateAddresses) (MsgCreateAddresses, error) {
+// toMsgCreateAddressesDatabase - mapping model to db model
+func toMsgCreateAddressesDatabase(hash string, m *types.MsgCreateAddresses) (MsgCreateAddresses, error) {
 	return MsgCreateAddresses{
 		Creator: m.Creator,
 		Address: m.Address,
@@ -81,8 +83,8 @@ func toMsgCreateAddressesDatabase(hash string, m *feepolicy.MsgCreateAddresses) 
 	}, nil
 }
 
-// toMsgUpdateAddressesDatabase - mapping proto model to db model
-func toMsgUpdateAddressesDatabase(hash string, m *feepolicy.MsgUpdateAddresses) (MsgUpdateAddresses, error) {
+// toMsgUpdateAddressesDatabase - mapping model to db model
+func toMsgUpdateAddressesDatabase(hash string, m *types.MsgUpdateAddresses) (MsgUpdateAddresses, error) {
 	return MsgUpdateAddresses{
 		Creator:   m.Creator,
 		Address:   m.Address,
@@ -91,8 +93,8 @@ func toMsgUpdateAddressesDatabase(hash string, m *feepolicy.MsgUpdateAddresses) 
 	}, nil
 }
 
-// toMsgDeleteAddressesDatabase - mapping proto model to db model
-func toMsgDeleteAddressesDatabase(hash string, m *feepolicy.MsgDeleteAddresses) (MsgDeleteAddresses, error) {
+// toMsgDeleteAddressesDatabase - mapping model to db model
+func toMsgDeleteAddressesDatabase(hash string, m *types.MsgDeleteAddresses) (MsgDeleteAddresses, error) {
 	return MsgDeleteAddresses{
 		Creator:   m.Creator,
 		AddressID: m.Id,

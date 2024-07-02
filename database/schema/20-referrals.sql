@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS stwart_referrals_create_user
     account_address TEXT   NOT NULL,
     referrer        TEXT   NOT NULL,
     referrals       TEXT[] NOT NULL,
-    tx_hash         TEXT   NOT NULL
+    tx_hash         TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX referrals_create_user_creator_index ON stwart_referrals_create_user (creator);
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS stwart_referrals_update_user
     account_address TEXT   NOT NULL,
     referrer        TEXT   NOT NULL,
     referrals       TEXT[] NOT NULL,
-    tx_hash         TEXT   NOT NULL
+    tx_hash         TEXT   NOT NULL UNIQUE
 );
 
 CREATE INDEX referrals_update_user_creator_index ON stwart_referrals_update_user (creator);
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS stwart_referrals_delete_user
     id              BIGINT PRIMARY KEY,
     creator         TEXT NOT NULL,
     account_address TEXT NOT NULL,
-    tx_hash         TEXT NOT NULL
+    tx_hash         TEXT NOT NULL UNIQUE
 );
 
 CREATE INDEX referrals_delete_user_creator_index ON stwart_referrals_delete_user (creator);
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS stwart_referrals_set_referrer
     creator  TEXT NOT NULL,
     referrer TEXT NOT NULL,
     referral TEXT NOT NULL,
-    tx_hash  TEXT NOT NULL
+    tx_hash  TEXT NOT NULL UNIQUE
 );
 
 CREATE INDEX referrals_set_referrer_creator_index ON stwart_referrals_set_referrer (creator);

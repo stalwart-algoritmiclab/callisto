@@ -10,14 +10,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/std"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/types/params"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	coretypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
+	exchangertypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
+	faucettypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
+	feepolicytypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
+	ratestypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
+	referralstypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
+	securedtypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
 )
 
 // MakeEncodingConfig creates an EncodingConfig to properly handle all the messages
@@ -31,13 +30,13 @@ func MakeEncodingConfig(managers []module.BasicManager) func() params.EncodingCo
 		manager.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 
 		// custom modules
-		core.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-		exchanger.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-		faucet.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-		rates.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-		secured.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-		feepolicy.RegisterInterfaces(encodingConfig.InterfaceRegistry)
-		referrals.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		coretypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		exchangertypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		faucettypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		ratestypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		securedtypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		feepolicytypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
+		referralstypes.RegisterInterfaces(encodingConfig.InterfaceRegistry)
 		return encodingConfig
 	}
 }

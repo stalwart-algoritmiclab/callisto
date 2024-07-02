@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS stwart_exchanger
 (
     id       SERIAL NOT NULL PRIMARY KEY,
     creator  TEXT   NOT NULL,
-    tx_hash  TEXT   NOT NULL,
+    tx_hash  TEXT   NOT NULL UNIQUE,
     denom    TEXT   NOT NULL,
     amount   TEXT   NOT NULL,
     denom_to TEXT   NOT NULL

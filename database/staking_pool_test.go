@@ -7,7 +7,7 @@
 package database_test
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"cosmossdk.io/math"
 
 	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 	"github.com/stalwart-algoritmiclab/callisto/types"
@@ -15,7 +15,7 @@ import (
 
 func (suite *DbTestSuite) TestBigDipperDb_SaveStakingPool() {
 	// Save the data
-	original := types.NewPool(sdk.NewInt(50), sdk.NewInt(100), sdk.NewInt(5), sdk.NewInt(1), 10)
+	original := types.NewPool(math.NewInt(50), math.NewInt(100), math.NewInt(5), math.NewInt(1), 10)
 	err := suite.database.SaveStakingPool(original)
 	suite.Require().NoError(err)
 
@@ -31,7 +31,7 @@ func (suite *DbTestSuite) TestBigDipperDb_SaveStakingPool() {
 	// ----------------------------------------------------------------------------------------------------------------
 
 	// Try updating using a lower height
-	pool := types.NewPool(sdk.NewInt(1), sdk.NewInt(1), sdk.NewInt(1), sdk.NewInt(1), 8)
+	pool := types.NewPool(math.NewInt(1), math.NewInt(1), math.NewInt(1), math.NewInt(1), 8)
 	err = suite.database.SaveStakingPool(pool)
 	suite.Require().NoError(err)
 
@@ -45,7 +45,7 @@ func (suite *DbTestSuite) TestBigDipperDb_SaveStakingPool() {
 	// ----------------------------------------------------------------------------------------------------------------
 
 	// Try updating with the same height
-	pool = types.NewPool(sdk.NewInt(1), sdk.NewInt(1), sdk.NewInt(1), sdk.NewInt(1), 10)
+	pool = types.NewPool(math.NewInt(1), math.NewInt(1), math.NewInt(1), math.NewInt(1), 10)
 	err = suite.database.SaveStakingPool(pool)
 	suite.Require().NoError(err)
 
@@ -61,7 +61,7 @@ func (suite *DbTestSuite) TestBigDipperDb_SaveStakingPool() {
 	// ----------------------------------------------------------------------------------------------------------------
 
 	// Try updating with a higher height
-	pool = types.NewPool(sdk.NewInt(1000000), sdk.NewInt(1000000), sdk.NewInt(20), sdk.NewInt(15), 20)
+	pool = types.NewPool(math.NewInt(1000000), math.NewInt(1000000), math.NewInt(20), math.NewInt(15), 20)
 	err = suite.database.SaveStakingPool(pool)
 	suite.Require().NoError(err)
 

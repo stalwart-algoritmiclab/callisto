@@ -7,8 +7,8 @@
 package database_test
 
 import (
+	feegranttypes "cosmossdk.io/x/feegrant"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	feegranttypes "github.com/cosmos/cosmos-sdk/x/feegrant"
 
 	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
 	"github.com/stalwart-algoritmiclab/callisto/types"

@@ -7,31 +7,30 @@
 package main
 
 import (
-	"cosmossdk.io/simapp"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	"github.com/forbole/juno/v5/cmd"
-	initcmd "github.com/forbole/juno/v5/cmd/init"
-	parsetypes "github.com/forbole/juno/v5/cmd/parse/types"
-	startcmd "github.com/forbole/juno/v5/cmd/start"
-	"github.com/forbole/juno/v5/modules/messages"
-	_ "go.uber.org/automaxprocs"
+	"github.com/forbole/juno/v6/cmd"
+	initcmd "github.com/forbole/juno/v6/cmd/init"
+	parsetypes "github.com/forbole/juno/v6/cmd/parse/types"
+	startcmd "github.com/forbole/juno/v6/cmd/start"
+	"github.com/forbole/juno/v6/modules/messages"
 
 	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
 	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
+	"github.com/stalwart-algoritmiclab/callisto/types/config"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
+
 	vault "github.com/stalwart-algoritmiclab/callisto/config"
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/modules"
-	"github.com/stalwart-algoritmiclab/callisto/types/config"
 )
 
 func main() {
 	initCfg := initcmd.NewConfig().
 		WithConfigCreator(config.Creator)
 
+	cdc := utils.GetCodec()
 	parseCfg := parsetypes.NewConfig().
-		WithDBBuilder(database.Builder).
-		WithEncodingConfigBuilder(config.MakeEncodingConfig(getBasicManagers())).
-		WithRegistrar(modules.NewRegistrar(getAddressesParser()))
+		WithDBBuilder(database.Builder(cdc)).
+		WithRegistrar(modules.NewRegistrar(getAddressesParser(), cdc))
 
 	cfg := cmd.NewConfig("callisto").
 		WithInitConfig(initCfg).
@@ -53,15 +52,6 @@ func main() {
 	err := executor.Execute()
 	if err != nil {
 		panic(err)
-	}
-}
-
-// getBasicManagers returns the various basic managers that are used to register the encoding to
-// support custom messages.
-// This should be edited by custom implementations if needed.
-func getBasicManagers() []module.BasicManager {
-	return []module.BasicManager{
-		simapp.ModuleBasics,
 	}
 }
 

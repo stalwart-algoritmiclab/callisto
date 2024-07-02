@@ -7,13 +7,14 @@
 package feepolicy
 
 import (
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
+
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 )
 
 // InsertMsgCreateAddresses - insert a new MsgCreateAddresses in a database (stwartchain_feepolicy_create_addresses).
-func (r Repository) InsertMsgCreateAddresses(hash string, msgs ...*feepolicy.MsgCreateAddresses) error {
+func (r Repository) InsertMsgCreateAddresses(hash string, msgs ...*types.MsgCreateAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -45,7 +46,7 @@ func (r Repository) InsertMsgCreateAddresses(hash string, msgs ...*feepolicy.Msg
 }
 
 // InsertMsgUpdateAddresses - insert a new MsgUpdateAddresses in a database (stwartchain_feepolicy_update_addresses).
-func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*feepolicy.MsgUpdateAddresses) error {
+func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*types.MsgUpdateAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -77,7 +78,7 @@ func (r Repository) InsertMsgUpdateAddresses(hash string, msgs ...*feepolicy.Msg
 }
 
 // InsertMsgDeleteAddresses - insert a new MsgDeleteAddresses in a database (stwartchain_feepolicy_delete_addresses).
-func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*feepolicy.MsgDeleteAddresses) error {
+func (r Repository) InsertMsgDeleteAddresses(hash string, msgs ...*types.MsgDeleteAddresses) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

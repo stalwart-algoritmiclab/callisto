@@ -13,7 +13,7 @@ import (
 
 	govsource "github.com/stalwart-algoritmiclab/callisto/modules/gov/source"
 
-	"github.com/forbole/juno/v5/modules"
+	"github.com/forbole/juno/v6/modules"
 )
 
 var (

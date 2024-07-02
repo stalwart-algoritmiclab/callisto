@@ -7,14 +7,13 @@
 package core
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
+	juno "github.com/forbole/juno/v6/types"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
 )
 
 // handleMsgIssue handles the MsgIssue message
-func (m *Module) handleMsgIssue(tx *juno.Tx, _ int, msg *core.MsgIssue) error {
-	return m.coreRepo.InsertMsgIssue(tx.TxHash, &core.MsgIssue{
+func (m *Module) handleMsgIssue(tx *juno.Transaction, _ int, msg *types.MsgIssue) error {
+	return m.coreRepo.InsertMsgIssue(tx.TxHash, &types.MsgIssue{
 		Creator: msg.Creator,
 		Amount:  msg.Amount,
 		Denom:   msg.Denom,
@@ -22,8 +21,8 @@ func (m *Module) handleMsgIssue(tx *juno.Tx, _ int, msg *core.MsgIssue) error {
 	})
 }
 
-func (m *Module) handleMsgWithdraw(tx *juno.Tx, _ int, msg *core.MsgWithdraw) error {
-	return m.coreRepo.InsertMsgWithdraw(tx.TxHash, &core.MsgWithdraw{
+func (m *Module) handleMsgWithdraw(tx *juno.Transaction, _ int, msg *types.MsgWithdraw) error {
+	return m.coreRepo.InsertMsgWithdraw(tx.TxHash, &types.MsgWithdraw{
 		Creator: msg.Creator,
 		Amount:  msg.Amount,
 		Denom:   msg.Denom,
@@ -31,16 +30,16 @@ func (m *Module) handleMsgWithdraw(tx *juno.Tx, _ int, msg *core.MsgWithdraw) er
 	})
 }
 
-func (m *Module) handleMsgFees(tx *juno.Tx, _ int, msg *core.MsgFees) error {
-	return m.coreRepo.InsertMsgFees(tx.TxHash, &core.MsgFees{
+func (m *Module) handleMsgFees(tx *juno.Transaction, _ int, msg *types.MsgFees) error {
+	return m.coreRepo.InsertMsgFees(tx.TxHash, &types.MsgFees{
 		Creator:   msg.Creator,
 		Comission: msg.Comission, //nolint:misspell
 		AddressTo: msg.AddressTo,
 	})
 }
 
-func (m *Module) handleMsgRefund(tx *juno.Tx, _ int, msg *core.MsgRefund) error {
-	return m.coreRepo.InsertMsgRefund(tx.TxHash, &core.MsgRefund{
+func (m *Module) handleMsgRefund(tx *juno.Transaction, _ int, msg *types.MsgRefund) error {
+	return m.coreRepo.InsertMsgRefund(tx.TxHash, &types.MsgRefund{
 		Creator: msg.Creator,
 		Amount:  msg.Amount,
 		From:    msg.From,
@@ -48,16 +47,16 @@ func (m *Module) handleMsgRefund(tx *juno.Tx, _ int, msg *core.MsgRefund) error 
 	})
 }
 
-func (m *Module) handleMsgRefReward(tx *juno.Tx, _ int, msg *core.MsgRefReward) error {
-	return m.coreRepo.InsertMsgRefReward(tx.TxHash, &core.MsgRefReward{
+func (m *Module) handleMsgRefReward(tx *juno.Transaction, _ int, msg *types.MsgRefReward) error {
+	return m.coreRepo.InsertMsgRefReward(tx.TxHash, &types.MsgRefReward{
 		Creator:  msg.Creator,
 		Amount:   msg.Amount,
 		Referrer: msg.Referrer,
 	})
 }
 
-func (m *Module) handleMsgSend(tx *juno.Tx, _ int, msg *core.MsgSend) error {
-	return m.coreRepo.InsertMsgSend(tx.TxHash, &core.MsgSend{
+func (m *Module) handleMsgSend(tx *juno.Transaction, _ int, msg *types.MsgSend) error {
+	return m.coreRepo.InsertMsgSend(tx.TxHash, &types.MsgSend{
 		Creator: msg.Creator,
 		Amount:  msg.Amount,
 		From:    msg.From,

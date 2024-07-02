@@ -8,9 +8,9 @@ package stwart
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/forbole/juno/v5/logging"
-	jmodules "github.com/forbole/juno/v5/modules"
-	"github.com/forbole/juno/v5/node"
+	"github.com/forbole/juno/v6/logging"
+	jmodules "github.com/forbole/juno/v6/modules"
+	"github.com/forbole/juno/v6/node"
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain/last_block"

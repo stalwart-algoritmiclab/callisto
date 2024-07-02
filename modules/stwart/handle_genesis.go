@@ -10,7 +10,7 @@ import (
 	"encoding/json"
 
 	tmtypes "github.com/cometbft/cometbft/types"
-	"github.com/forbole/juno/v5/modules"
+	"github.com/forbole/juno/v6/modules"
 )
 
 // HandleGenesis implements modules.GenesisModule

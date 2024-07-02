@@ -9,7 +9,7 @@ package remote
 import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
-	"github.com/forbole/juno/v5/node/remote"
+	"github.com/forbole/juno/v6/node/remote"
 
 	distrsource "github.com/stalwart-algoritmiclab/callisto/modules/distribution/source"
 )

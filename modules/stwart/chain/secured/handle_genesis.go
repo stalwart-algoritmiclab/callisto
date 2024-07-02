@@ -11,8 +11,7 @@ import (
 
 	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/rs/zerolog/log"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
 )
 
 const moduleName = "secured"
@@ -22,7 +21,7 @@ func (m *Module) HandleGenesis(doc *tmtypes.GenesisDoc, appState map[string]json
 	log.Debug().Str("module", moduleName).Msg("parsing genesis")
 
 	// Unmarshal the secured state
-	var securedState secured.GenesisState
+	var securedState types.GenesisState
 	if err := m.cdc.UnmarshalJSON(appState[moduleName], &securedState); err != nil {
 		return err
 	}

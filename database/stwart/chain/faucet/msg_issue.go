@@ -10,15 +10,16 @@ import (
 	"database/sql"
 	"errors"
 
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
+
 	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/faucet"
 )
 
 // GetAllMsgIssue - method that get data from a db (stwartchain_faucet).
-func (r Repository) GetAllMsgIssue(filter filter.Filter) ([]faucet.MsgIssue, error) {
+func (r Repository) GetAllMsgIssue(filter filter.Filter) ([]types.MsgIssue, error) {
 	query, args := filter.Build(tableFaucet)
 
 	var result []MsgIssue
@@ -37,7 +38,7 @@ func (r Repository) GetAllMsgIssue(filter filter.Filter) ([]faucet.MsgIssue, err
 }
 
 // InsertMsgIssue - insert a new MsgIssue in a database (stwartchain_faucet).
-func (r Repository) InsertMsgIssue(hash string, msgs ...*faucet.MsgIssue) error {
+func (r Repository) InsertMsgIssue(hash string, msgs ...*types.MsgIssue) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -57,7 +58,7 @@ func (r Repository) InsertMsgIssue(hash string, msgs ...*faucet.MsgIssue) error 
 			return err
 		}
 
-		if _, err := r.db.Exec(q, m.TxHash, m.Creator, m.Address); err != nil {
+		if _, err := r.db.Exec(q, m.Creator, m.Address, m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

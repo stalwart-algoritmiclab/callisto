@@ -7,12 +7,11 @@
 package referrals
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
+	juno "github.com/forbole/juno/v6/types"
+	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
 )
 
 // handleMsgSetReferrer handles a MsgSetReferrer message
-func (m *Module) handleMsgSetReferrer(tx *juno.Tx, msg *referrals.MsgSetReferrer) error {
+func (m *Module) handleMsgSetReferrer(tx *juno.Transaction, msg *types.MsgSetReferrer) error {
 	return m.referralsRepo.InsertMsgSetReferrer(tx.TxHash, msg)
 }

@@ -8,7 +8,7 @@ package remote
 
 import (
 	govtypesv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
-	"github.com/forbole/juno/v5/node/remote"
+	"github.com/forbole/juno/v6/node/remote"
 
 	govsource "github.com/stalwart-algoritmiclab/callisto/modules/gov/source"
 )
