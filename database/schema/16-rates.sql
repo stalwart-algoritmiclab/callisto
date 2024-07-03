@@ -1,7 +1,7 @@
 -- +migrate Up
 CREATE TABLE IF NOT EXISTS stwart_rates_create_addresses
 (
-    id      SERIAL NOT NULL PRIMARY KEY,
+    id      BIGSERIAL NOT NULL PRIMARY KEY,
     creator TEXT   NOT NULL,
     address TEXT[] NOT NULL,
     tx_hash TEXT   NOT NULL UNIQUE
@@ -12,7 +12,7 @@ CREATE INDEX rates_create_addresses_tx_hash_index ON stwart_rates_create_address
 
 CREATE TABLE IF NOT EXISTS stwart_rates_update_addresses
 (
-    id         SERIAL NOT NULL PRIMARY KEY,
+    id         BIGSERIAL NOT NULL PRIMARY KEY,
     creator    TEXT   NOT NULL,
     address_id BIGINT NOT NULL,
     address    TEXT[] NOT NULL,
@@ -24,7 +24,7 @@ CREATE INDEX rates_update_addresses_tx_hash_index ON stwart_rates_update_address
 
 CREATE TABLE IF NOT EXISTS stwart_rates_delete_addresses
 (
-    id         SERIAL NOT NULL PRIMARY KEY,
+    id         BIGSERIAL NOT NULL PRIMARY KEY,
     creator    TEXT   NOT NULL,
     address_id BIGINT NOT NULL,
     tx_hash    TEXT   NOT NULL UNIQUE
@@ -35,7 +35,7 @@ CREATE INDEX rates_delete_addresses_tx_hash_index ON stwart_rates_delete_address
 
 CREATE TABLE IF NOT EXISTS stwart_rates_create_rates
 (
-    id       SERIAL  NOT NULL PRIMARY KEY,
+    id       BIGSERIAL NOT NULL PRIMARY KEY,
     creator  TEXT    NOT NULL,
     decimals NUMERIC NOT NULL,
     denom    TEXT    NOT NULL,
@@ -49,7 +49,7 @@ CREATE INDEX rates_create_rates_tx_hash_index ON stwart_rates_create_rates (tx_h
 
 CREATE TABLE IF NOT EXISTS stwart_rates_update_rates
 (
-    id      SERIAL NOT NULL PRIMARY KEY,
+    id      BIGSERIAL NOT NULL PRIMARY KEY,
     creator TEXT   NOT NULL,
     denom   TEXT   NOT NULL,
     rate    TEXT   NOT NULL,
@@ -62,7 +62,7 @@ CREATE INDEX rates_update_rates_tx_hash_index ON stwart_rates_update_rates (tx_h
 
 CREATE TABLE IF NOT EXISTS stwart_rates_delete_rates
 (
-    id      SERIAL NOT NULL PRIMARY KEY,
+    id      BIGSERIAL NOT NULL PRIMARY KEY,
     creator TEXT   NOT NULL,
     denom   TEXT   NOT NULL,
     tx_hash TEXT   NOT NULL UNIQUE
