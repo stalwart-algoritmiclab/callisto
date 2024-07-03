@@ -7,7 +7,7 @@
 package secured
 
 import (
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 )
 
 // MsgCreateAddresses - mapping db model to model

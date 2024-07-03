@@ -10,7 +10,7 @@ import (
 	"testing"
 
 	gofakeit "github.com/brianvoe/gofakeit/v6"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 
 	d "github.com/stalwart-algoritmiclab/callisto/_tests/database"
 )

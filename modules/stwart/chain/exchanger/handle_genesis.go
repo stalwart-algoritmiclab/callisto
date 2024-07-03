@@ -11,7 +11,7 @@ import (
 
 	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/rs/zerolog/log"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/types"
 )
 
 const moduleName = "exchanger"

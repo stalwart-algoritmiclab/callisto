@@ -7,7 +7,7 @@
 package feepolicy
 
 import (
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"

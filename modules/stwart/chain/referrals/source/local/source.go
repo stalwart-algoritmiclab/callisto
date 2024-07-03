@@ -8,7 +8,7 @@ package local
 
 import (
 	"github.com/forbole/juno/v6/node/local"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source"
 )

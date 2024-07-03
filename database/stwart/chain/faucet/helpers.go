@@ -7,7 +7,7 @@
 package faucet
 
 import (
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
 )
 
 // MsgIssue - mapping db model to model

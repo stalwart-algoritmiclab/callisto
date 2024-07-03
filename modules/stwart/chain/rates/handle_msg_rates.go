@@ -8,7 +8,7 @@ package rates
 
 import (
 	juno "github.com/forbole/juno/v6/types"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 )
 
 // handleMsgCreateRates allows to properly handle a MsgCreateRates

@@ -35,6 +35,7 @@ const (
 	// Stalwart referrals module event types
 
 	// Stalwart secured module event types
+	Stwartchain_secured_MsgCreateAddresses = "/stwartchain.secured.MsgCreateAddresses"
 
 	// Stalwart stake module event types
 
@@ -61,64 +62,10 @@ const (
 func MessageTypeLists() []types.MessageType {
 	return []types.MessageType{
 		{
-			Type:   Cosmos_slashing_MsgUnjail,
-			Module: utils.GetModuleNameFromTypeURL(Cosmos_slashing_MsgUnjail),
-			Label:  utils.GetMsgFromTypeURL(Cosmos_slashing_MsgUnjail),
-			Height: 129,
-		},
-		{
-			Type:   Stwartchain_exchanger_MsgExchange,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_exchanger_MsgExchange),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_exchanger_MsgExchange),
-			Height: 253,
-		},
-		{
-			Type:   Cosmos_bank_MsgSend,
-			Module: utils.GetModuleNameFromTypeURL(Cosmos_bank_MsgSend),
-			Label:  utils.GetMsgFromTypeURL(Cosmos_bank_MsgSend),
-			Height: 247,
-		},
-		{
-			Type:   Stwartchain_faucet_MsgIssue,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_faucet_MsgIssue),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_faucet_MsgIssue),
-			Height: 251,
-		},
-		{
-			Type:   Stwartchain_core_MsgWithdraw,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_core_MsgWithdraw),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_core_MsgWithdraw),
-			Height: 114047,
-		},
-		{
-			Type:   Ibc_core_client_v1_MsgUpdateClient,
-			Module: utils.GetModuleNameFromTypeURL(Ibc_core_client_v1_MsgUpdateClient),
-			Label:  utils.GetMsgFromTypeURL(Ibc_core_client_v1_MsgUpdateClient),
-			Height: 18734,
-		},
-		{
-			Type:   Stwartchain_feepolicy_MsgCreateTariffs,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_feepolicy_MsgCreateTariffs),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_feepolicy_MsgCreateTariffs),
-			Height: 61445,
-		},
-		{
-			Type:   Stwartchain_feepolicy_MsgUpdateTariffs,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_feepolicy_MsgUpdateTariffs),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_feepolicy_MsgUpdateTariffs),
-			Height: 71648,
-		},
-		{
-			Type:   Stwartchain_feepolicy_MsgDeleteTariffs,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_feepolicy_MsgDeleteTariffs),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_feepolicy_MsgDeleteTariffs),
-			Height: 71682,
-		},
-		{
-			Type:   Stwartchain_core_MsgIssue,
-			Module: utils.GetModuleNameFromTypeURL(Stwartchain_core_MsgIssue),
-			Label:  utils.GetMsgFromTypeURL(Stwartchain_core_MsgIssue),
-			Height: 81413,
+			Type:   Stwartchain_secured_MsgCreateAddresses,
+			Module: utils.GetModuleNameFromTypeURL(Stwartchain_secured_MsgCreateAddresses),
+			Label:  utils.GetMsgFromTypeURL(Stwartchain_secured_MsgCreateAddresses),
+			Height: 76,
 		},
 	}
 }

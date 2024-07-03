@@ -10,7 +10,7 @@ import (
 	"database/sql"
 	"errors"
 
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"

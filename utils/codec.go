@@ -35,13 +35,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/slashing"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/cosmos/gogoproto/proto"
-	core "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/module"
-	exchanger "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/module"
-	faucet "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/module"
-	feepolicy "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/module"
-	rates "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/module"
-	referral "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/module"
-	secured "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/module"
+	core "github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/module"
+	exchanger "github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/module"
+	faucet "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/module"
+	feepolicy "github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/module"
+	rates "github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/module"
+	referral "github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/module"
+	secured "github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/module"
 )
 
 var once sync.Once
