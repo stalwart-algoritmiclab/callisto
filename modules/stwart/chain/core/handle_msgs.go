@@ -8,7 +8,7 @@ package core
 
 import (
 	juno "github.com/forbole/juno/v6/types"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
 )
 
 // handleMsgIssue handles the MsgIssue message

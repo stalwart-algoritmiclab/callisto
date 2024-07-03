@@ -10,13 +10,13 @@ import (
 	"github.com/cosmos/cosmos-sdk/std"
 	"github.com/cosmos/cosmos-sdk/types/module"
 	"github.com/forbole/juno/v5/types/params"
-	coretypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
-	exchangertypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
-	faucettypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
-	feepolicytypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
-	ratestypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
-	referralstypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
-	securedtypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
+	coretypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
+	exchangertypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/types"
+	faucettypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
+	feepolicytypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/types"
+	ratestypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
+	referralstypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
+	securedtypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 )
 
 // MakeEncodingConfig creates an EncodingConfig to properly handle all the messages

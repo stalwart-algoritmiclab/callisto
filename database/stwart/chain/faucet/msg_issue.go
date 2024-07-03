@@ -10,7 +10,7 @@ import (
 	"database/sql"
 	"errors"
 
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 

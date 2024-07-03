@@ -12,7 +12,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	"github.com/jmoiron/sqlx"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"

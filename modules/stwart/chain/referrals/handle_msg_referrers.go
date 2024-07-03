@@ -8,7 +8,7 @@ package referrals
 
 import (
 	juno "github.com/forbole/juno/v6/types"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
 )
 
 // handleMsgSetReferrer handles a MsgSetReferrer message

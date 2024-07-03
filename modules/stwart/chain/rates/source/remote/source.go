@@ -8,7 +8,7 @@ package remote
 
 import (
 	"github.com/forbole/juno/v6/node/remote"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
 )

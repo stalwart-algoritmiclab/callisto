@@ -10,7 +10,7 @@ import (
 	"fmt"
 
 	"github.com/forbole/juno/v6/node/remote"
-	faucettypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
+	faucettypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -27,12 +27,12 @@ import (
 
 	nodeconfig "github.com/forbole/juno/v6/node/config"
 
-	coretypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/core/types"
-	exchangertypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/exchanger/types"
-	feepolicytypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/feepolicy/types"
-	ratestypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/rates/types"
-	referralstypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/referral/types"
-	securedtypes "gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/secured/types"
+	coretypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
+	exchangertypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/types"
+	feepolicytypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/types"
+	ratestypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
+	referralstypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
+	securedtypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 
 	banksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
 	localbanksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source/local"

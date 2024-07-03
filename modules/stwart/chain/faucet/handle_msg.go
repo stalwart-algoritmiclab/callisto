@@ -8,7 +8,7 @@ package faucet
 
 import (
 	juno "github.com/forbole/juno/v6/types"
-	"gitlab.stalwart.tech/ijio/main/backend/stwart-chain/x/faucet/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
