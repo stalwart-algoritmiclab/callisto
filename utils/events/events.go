@@ -47,3 +47,14 @@ func FindEventsByMsgIndex(events sdk.StringEvents, msgIndex int) sdk.StringEvent
 	}
 	return res
 }
+
+// FilterEvents returns the events with the given types
+func FilterEvents(events sdk.StringEvents, eventTypes string) sdk.StringEvents {
+	var filteredEvents sdk.StringEvents
+	for _, event := range events {
+		if event.Type == eventTypes {
+			filteredEvents = append(filteredEvents, event)
+		}
+	}
+	return filteredEvents
+}

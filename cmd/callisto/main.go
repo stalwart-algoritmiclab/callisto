@@ -15,12 +15,11 @@ import (
 
 	migratecmd "github.com/stalwart-algoritmiclab/callisto/cmd/migrate"
 	parsecmd "github.com/stalwart-algoritmiclab/callisto/cmd/parse"
-	"github.com/stalwart-algoritmiclab/callisto/types/config"
-	"github.com/stalwart-algoritmiclab/callisto/utils"
-
 	vault "github.com/stalwart-algoritmiclab/callisto/config"
 	"github.com/stalwart-algoritmiclab/callisto/database"
 	"github.com/stalwart-algoritmiclab/callisto/modules"
+	"github.com/stalwart-algoritmiclab/callisto/types/config"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
 func main() {

@@ -9,6 +9,8 @@ package types
 import (
 	"fmt"
 
+	authkeeper "github.com/cosmos/cosmos-sdk/x/auth/keeper"
+	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/forbole/juno/v6/node/remote"
 	faucettypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
 
@@ -34,6 +36,9 @@ import (
 	referralstypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
 	securedtypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 
+	authsource "github.com/stalwart-algoritmiclab/callisto/modules/auth/source"
+	localauthsource "github.com/stalwart-algoritmiclab/callisto/modules/auth/source/local"
+	remoteauthsource "github.com/stalwart-algoritmiclab/callisto/modules/auth/source/remote"
 	banksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source"
 	localbanksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source/local"
 	remotebanksource "github.com/stalwart-algoritmiclab/callisto/modules/bank/source/remote"
@@ -70,6 +75,7 @@ import (
 )
 
 type Sources struct {
+	AuthSource     authsource.Source
 	BankSource     banksource.Source
 	DistrSource    distrsource.Source
 	GovSource      govsource.Source
@@ -107,6 +113,7 @@ func buildLocalSources(cfg *local.Details, cdc codec.Codec) (*Sources, error) {
 	app := simapp.NewSimApp(cdc)
 
 	sources := &Sources{
+		AuthSource:     localauthsource.NewSource(source, authkeeper.NewQueryServer(app.AccountKeeper)),
 		BankSource:     localbanksource.NewSource(source, banktypes.QueryServer(app.BankKeeper)),
 		DistrSource:    localdistrsource.NewSource(source, distrkeeper.NewQuerier(app.DistrKeeper)),
 		GovSource:      localgovsource.NewSource(source, govkeeper.NewQueryServer(&app.GovKeeper)),
@@ -136,6 +143,7 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 	}
 
 	return &Sources{
+		AuthSource:     remoteauthsource.NewSource(source, authtypes.NewQueryClient(source.GrpcConn)),
 		BankSource:     remotebanksource.NewSource(source, banktypes.NewQueryClient(source.GrpcConn)),
 		DistrSource:    remotedistrsource.NewSource(source, distrtypes.NewQueryClient(source.GrpcConn)),
 		GovSource:      remotegovsource.NewSource(source, govtypesv1.NewQueryClient(source.GrpcConn)),

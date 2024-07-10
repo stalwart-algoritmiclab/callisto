@@ -11,6 +11,7 @@ import (
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/actions"
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart"
+	topaccounts "github.com/stalwart-algoritmiclab/callisto/modules/top_accounts"
 	"github.com/stalwart-algoritmiclab/callisto/modules/types"
 
 	"github.com/forbole/juno/v6/modules/pruning"
@@ -85,7 +86,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 	}
 
 	actionsModule := actions.NewModule(ctx.JunoConfig, r.cdc, sources)
-	authModule := auth.NewModule(r.parser, r.cdc, db)
+	authModule := auth.NewModule(sources.AuthSource, r.parser, r.cdc, db)
 	bankModule := bank.NewModule(r.parser, sources.BankSource, r.cdc, db)
 	consensusModule := consensus.NewModule(db)
 	dailyRefetchModule := dailyrefetch.NewModule(ctx.Proxy, db)
@@ -97,6 +98,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 	stakingModule := staking.NewModule(sources.StakingSource, r.cdc, db)
 	govModule := gov.NewModule(sources.GovSource, distrModule, mintModule, slashingModule, stakingModule, r.cdc, db)
 	upgradeModule := upgrade.NewModule(db, stakingModule)
+	topAccountsModule := topaccounts.NewModule(authModule, sources.AuthSource, bankModule, distrModule, stakingModule, r.parser, r.cdc, ctx.Proxy, db)
 	stwartModule := stwart.NewModule(
 		r.cdc,
 		db,
@@ -132,5 +134,6 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 		stakingModule,
 		upgradeModule,
 		stwartModule,
+		topAccountsModule,
 	}
 }
