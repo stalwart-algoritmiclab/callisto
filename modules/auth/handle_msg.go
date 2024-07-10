@@ -22,6 +22,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
+// msgFilter contains the messages that should be handled by the auth module
 var msgFilter = map[string]bool{
 	"/cosmos.vesting.v1beta1.MsgCreateVestingAccount": true,
 }
@@ -63,6 +64,7 @@ func (m *Module) HandleMsg(_ int, msg juno.Message, tx *juno.Transaction) error 
 	return m.RefreshAccounts(int64(tx.Height), moduleutils.FilterNonAccountAddresses(addresses))
 }
 
+// messagesParser returns the addresses involved in the messages
 func (m *Module) handleMsgCreateVestingAccount(msg *vestingtypes.MsgCreateVestingAccount, txTimestamp time.Time) error {
 
 	accAddress, err := sdk.AccAddressFromBech32(msg.ToAddress)
@@ -87,5 +89,6 @@ func (m *Module) handleMsgCreateVestingAccount(msg *vestingtypes.MsgCreateVestin
 	if err != nil {
 		return fmt.Errorf("error while storing base vesting account from msg %s", err)
 	}
+
 	return nil
 }

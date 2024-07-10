@@ -45,6 +45,7 @@ type SimApp struct {
 	keys map[string]*storetypes.KVStoreKey
 
 	// keepers
+	AccountKeeper  authkeeper.AccountKeeper
 	BankKeeper     bankkeeper.BaseKeeper
 	StakingKeeper  *stakingkeeper.Keeper
 	SlashingKeeper slashingkeeper.Keeper
@@ -69,6 +70,9 @@ func NewSimApp(cdc codec.Codec) *SimApp {
 	}
 
 	accountKeeper := authkeeper.NewAccountKeeper(cdc, runtime.NewKVStoreService(keys[authtypes.StoreKey]), authtypes.ProtoBaseAccount, maccPerms, authcodec.NewBech32Codec(sdk.GetConfig().GetBech32AccountAddrPrefix()), sdk.GetConfig().GetBech32AccountAddrPrefix(), authtypes.NewModuleAddress(govtypes.ModuleName).String())
+
+	// add keepers
+	app.AccountKeeper = accountKeeper
 
 	app.BankKeeper = bankkeeper.NewBaseKeeper(
 		cdc,

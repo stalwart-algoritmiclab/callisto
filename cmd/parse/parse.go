@@ -24,6 +24,7 @@ import (
 	parsemint "github.com/stalwart-algoritmiclab/callisto/cmd/parse/mint"
 	parsepricefeed "github.com/stalwart-algoritmiclab/callisto/cmd/parse/pricefeed"
 	parsestaking "github.com/stalwart-algoritmiclab/callisto/cmd/parse/staking"
+	parsetopaccounts "github.com/stalwart-algoritmiclab/callisto/cmd/parse/top_accounts"
 )
 
 // NewParseCmd returns the Cobra command allowing to parse some chain data without having to re-sync the whole database
@@ -45,6 +46,7 @@ func NewParseCmd(parseCfg *parse.Config) *cobra.Command {
 		parsemint.NewMintCmd(parseCfg),
 		parsepricefeed.NewPricefeedCmd(parseCfg),
 		parsestaking.NewStakingCmd(parseCfg),
+		parsetopaccounts.NewTopAccountsCmd(parseCfg),
 		parsetransaction.NewTransactionsCmd(parseCfg),
 	)
 
