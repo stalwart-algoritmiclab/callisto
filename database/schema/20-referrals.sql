@@ -1,7 +1,7 @@
 -- +migrate Up
 CREATE TABLE IF NOT EXISTS stwart_referrals_create_user
 (
-    id              BIGINT PRIMARY KEY,
+    id              BIGSERIAL NOT NULL PRIMARY KEY,
     creator         TEXT   NOT NULL,
     account_address TEXT   NOT NULL,
     referrer        TEXT   NOT NULL,
@@ -14,7 +14,7 @@ CREATE INDEX referrals_create_user_tx_hash_index ON stwart_referrals_create_user
 
 CREATE TABLE IF NOT EXISTS stwart_referrals_update_user
 (
-    id              BIGINT PRIMARY KEY,
+    id              BIGSERIAL NOT NULL PRIMARY KEY,
     creator         TEXT   NOT NULL,
     account_address TEXT   NOT NULL,
     referrer        TEXT   NOT NULL,
@@ -27,7 +27,7 @@ CREATE INDEX referrals_update_user_tx_hash_index ON stwart_referrals_update_user
 
 CREATE TABLE IF NOT EXISTS stwart_referrals_delete_user
 (
-    id              BIGINT PRIMARY KEY,
+    id              BIGSERIAL NOT NULL PRIMARY KEY,
     creator         TEXT NOT NULL,
     account_address TEXT NOT NULL,
     tx_hash         TEXT NOT NULL UNIQUE
@@ -38,7 +38,7 @@ CREATE INDEX referrals_delete_user_tx_hash_index ON stwart_referrals_delete_user
 
 CREATE TABLE IF NOT EXISTS stwart_referrals_set_referrer
 (
-    id       BIGINT PRIMARY KEY,
+    id       BIGSERIAL NOT NULL PRIMARY KEY,
     creator  TEXT NOT NULL,
     referrer TEXT NOT NULL,
     referral TEXT NOT NULL,
