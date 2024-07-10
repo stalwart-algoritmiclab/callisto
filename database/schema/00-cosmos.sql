@@ -123,7 +123,7 @@ WHERE (cardinality(types) = 0 OR type = ANY (types))
 ORDER BY height DESC LIMIT "limit" OFFSET "offset" 
 $$ LANGUAGE sql STABLE;
 
-CREATE OR REPLACE FUNCTION messages_types_by_address(account_address TEXT) RETURNS SETOF message AS $$ SELECT DISTINCT ON (m.type) m.* FROM message m WHERE account_address = ANY (m.involved_accounts_addresses); $$ LANGUAGE sql STABLE;
+CREATE OR REPLACE FUNCTION messages_types_by_address(addresses TEXT[]) RETURNS SETOF message AS $$ SELECT DISTINCT ON (m.type) m.* FROM message m WHERE m.involved_accounts_addresses && addresses; $$ LANGUAGE sql STABLE;
 
 CREATE TABLE pruning
 (
@@ -133,7 +133,7 @@ CREATE TABLE pruning
 DROP TABLE IF EXISTS pruning CASCADE;
 DROP FUNCTION IF EXISTS messages_by_type(TEXT[], BIGINT, BIGINT);
 DROP FUNCTION IF EXISTS messages_by_address(TEXT[], TEXT[], BIGINT, BIGINT);
-DROP FUNCTION IF EXISTS messages_types_by_address(TEXT);
+DROP FUNCTION IF EXISTS messages_types_by_address(TEXT[]);
 DROP INDEX IF EXISTS message_involved_accounts_index;
 DROP INDEX IF EXISTS message_type_index;
 DROP INDEX IF EXISTS message_transaction_hash_index;
