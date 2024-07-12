@@ -14,6 +14,7 @@ import (
 	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
+// msgFilter defines the messages that should be handled by this module
 var msgFilter = map[string]bool{
 	"/stwartchain.core.MsgWithdraw":  true,
 	"/stwartchain.core.MsgIssue":     true,

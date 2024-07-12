@@ -103,9 +103,6 @@ type (
 
 	// Referrals - describes an interface for working with referrals database models.
 	Referrals interface {
-		InsertMsgCreateUser(hash string, msgs ...*referraltypes.MsgCreateUser) error
-		InsertMsgUpdateUser(hash string, msgs ...*referraltypes.MsgUpdateUser) error
-		InsertMsgDeleteUser(hash string, msgs ...*referraltypes.MsgDeleteUser) error
 		InsertMsgSetReferrer(hash string, msgs ...*referraltypes.MsgSetReferrer) error
 	}
 )
