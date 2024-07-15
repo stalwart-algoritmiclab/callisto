@@ -27,3 +27,25 @@ func SplitAccounts(accounts []types.Account, paramsNumber int) [][]types.Account
 
 	return slices
 }
+
+// SplitTopAccounts splits the given top accounts into slices
+func SplitTopAccounts(accounts []types.TopAccount, paramsNumber int) [][]types.TopAccount {
+	if paramsNumber == 0 {
+		return nil
+	}
+
+	maxBalancesPerSlice := maxPostgreSQLParams / paramsNumber
+	if maxBalancesPerSlice == 0 {
+		return nil
+	}
+
+	numSlices := (len(accounts) + maxBalancesPerSlice - 1) / maxBalancesPerSlice
+	slices := make([][]types.TopAccount, numSlices)
+
+	for i, account := range accounts {
+		sliceIndex := i / maxBalancesPerSlice
+		slices[sliceIndex] = append(slices[sliceIndex], account)
+	}
+
+	return slices
+}

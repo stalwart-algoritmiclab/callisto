@@ -7,19 +7,18 @@
 package stwart
 
 import (
-	"errors"
+	"encoding/json"
 	"fmt"
 
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 	tmtypes "github.com/cometbft/cometbft/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/forbole/juno/v5/modules"
-	"github.com/forbole/juno/v5/types"
-	txtypes "github.com/forbole/juno/v5/types"
+	"github.com/forbole/juno/v6/modules"
+	"github.com/forbole/juno/v6/types"
+	txtypes "github.com/forbole/juno/v6/types"
 
 	dbhelpers "github.com/stalwart-algoritmiclab/callisto/database/types"
 	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
-	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
 )
 
 const (
@@ -27,25 +26,25 @@ const (
 )
 
 // parseMissingBlocksAndTransactions - parse missing blocks and transactions
-func (m *Module) parseMissingBlocksAndTransactions(height int64) (dbtypes.BlockRow, []*txtypes.Tx, error) {
+func (m *Module) parseMissingBlocksAndTransactions(height int64) (dbtypes.BlockRow, []*txtypes.Transaction, error) {
 	block, err := m.node.Block(height)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, fmt.Errorf("failed to get block from node: %s", err)
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, fmt.Errorf("failed to get block from node: %s", err)
 	}
 
 	events, err := m.node.BlockResults(height)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, fmt.Errorf("failed to get block results from node: %s", err)
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, fmt.Errorf("failed to get block results from node: %s", err)
 	}
 
 	txs, err := m.node.Txs(block)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, m.handleErrors(err)
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, fmt.Errorf("failed to get transactions for block: %s", err)
 	}
 
 	vals, err := m.node.Validators(height)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, fmt.Errorf("failed to get validators for block: %s", err)
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, fmt.Errorf("failed to get validators for block: %s", err)
 	}
 
 	return m.ExportBlock(block, events, txs, vals)
@@ -55,19 +54,19 @@ func (m *Module) parseMissingBlocksAndTransactions(height int64) (dbtypes.BlockR
 // and persists them to the database along with attributable metadata. An error
 // is returned if the writing fails.
 func (m *Module) ExportBlock(
-	b *tmctypes.ResultBlock, r *tmctypes.ResultBlockResults, txs []*types.Tx, vals *tmctypes.ResultValidators,
-) (dbtypes.BlockRow, []*txtypes.Tx, error) {
+	b *tmctypes.ResultBlock, r *tmctypes.ResultBlockResults, txs []*txtypes.Transaction, vals *tmctypes.ResultValidators,
+) (dbtypes.BlockRow, []*txtypes.Transaction, error) {
 	// Save all validators
 	err := m.SaveValidators(vals.Validators)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, err
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, err
 	}
 
 	// Make sure the proposer exists
 	proposerAddr := sdk.ConsAddress(b.Block.ProposerAddress).String()
 	val := findValidatorByAddr(proposerAddr, vals)
 	if val == nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{},
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{},
 			fmt.Errorf("failed to find validator by proposer address %s: %s", proposerAddr, err)
 	}
 
@@ -76,13 +75,13 @@ func (m *Module) ExportBlock(
 	// Save the block
 	err = m.db.SaveBlock(block)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, fmt.Errorf("failed to persist block: %s", err)
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, fmt.Errorf("failed to persist block: %s", err)
 	}
 
 	// Save the commits
 	err = m.ExportCommit(b.Block.LastCommit, vals)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, err
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, err
 	}
 
 	// Call the block handlers
@@ -97,7 +96,7 @@ func (m *Module) ExportBlock(
 
 	tsx, err := m.ExportTxs(txs)
 	if err != nil {
-		return dbtypes.BlockRow{}, []*txtypes.Tx{}, err
+		return dbtypes.BlockRow{}, []*txtypes.Transaction{}, err
 	}
 
 	// Export the transactions
@@ -149,11 +148,11 @@ func findValidatorByAddr(consAddr string, vals *tmctypes.ResultValidators) *tmty
 }
 
 // sumGasTxs returns the total gas consumed by a set of transactions.
-func sumGasTxs(txs []*types.Tx) uint64 {
+func sumGasTxs(txs []*types.Transaction) uint64 {
 	var totalGas uint64
 
 	for _, tx := range txs {
-		totalGas += uint64(tx.GasUsed)
+		totalGas += tx.GasUsed
 	}
 
 	return totalGas
@@ -195,8 +194,8 @@ func (m *Module) ExportCommit(commit *tmtypes.Commit, vals *tmctypes.ResultValid
 
 // ExportTxs accepts a slice of transactions and persists then inside the database.
 // An error is returned if the write fails.
-func (m *Module) ExportTxs(txs []*types.Tx) ([]*txtypes.Tx, error) {
-	// Handle all the transactions inside the block
+func (m *Module) ExportTxs(txs []*types.Transaction) ([]*txtypes.Transaction, error) {
+	// handle all transactions inside the block
 	for _, tx := range txs {
 		events := make([]sdk.Event, 0)
 
@@ -207,45 +206,86 @@ func (m *Module) ExportTxs(txs []*types.Tx) ([]*txtypes.Tx, error) {
 		msgLog := sdk.NewABCIMessageLog(0, "", events)
 		tx.Logs = sdk.ABCIMessageLogs{msgLog}
 
-		// Save the transaction itself
-		err := m.db.SaveTx(tx)
+		// save the transaction
+		err := m.saveTx(tx)
 		if err != nil {
-			return []*txtypes.Tx{}, fmt.Errorf("failed to handle transaction with hash %s: %s", tx.TxHash, err)
+			return []*txtypes.Transaction{}, fmt.Errorf("error while storing txs: %s", err)
 		}
 
-		// Call the tx handlers
-		for _, module := range m.stwartModules {
-			if transactionModule, ok := module.(modules.TransactionModule); ok {
-				err = transactionModule.HandleTx(tx)
-				if err != nil {
-					m.logger.TxError(module, tx, err)
-				}
-			}
-		}
+		// call the tx handlers
+		m.handleTx(tx)
 
-		// Handle all the messages contained inside the transaction
-		for _, msg := range tx.Body.Messages {
-			var stdMsg sdk.Msg
-			err = m.cdc.UnpackAny(msg, &stdMsg)
+		// call the msg handlers
+		for i, msg := range tx.Tx.Body.Messages {
+			m.handleMessage(i, msg, tx)
+		}
+	}
+
+	return txs, nil
+}
+
+// handleTx accepts the transaction and calls the tx handlers.
+func (m *Module) handleTx(tx *types.Transaction) {
+	// Call the tx handlers
+	for _, module := range m.stwartModules {
+		if transactionModule, ok := module.(modules.TransactionModule); ok {
+			err := transactionModule.HandleTx(tx)
 			if err != nil {
-				return []*txtypes.Tx{}, fmt.Errorf("error while unpacking message: %s", err)
+				m.logger.TxError(module, tx, err)
+			}
+		}
+	}
+}
+
+// handleMessage accepts the transaction and handles messages contained
+// inside the transaction.
+func (m *Module) handleMessage(index int, msg types.Message, tx *types.Transaction) {
+	// Allow modules to handle the message
+	for _, module := range m.stwartModules {
+		if messageModule, ok := module.(modules.MessageModule); ok {
+			err := messageModule.HandleMsg(index, msg, tx)
+			if err != nil {
+				m.logger.MsgError(module, tx, msg, err)
+			}
+		}
+
+		// If it's a MsgExecute, we need to make sure the included messages are handled as well
+		if msg.GetType() == "/cosmos.authz.v1beta1.MsgExec" {
+			var msgExec struct {
+				Msgs []json.RawMessage `json:"msgs"`
 			}
 
-			// Call the handlers
-			for i, mod := range m.stwartModules {
-				if messageModule, ok := mod.(modules.MessageModule); ok {
-					err = messageModule.HandleMsg(i, stdMsg, tx)
-					if err != nil {
-						if errors.As(err, &errs.NotFound{}) {
-							continue
-						}
+			err := json.Unmarshal(msg.GetBytes(), &msgExec)
+			if err != nil {
+				m.logger.Error("unable to unmarshal MsgExec inner messages", "error", err)
+				return
+			}
 
-						m.logger.MsgError(mod, tx, stdMsg, err)
+			for authzIndex, msgAny := range msgExec.Msgs {
+				executedMsg, err := types.UnmarshalMessage(authzIndex, msgAny)
+				if err != nil {
+					m.logger.Error("unable to unpack MsgExec inner message", "index", authzIndex, "error", err)
+				}
+
+				for _, module := range m.stwartModules {
+					if messageModule, ok := module.(modules.AuthzMessageModule); ok {
+						err = messageModule.HandleMsgExec(index, authzIndex, executedMsg, tx)
+						if err != nil {
+							m.logger.MsgError(module, tx, executedMsg, err)
+						}
 					}
 				}
 			}
 		}
 	}
+}
 
-	return txs, nil
+// saveTx accepts the transaction and persists it inside the database.
+// An error is returned if the write fails.
+func (m *Module) saveTx(tx *types.Transaction) error {
+	err := m.db.SaveTx(tx)
+	if err != nil {
+		return fmt.Errorf("failed to handle transaction with hash %s: %s", tx.TxResponse.TxHash, err)
+	}
+	return nil
 }

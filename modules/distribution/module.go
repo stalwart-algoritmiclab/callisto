@@ -11,7 +11,7 @@ import (
 
 	distrsource "github.com/stalwart-algoritmiclab/callisto/modules/distribution/source"
 
-	"github.com/forbole/juno/v5/modules"
+	"github.com/forbole/juno/v6/modules"
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
 )
@@ -21,6 +21,7 @@ var (
 	_ modules.GenesisModule            = &Module{}
 	_ modules.PeriodicOperationsModule = &Module{}
 	_ modules.MessageModule            = &Module{}
+	_ modules.AuthzMessageModule       = &Module{}
 )
 
 // Module represents the x/distr module

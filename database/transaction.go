@@ -11,12 +11,13 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"time"
 
-	cosmos "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	cosmostx "github.com/cosmos/cosmos-sdk/types/tx"
-	txtypes "github.com/forbole/juno/v5/types"
+	sdktx "github.com/cosmos/cosmos-sdk/types/tx"
+	utils "github.com/forbole/juno/v6/node/local"
+	txtypes "github.com/forbole/juno/v6/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/types"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
@@ -24,55 +25,63 @@ import (
 )
 
 // GetTransaction - get transaction from database
-func (db *Db) GetTransaction(filter filter.Filter) (*txtypes.Tx, error) {
+func (db *Db) GetTransaction(filter filter.Filter) (*txtypes.Transaction, error) {
 	query, args := filter.SetLimit(1).Build("transaction")
-
 	var result types.TransactionRow
 	if err := db.Sqlx.Get(&result, query, args...); err != nil {
 		if !errors.Is(err, sql.ErrNoRows) {
-			return &txtypes.Tx{}, errs.Internal{Cause: err.Error()}
+			return &txtypes.Transaction{}, errs.Internal{Cause: err.Error()}
 		}
 
-		return &txtypes.Tx{}, errs.NotFound{What: "transaction"}
+		return &txtypes.Transaction{}, errs.NotFound{What: "transaction"}
 	}
 
 	return db.toTxTypesTx(result)
 }
 
 // GetTransactions - get transactions from database
-func (db *Db) GetTransactions(filter filter.Filter) ([]*txtypes.Tx, error) {
+func (db *Db) GetTransactions(filter filter.Filter) ([]*txtypes.Transaction, error) {
 	query, args := filter.Build("transaction")
 
 	var result []types.TransactionRow
 	if err := db.Sqlx.Select(&result, query, args...); err != nil {
-		return []*txtypes.Tx{}, errs.Internal{Cause: err.Error()}
+		return []*txtypes.Transaction{}, errs.Internal{Cause: err.Error()}
 	}
 
 	if len(result) == 0 {
-		return []*txtypes.Tx{}, errs.NotFound{What: "transaction"}
+		return []*txtypes.Transaction{}, errs.NotFound{What: "transaction"}
 	}
 
-	transactions := make([]*txtypes.Tx, 0, len(result))
+	transactions := make([]*txtypes.Transaction, 0, len(result))
 	for _, tx := range result {
 		transaction, err := db.toTxTypesTx(tx)
 		if err != nil {
-			return []*txtypes.Tx{}, errs.Internal{Cause: err.Error()}
+			return []*txtypes.Transaction{}, errs.Internal{Cause: err.Error()}
 		}
 
 		transactions = append(transactions, transaction)
 	}
 
+	for _, tx := range transactions {
+
+		_ = test(*tx)
+	}
+
 	return transactions, nil
 }
 
-// toTxTypesTx - convert database row to Tx
-func (db *Db) toTxTypesTx(tx types.TransactionRow) (*txtypes.Tx, error) {
-	var err error
-	result, err := txtypes.NewTx(
-		&sdk.TxResponse{},
-		&cosmostx.Tx{Body: &cosmostx.TxBody{}, AuthInfo: &cosmostx.AuthInfo{}},
-	)
+func test(transaction txtypes.Transaction) error {
 
+	return nil
+}
+
+// toTxTypesTx - convert database row to Tx
+func (db *Db) toTxTypesTx(tx types.TransactionRow) (*txtypes.Transaction, error) {
+	var err error
+	result, err := txtypes.NewTransaction(
+		utils.NewTxResponseFromSdkTxResponse(&sdk.TxResponse{}, &txtypes.Tx{}),
+		newTxFromSdkTx(&sdktx.Tx{}, &sdktx.TxBody{}, &txtypes.AuthInfo{}),
+	)
 	if err != nil {
 		return nil, err
 	}
@@ -85,11 +94,10 @@ func (db *Db) toTxTypesTx(tx types.TransactionRow) (*txtypes.Tx, error) {
 		return nil, err
 	}
 
-	result.Body.Messages = make([]*cosmos.Any, 0, len(anyRaw))
 	for _, raw := range anyRaw {
-		msg := cosmos.Any{}
-		if err := db.Cdc.UnmarshalJSON(raw, &msg); err != nil {
-			return nil, err
+		msg := txtypes.StandardMessage{}
+		if err := json.Unmarshal(raw, &msg); err != nil {
+			return nil, fmt.Errorf("failed to unmarshal StandardMessage: %v", err)
 		}
 
 		result.Body.Messages = append(result.Body.Messages, &msg)
@@ -107,18 +115,16 @@ func (db *Db) toTxTypesTx(tx types.TransactionRow) (*txtypes.Tx, error) {
 		return nil, err
 	}
 
-	result.AuthInfo.SignerInfos = make([]*cosmostx.SignerInfo, 0, len(sigInfoRaw))
 	for _, sig := range sigInfoRaw {
-		sigInfo := cosmostx.SignerInfo{}
-		if err = db.Cdc.UnmarshalJSON(sig, &sigInfo); err != nil {
+		sigInfo := txtypes.SignerInfo{}
+		if err = json.Unmarshal(sig, &sigInfo); err != nil {
 			return nil, err
 		}
-
 		result.AuthInfo.SignerInfos = append(result.AuthInfo.SignerInfos, &sigInfo)
 	}
 
-	result.AuthInfo.Fee = &cosmostx.Fee{}
-	if err = db.Cdc.UnmarshalJSON(tx.Fee, result.AuthInfo.Fee); err != nil {
+	result.AuthInfo.Fee = &txtypes.Fee{}
+	if err = json.Unmarshal(tx.Fee, result.AuthInfo.Fee); err != nil {
 		return nil, err
 	}
 
@@ -133,12 +139,30 @@ func (db *Db) toTxTypesTx(tx types.TransactionRow) (*txtypes.Tx, error) {
 	}
 
 	result.TxHash = tx.Hash
-	result.Height = tx.Height
+	result.Height = uint64(tx.Height)
 	result.Body.Memo = tx.Memo
-	result.GasWanted = tx.GasWanted
-	result.GasUsed = tx.GasUsed
+	result.GasWanted = uint64(tx.GasWanted)
+	result.GasUsed = uint64(tx.GasUsed)
 	result.RawLog = tx.RawLog
 	result.Timestamp = block.Timestamp.Format(time.RFC3339)
 
 	return result, nil
+}
+
+// newTxFromSdkTx allows to build a new Tx instance from the given tx.Tx
+func newTxFromSdkTx(tx *sdktx.Tx, body *sdktx.TxBody, authInfo *txtypes.AuthInfo) *txtypes.Tx {
+	return &txtypes.Tx{
+		Tx:       tx,
+		Body:     newTxBodFromSdkTxBody(body),
+		AuthInfo: authInfo,
+	}
+}
+
+// newTxBodFromSdkTxBody allows to build a new TxBody instance from the given tx.TxBody
+func newTxBodFromSdkTxBody(body *sdktx.TxBody) *txtypes.TxBody {
+	return &txtypes.TxBody{
+		TxBody:        body,
+		TimeoutHeight: body.TimeoutHeight,
+		Messages:      []txtypes.Message{},
+	}
 }

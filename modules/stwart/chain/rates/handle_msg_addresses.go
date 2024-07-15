@@ -7,22 +7,21 @@
 package rates
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 )
 
 // handleMsgCreateAddresses allows to properly handle a MsgCreateAddresses
-func (m *Module) handleMsgCreateAddresses(tx *juno.Tx, msg *rates.MsgCreateAddresses) error {
-	return m.ratesRepo.InsertMsgCreateAddresses(tx.TxHash, &rates.MsgCreateAddresses{
+func (m *Module) handleMsgCreateAddresses(tx *juno.Transaction, msg *types.MsgCreateAddresses) error {
+	return m.ratesRepo.InsertMsgCreateAddresses(tx.TxHash, &types.MsgCreateAddresses{
 		Creator: msg.Creator,
 		Address: msg.Address,
 	})
 }
 
 // handleMsgUpdateAddresses allows to properly handle a MsgUpdateAddresses
-func (m *Module) handleMsgUpdateAddresses(tx *juno.Tx, msg *rates.MsgUpdateAddresses) error {
-	return m.ratesRepo.InsertMsgUpdateAddresses(tx.TxHash, &rates.MsgUpdateAddresses{
+func (m *Module) handleMsgUpdateAddresses(tx *juno.Transaction, msg *types.MsgUpdateAddresses) error {
+	return m.ratesRepo.InsertMsgUpdateAddresses(tx.TxHash, &types.MsgUpdateAddresses{
 		Creator: msg.Creator,
 		Id:      msg.Id,
 		Address: msg.Address,
@@ -30,8 +29,8 @@ func (m *Module) handleMsgUpdateAddresses(tx *juno.Tx, msg *rates.MsgUpdateAddre
 }
 
 // handleMsgDeleteAddresses allows to properly handle a MsgDeleteAddresses
-func (m *Module) handleMsgDeleteAddresses(tx *juno.Tx, msg *rates.MsgDeleteAddresses) error {
-	return m.ratesRepo.InsertMsgDeleteAddresses(tx.TxHash, &rates.MsgDeleteAddresses{
+func (m *Module) handleMsgDeleteAddresses(tx *juno.Transaction, msg *types.MsgDeleteAddresses) error {
+	return m.ratesRepo.InsertMsgDeleteAddresses(tx.TxHash, &types.MsgDeleteAddresses{
 		Creator: msg.Creator,
 		Id:      msg.Id,
 	})

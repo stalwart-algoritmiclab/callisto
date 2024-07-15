@@ -8,10 +8,5 @@ package modules
 
 // RunAdditionalOperations implements AdditionalOperationsModule
 func (m *Module) RunAdditionalOperations() error {
-	err := m.db.InsertEnableModuleTypes()
-	if err != nil {
-		return err
-	}
-
 	return m.db.InsertEnableModules(m.cfg.Modules)
 }

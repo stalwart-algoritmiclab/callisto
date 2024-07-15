@@ -7,15 +7,14 @@
 package rates
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 )
 
 // handleMsgCreateRates allows to properly handle a MsgCreateRates
-func (m *Module) handleMsgCreateRates(tx *juno.Tx, msg *rates.MsgCreateRates) error {
+func (m *Module) handleMsgCreateRates(tx *juno.Transaction, msg *types.MsgCreateRates) error {
 
-	return m.ratesRepo.InsertMsgCreateRates(tx.TxHash, &rates.MsgCreateRates{
+	return m.ratesRepo.InsertMsgCreateRates(tx.TxHash, &types.MsgCreateRates{
 		Creator:  msg.Creator,
 		Denom:    msg.Denom,
 		Rate:     msg.Rate,
@@ -24,8 +23,8 @@ func (m *Module) handleMsgCreateRates(tx *juno.Tx, msg *rates.MsgCreateRates) er
 }
 
 // handleMsgUpdateRates allows to properly handle a MsgUpdateRates
-func (m *Module) handleMsgUpdateRates(tx *juno.Tx, msg *rates.MsgUpdateRates) error {
-	return m.ratesRepo.InsertMsgUpdateRates(tx.TxHash, &rates.MsgUpdateRates{
+func (m *Module) handleMsgUpdateRates(tx *juno.Transaction, msg *types.MsgUpdateRates) error {
+	return m.ratesRepo.InsertMsgUpdateRates(tx.TxHash, &types.MsgUpdateRates{
 		Creator:  msg.Creator,
 		Denom:    msg.Denom,
 		Rate:     msg.Rate,
@@ -33,8 +32,8 @@ func (m *Module) handleMsgUpdateRates(tx *juno.Tx, msg *rates.MsgUpdateRates) er
 	})
 }
 
-func (m *Module) handleMsgDeleteRates(tx *juno.Tx, msg *rates.MsgDeleteRates) error {
-	return m.ratesRepo.InsertMsgDeleteRates(tx.TxHash, &rates.MsgDeleteRates{
+func (m *Module) handleMsgDeleteRates(tx *juno.Transaction, msg *types.MsgDeleteRates) error {
+	return m.ratesRepo.InsertMsgDeleteRates(tx.TxHash, &types.MsgDeleteRates{
 		Creator: msg.Creator,
 		Denom:   msg.Denom,
 	})

@@ -10,14 +10,14 @@ import (
 	"testing"
 
 	gofakeit "github.com/brianvoe/gofakeit/v6"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 
 	d "github.com/stalwart-algoritmiclab/callisto/_tests/database"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
 )
 
 func TestRepository_InsertMsgDeleteAddresses(t *testing.T) {
 	type args struct {
-		msg  []*secured.MsgDeleteAddresses
+		msg  []*types.MsgDeleteAddresses
 		hash string
 	}
 	tests := []struct {
@@ -28,7 +28,7 @@ func TestRepository_InsertMsgDeleteAddresses(t *testing.T) {
 		{
 			name: "[success] InsertToDeleteAddresses single",
 			args: args{
-				msg: []*secured.MsgDeleteAddresses{
+				msg: []*types.MsgDeleteAddresses{
 					{
 						Id:      1,
 						Creator: d.TestAddressCreator,
@@ -40,7 +40,7 @@ func TestRepository_InsertMsgDeleteAddresses(t *testing.T) {
 		{
 			name: "[success] InsertToDeleteAddresses multiple",
 			args: args{
-				msg: []*secured.MsgDeleteAddresses{
+				msg: []*types.MsgDeleteAddresses{
 					{
 						Id:      2,
 						Creator: d.TestAddressCreator,

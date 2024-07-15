@@ -11,8 +11,7 @@ import (
 
 	tmtypes "github.com/cometbft/cometbft/types"
 	"github.com/rs/zerolog/log"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
 )
 
 const moduleName = "core"
@@ -22,7 +21,7 @@ func (m *Module) HandleGenesis(doc *tmtypes.GenesisDoc, appState map[string]json
 	log.Debug().Str("module", moduleName).Msg("parsing genesis")
 
 	// Unmarshal the faucet state
-	var coreState core.GenesisState
+	var coreState types.GenesisState
 	if err := m.cdc.UnmarshalJSON(appState[moduleName], &coreState); err != nil {
 		return err
 	}

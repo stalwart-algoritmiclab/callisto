@@ -7,10 +7,10 @@
 package remote
 
 import (
-	"github.com/forbole/juno/v5/node/remote"
+	"github.com/forbole/juno/v6/node/remote"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/core/source"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/core"
 )
 
 var (
@@ -20,11 +20,11 @@ var (
 // Source represents the implementation of the QueryClient that works on a remote node
 type Source struct {
 	*remote.Source
-	client core.QueryClient
+	client types.QueryClient
 }
 
 // NewSource builds a new Source instance
-func NewSource(source *remote.Source, coreClient core.QueryClient) *Source {
+func NewSource(source *remote.Source, coreClient types.QueryClient) *Source {
 	return &Source{
 		Source: source,
 		client: coreClient,

@@ -252,7 +252,7 @@ func (m *Module) updateProposalValidatorStatusSnapshot(
 	snapshots := make([]types.ProposalValidatorStatusSnapshot, len(validators))
 
 	for index, validator := range validators {
-		consAddr, err := validator.GetConsAddr()
+		consAddr, err := m.getValidatorConsAddr(validator)
 		if err != nil {
 			return err
 		}
@@ -279,7 +279,7 @@ func (m *Module) updateValidatorStatusAndVP(height int64, validators []stakingty
 	statuses := make([]types.ValidatorStatus, len(validators))
 
 	for index, validator := range validators {
-		consAddr, err := validator.GetConsAddr()
+		consAddr, err := m.getValidatorConsAddr(validator)
 		if err != nil {
 			return err
 		}

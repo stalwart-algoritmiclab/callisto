@@ -7,27 +7,47 @@
 package feepolicy
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	juno "github.com/forbole/juno/v5/types"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
+// msgFilter defines the messages that should be handled by this module
+var msgFilter = map[string]bool{
+	"/stwartchain.feepolicy.MsgCreateTariffs":   true,
+	"/stwartchain.feepolicy.MsgUpdateTariffs":   true,
+	"/stwartchain.feepolicy.MsgDeleteTariffs":   true,
+	"/stwartchain.feepolicy.MsgCreateAddresses": true,
+	"/stwartchain.feepolicy.MsgUpdateAddresses": true,
+	"/stwartchain.feepolicy.MsgDeleteAddresses": true,
+}
+
 // HandleMsg implements MessageModule
-func (m *Module) HandleMsg(index int, msg sdk.Msg, tx *juno.Tx) error {
-	switch feepolicyMsg := msg.(type) {
-	case *feepolicy.MsgCreateTariffs:
-		return m.handleMsgCreateTariffs(tx, index, feepolicyMsg)
-	case *feepolicy.MsgUpdateTariffs:
-		return m.handleMsgUpdateTariffs(tx, index, feepolicyMsg)
-	case *feepolicy.MsgDeleteTariffs:
-		return m.handleMsgDeleteTariffs(tx, index, feepolicyMsg)
-	case *feepolicy.MsgCreateAddresses:
-		return m.handleMsgCreateAddresses(tx, index, feepolicyMsg)
-	case *feepolicy.MsgUpdateAddresses:
-		return m.handleMsgUpdateAddresses(tx, index, feepolicyMsg)
-	case *feepolicy.MsgDeleteAddresses:
-		return m.handleMsgDeleteAddresses(tx, index, feepolicyMsg)
+func (m *Module) HandleMsg(index int, msg juno.Message, tx *juno.Transaction) error {
+	if _, ok := msgFilter[msg.GetType()]; !ok {
+		return nil
+	}
+
+	switch msg.GetType() {
+	case "/stwartchain.feepolicy.MsgCreateTariffs":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgCreateTariffs{})
+		return m.handleMsgCreateTariffs(tx, index, cosmosMsg)
+	case "/stwartchain.feepolicy.MsgUpdateTariffs":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgUpdateTariffs{})
+		return m.handleMsgUpdateTariffs(tx, index, cosmosMsg)
+	case "/stwartchain.feepolicy.MsgDeleteTariffs":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgDeleteTariffs{})
+		return m.handleMsgDeleteTariffs(tx, index, cosmosMsg)
+	case "/stwartchain.feepolicy.MsgCreateAddresses":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgCreateAddresses{})
+		return m.handleMsgCreateAddresses(tx, index, cosmosMsg)
+	case "/stwartchain.feepolicy.MsgUpdateAddresses":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgUpdateAddresses{})
+		return m.handleMsgUpdateAddresses(tx, index, cosmosMsg)
+	case "/stwartchain.feepolicy.MsgDeleteAddresses":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgDeleteAddresses{})
+		return m.handleMsgDeleteAddresses(tx, index, cosmosMsg)
 	default:
 		return nil
 	}

@@ -8,9 +8,6 @@ package database
 
 import (
 	"fmt"
-
-	utilsDB "github.com/stalwart-algoritmiclab/callisto/database/utils"
-	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 // InsertEnableModules allows to save enabled module into the database
@@ -41,24 +38,6 @@ func (db *Db) InsertEnableModules(modules []string) error {
 	_, err = db.SQL.Exec(stmt, values...)
 	if err != nil {
 		return fmt.Errorf("error while storing modules: %s", err)
-	}
-
-	return nil
-}
-
-// InsertEnableModuleTypes allows to save enabled module types into the database
-func (db *Db) InsertEnableModuleTypes() error {
-	for _, msgType := range utilsDB.MessageTypeLists() {
-		// migrate message types
-		err := db.SaveMessageType(types.NewMessageType(
-			msgType.Type,
-			msgType.Module,
-			msgType.Label,
-			msgType.Height))
-
-		if err != nil {
-			return err
-		}
 	}
 
 	return nil

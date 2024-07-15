@@ -10,17 +10,18 @@ import (
 	"encoding/hex"
 	"fmt"
 
+	"github.com/stalwart-algoritmiclab/callisto/types"
+
+	juno "github.com/forbole/juno/v6/types"
+
 	tmctypes "github.com/cometbft/cometbft/rpc/core/types"
 	tmtypes "github.com/cometbft/cometbft/types"
-	juno "github.com/forbole/juno/v5/types"
 	"github.com/rs/zerolog/log"
-
-	"github.com/stalwart-algoritmiclab/callisto/types"
 )
 
 // HandleBlock implements BlockModule
 func (m *Module) HandleBlock(
-	block *tmctypes.ResultBlock, res *tmctypes.ResultBlockResults, _ []*juno.Tx, vals *tmctypes.ResultValidators,
+	block *tmctypes.ResultBlock, res *tmctypes.ResultBlockResults, _ []*juno.Transaction, vals *tmctypes.ResultValidators,
 ) error {
 	// Update the validators
 	_, err := m.updateValidators(block.Block.Height)

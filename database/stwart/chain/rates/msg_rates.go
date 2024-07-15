@@ -10,15 +10,15 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
+	"github.com/stalwart-algoritmiclab/callisto/pkg/filter"
 )
 
 // GetAllMsgCreateRates - method that get data from a db (stwartchain_rates_create_rates).
-func (r Repository) GetAllMsgCreateRates(filter filter.Filter) ([]rates.MsgCreateRates, error) {
+func (r Repository) GetAllMsgCreateRates(filter filter.Filter) ([]types.MsgCreateRates, error) {
 	query, args := filter.Build(tableCreateRates)
 
 	var result []MsgCreateRates
@@ -37,7 +37,7 @@ func (r Repository) GetAllMsgCreateRates(filter filter.Filter) ([]rates.MsgCreat
 }
 
 // InsertMsgCreateRates - insert a new MsgCreateRates in a database (stwartchain_rates_create_rates).
-func (r Repository) InsertMsgCreateRates(hash string, msgs ...*rates.MsgCreateRates) error {
+func (r Repository) InsertMsgCreateRates(hash string, msgs ...*types.MsgCreateRates) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -68,7 +68,7 @@ func (r Repository) InsertMsgCreateRates(hash string, msgs ...*rates.MsgCreateRa
 	return nil
 }
 
-func (r Repository) GetAllMsgUpdateRates(filter filter.Filter) ([]rates.MsgUpdateRates, error) {
+func (r Repository) GetAllMsgUpdateRates(filter filter.Filter) ([]types.MsgUpdateRates, error) {
 	query, args := filter.Build(tableUpdateRates)
 
 	var result []MsgUpdateRates
@@ -86,7 +86,7 @@ func (r Repository) GetAllMsgUpdateRates(filter filter.Filter) ([]rates.MsgUpdat
 	return toMsgUpdateRatesDomainList(result), nil
 }
 
-func (r Repository) InsertMsgUpdateRates(hash string, msgs ...*rates.MsgUpdateRates) error {
+func (r Repository) InsertMsgUpdateRates(hash string, msgs ...*types.MsgUpdateRates) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -117,7 +117,7 @@ func (r Repository) InsertMsgUpdateRates(hash string, msgs ...*rates.MsgUpdateRa
 	return nil
 }
 
-func (r Repository) GetAllMsgDeleteRates(filter filter.Filter) ([]rates.MsgDeleteRates, error) {
+func (r Repository) GetAllMsgDeleteRates(filter filter.Filter) ([]types.MsgDeleteRates, error) {
 	query, args := filter.Build(tableDeleteRates)
 
 	var result []MsgDeleteRates
@@ -135,7 +135,7 @@ func (r Repository) GetAllMsgDeleteRates(filter filter.Filter) ([]rates.MsgDelet
 	return toMsgDeleteRatesDomainList(result), nil
 }
 
-func (r Repository) InsertMsgDeleteRates(hash string, msgs ...*rates.MsgDeleteRates) error {
+func (r Repository) InsertMsgDeleteRates(hash string, msgs ...*types.MsgDeleteRates) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

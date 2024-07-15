@@ -7,23 +7,27 @@
 package referrals
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	juno "github.com/forbole/juno/v5/types"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
+// msgFilter defines the messages that should be handled by this module
+var msgFilter = map[string]bool{
+	"/stwartchain.referral.MsgSetReferrer": true,
+}
+
 // HandleMsg implements MessageModule
-func (m *Module) HandleMsg(_ int, msg sdk.Msg, tx *juno.Tx) error {
-	switch referralsMsg := msg.(type) {
-	case *referrals.MsgCreateUser:
-		return m.handleMsgCreateUser(tx, referralsMsg)
-	case *referrals.MsgUpdateUser:
-		return m.handleMsgUpdateUser(tx, referralsMsg)
-	case *referrals.MsgDeleteUser:
-		return m.handleMsgDeleteUser(tx, referralsMsg)
-	case *referrals.MsgSetReferrer:
-		return m.handleMsgSetReferrer(tx, referralsMsg)
+func (m *Module) HandleMsg(index int, msg juno.Message, tx *juno.Transaction) error {
+	if _, ok := msgFilter[msg.GetType()]; !ok {
+		return nil
+	}
+
+	switch msg.GetType() {
+	case "/stwartchain.referral.MsgSetReferrer":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgSetReferrer{})
+		return m.handleMsgSetReferrer(tx, cosmosMsg)
 
 	default:
 		return nil

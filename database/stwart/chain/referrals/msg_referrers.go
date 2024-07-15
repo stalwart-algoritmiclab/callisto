@@ -7,13 +7,14 @@
 package referrals
 
 import (
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
+
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/referrals"
 )
 
 // InsertMsgSetReferrer - insert a new MsgSetReferrer into the database (stwart_referrals_set_referrer).
-func (r Repository) InsertMsgSetReferrer(hash string, msgs ...*referrals.MsgSetReferrer) error {
+func (r Repository) InsertMsgSetReferrer(hash string, msgs ...*types.MsgSetReferrer) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}

@@ -8,11 +8,11 @@ package pricefeed
 
 import (
 	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/forbole/juno/v5/types/config"
+	"github.com/forbole/juno/v6/types/config"
 
 	"github.com/stalwart-algoritmiclab/callisto/database"
 
-	"github.com/forbole/juno/v5/modules"
+	"github.com/forbole/juno/v6/modules"
 )
 
 var (

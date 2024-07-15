@@ -7,27 +7,47 @@
 package rates
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	juno "github.com/forbole/juno/v5/types"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/rates"
+	"github.com/stalwart-algoritmiclab/callisto/utils"
 )
 
+// msgFilter defines the messages that should be handled by this module
+var msgFilter = map[string]bool{
+	"/stwartchain.rates.MsgCreateRates":     true,
+	"/stwartchain.rates.MsgUpdateRates":     true,
+	"/stwartchain.rates.MsgDeleteRates":     true,
+	"/stwartchain.rates.MsgCreateAddresses": true,
+	"/stwartchain.rates.MsgUpdateAddresses": true,
+	"/stwartchain.rates.MsgDeleteAddresses": true,
+}
+
 // HandleMsg implements MessageModule
-func (m *Module) HandleMsg(_ int, msg sdk.Msg, tx *juno.Tx) error {
-	switch ratesMsg := msg.(type) {
-	case *rates.MsgCreateRates:
-		return m.handleMsgCreateRates(tx, ratesMsg)
-	case *rates.MsgUpdateRates:
-		return m.handleMsgUpdateRates(tx, ratesMsg)
-	case *rates.MsgDeleteRates:
-		return m.handleMsgDeleteRates(tx, ratesMsg)
-	case *rates.MsgCreateAddresses:
-		return m.handleMsgCreateAddresses(tx, ratesMsg)
-	case *rates.MsgUpdateAddresses:
-		return m.handleMsgUpdateAddresses(tx, ratesMsg)
-	case *rates.MsgDeleteAddresses:
-		return m.handleMsgDeleteAddresses(tx, ratesMsg)
+func (m *Module) HandleMsg(index int, msg juno.Message, tx *juno.Transaction) error {
+	if _, ok := msgFilter[msg.GetType()]; !ok {
+		return nil
+	}
+
+	switch msg.GetType() {
+	case "/stwartchain.rates.MsgCreateRates":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgCreateRates{})
+		return m.handleMsgCreateRates(tx, cosmosMsg)
+	case "/stwartchain.rates.MsgUpdateRates":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgUpdateRates{})
+		return m.handleMsgUpdateRates(tx, cosmosMsg)
+	case "/stwartchain.rates.MsgDeleteRates":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgDeleteRates{})
+		return m.handleMsgDeleteRates(tx, cosmosMsg)
+	case "/stwartchain.rates.MsgCreateAddresses":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgCreateAddresses{})
+		return m.handleMsgCreateAddresses(tx, cosmosMsg)
+	case "/stwartchain.rates.MsgUpdateAddresses":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgUpdateAddresses{})
+		return m.handleMsgUpdateAddresses(tx, cosmosMsg)
+	case "/stwartchain.rates.MsgDeleteAddresses":
+		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgDeleteAddresses{})
+		return m.handleMsgDeleteAddresses(tx, cosmosMsg)
 	default:
 		return nil
 	}

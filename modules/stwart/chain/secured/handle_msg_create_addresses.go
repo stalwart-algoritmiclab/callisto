@@ -7,12 +7,11 @@
 package secured
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/secured"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
 )
 
 // handleMsgIssue allows to properly handle a MsgIssue
-func (m *Module) handleMsgCreateAddresses(tx *juno.Tx, _ int, msg *secured.MsgCreateAddresses) error {
+func (m *Module) handleMsgCreateAddresses(tx *juno.Transaction, _ int, msg *types.MsgCreateAddresses) error {
 	return m.securedRepo.InsertMsgCreateAddresses(tx.TxHash, msg)
 }

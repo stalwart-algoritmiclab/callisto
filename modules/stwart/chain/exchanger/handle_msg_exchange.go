@@ -7,12 +7,11 @@
 package exchanger
 
 import (
-	juno "github.com/forbole/juno/v5/types"
-
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/exchanger"
+	juno "github.com/forbole/juno/v6/types"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/types"
 )
 
 // handleMsgExchange handles the MsgExchange message
-func (m *Module) handleMsgExchange(tx *juno.Tx, _ int, msg *exchanger.MsgExchange) error {
+func (m *Module) handleMsgExchange(tx *juno.Transaction, _ int, msg *types.MsgExchange) error {
 	return m.exchangerRepo.InsertMsgExchange(tx.TxHash, msg)
 }

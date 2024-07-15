@@ -9,7 +9,7 @@ package upgrade
 import (
 	"github.com/stalwart-algoritmiclab/callisto/database"
 
-	"github.com/forbole/juno/v5/modules"
+	"github.com/forbole/juno/v6/modules"
 )
 
 var (

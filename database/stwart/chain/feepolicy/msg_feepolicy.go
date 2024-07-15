@@ -7,13 +7,14 @@
 package feepolicy
 
 import (
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/types"
+
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
 	"github.com/stalwart-algoritmiclab/callisto/pkg/errs"
-	"github.com/stalwart-algoritmiclab/callisto/proto/stwartchain/feepolicy"
 )
 
 // InsertMsgCreateTariffs - insert MsgCreateTariffs into the database
-func (r Repository) InsertMsgCreateTariffs(height int64, hash string, msgs ...*feepolicy.MsgCreateTariffs) error {
+func (r Repository) InsertMsgCreateTariffs(height uint64, hash string, msgs ...*types.MsgCreateTariffs) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -32,7 +33,7 @@ func (r Repository) InsertMsgCreateTariffs(height int64, hash string, msgs ...*f
 }
 
 // addMsgCreateTariffs - create tariffs in the database
-func (r Repository) addMsgCreateTariffs(height int64, hash string, tariff MsgCreateTariffs) error {
+func (r Repository) addMsgCreateTariffs(height uint64, hash string, tariff MsgCreateTariffs) error {
 	query := `INSERT INTO stwart_feepolicy_msg_create_tariffs (denom, creator, tx_hash, height) VALUES ($1, $2, $3, $4)`
 	if _, err := r.db.Exec(query, tariff.Denom, tariff.Creator, hash, height); err != nil {
 		if chain.IsAlreadyExists(err) {
@@ -61,7 +62,7 @@ func (r Repository) addMsgCreateTariff(hash string, tariffDetail Tariff) error {
 }
 
 // InsertMsgUpdateTariffs - insert msg update tariffs
-func (r Repository) InsertMsgUpdateTariffs(height int64, hash string, msgs ...*feepolicy.MsgUpdateTariffs) error {
+func (r Repository) InsertMsgUpdateTariffs(height uint64, hash string, msgs ...*types.MsgUpdateTariffs) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
@@ -79,7 +80,7 @@ func (r Repository) InsertMsgUpdateTariffs(height int64, hash string, msgs ...*f
 }
 
 // addMsgUpdateTariffs - update tariffs in the database
-func (r Repository) addMsgUpdateTariffs(height int64, hash string, tariff MsgUpdateTariffs) error {
+func (r Repository) addMsgUpdateTariffs(height uint64, hash string, tariff MsgUpdateTariffs) error {
 	query := `INSERT INTO stwart_feepolicy_msg_update_tariffs (denom, creator, tx_hash, height) VALUES ($1, $2, $3, $4)`
 	if _, err := r.db.Exec(query, tariff.Denom, tariff.Creator, hash, height); err != nil {
 		if chain.IsAlreadyExists(err) {
@@ -108,7 +109,7 @@ func (r Repository) addMsgUpdateTariff(hash string, tariffDetail Tariff) error {
 }
 
 // InsertDeleteMsgDeleteTariffs - insert MsgDeleteTariffs in the database
-func (r Repository) InsertDeleteMsgDeleteTariffs(height int64, hash string, msgs ...*feepolicy.MsgDeleteTariffs) error {
+func (r Repository) InsertDeleteMsgDeleteTariffs(height uint64, hash string, msgs ...*types.MsgDeleteTariffs) error {
 	if len(msgs) == 0 || hash == "" {
 		return nil
 	}
