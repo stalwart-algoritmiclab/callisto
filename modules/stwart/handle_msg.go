@@ -45,7 +45,7 @@ func (m *Module) scheduler() {
 			time.Sleep(time.Second)
 
 			if errors.Is(err, errs.NotFound{}) {
-				m.logger.Error("Fail parseBlock", "module", m.Name(), "error", err)
+				m.logger.Debug("Fail parseBlock", "module", m.Name(), "error", err)
 				continue
 			}
 
