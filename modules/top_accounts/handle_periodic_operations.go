@@ -48,6 +48,13 @@ func (m *Module) RegisterPeriodicOperations(scheduler *gocron.Scheduler) error {
 	}
 	utils.WatchMethod(m.RefreshRewards)
 
+	if _, err := scheduler.Every(1).Day().At("00:04").Do(func() {
+		utils.WatchMethod(m.RefreshSSC)
+	}); err != nil {
+		return fmt.Errorf("error while setting up refresh top accounts SSC periodic operation: %s", err)
+	}
+	utils.WatchMethod(m.RefreshSSC)
+
 	return nil
 }
 
@@ -149,6 +156,47 @@ func (m *Module) RefreshRewards() error {
 	err = m.refreshTopAccountsSum(delegators, height)
 	if err != nil {
 		return fmt.Errorf("error while refreshing top accounts sum value: %s", err)
+	}
+
+	return nil
+}
+
+// RefreshSSC refreshes the token balances for all SSCs
+func (m *Module) RefreshSSC() error {
+	time.Sleep(3 * time.Second)
+
+	log.Trace().Str("module", "top accounts").Str("operation ", "refresh SSC").
+		Msg("refreshing SSC balances")
+
+	height, err := m.db.GetLastBlockHeight()
+	if err != nil {
+		return fmt.Errorf("error while getting latest block height: %s", err)
+	}
+
+	accounts, err := m.authModule.GetAllBaseAccounts(height)
+	if err != nil {
+		return fmt.Errorf("error while getting base accounts: %s", err)
+	}
+
+	if len(accounts) == 0 {
+		return nil
+	}
+
+	// Store accounts
+	err = m.db.SaveAccounts(accounts)
+	if err != nil {
+		return err
+	}
+
+	// Parse addresses to []string
+	var addresses []string
+	for _, a := range accounts {
+		addresses = append(addresses, a.Address)
+	}
+
+	err = m.bankModule.UpdateSSCBalances(addresses, height)
+	if err != nil {
+		return fmt.Errorf("error while refreshing top accounts balances: %s", err)
 	}
 
 	return nil

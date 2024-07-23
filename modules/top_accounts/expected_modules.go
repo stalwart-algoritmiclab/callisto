@@ -24,6 +24,7 @@ type AuthSource interface {
 // BankModule represents the module that allows to interact with the bank module
 type BankModule interface {
 	UpdateBalances(addresses []string, height int64) error
+	UpdateSSCBalances(addresses []string, height int64) error
 }
 
 // DistrModule represents the module that allows to interact with the distribution module
