@@ -8,6 +8,7 @@ package types
 
 const (
 	TokenDenomSTW        = "stw"
+	TokenDenomSSC        = "ssc"
 	DecimalTokenDenomSTW = 1_0000_0000
 )
 
