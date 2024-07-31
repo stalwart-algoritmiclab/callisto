@@ -39,6 +39,7 @@ import (
 	exchanger "github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/module"
 	faucet "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/module"
 	feepolicy "github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/module"
+	polls "github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/module"
 	rates "github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/module"
 	referral "github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/module"
 	secured "github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/module"
@@ -90,6 +91,7 @@ func getBasicManagers() module.BasicManager {
 		rates.AppModuleBasic{},
 		referral.AppModuleBasic{},
 		secured.AppModuleBasic{},
+		polls.AppModule{},
 	)
 }
 

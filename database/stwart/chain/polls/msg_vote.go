@@ -7,6 +7,7 @@
 package polls
 
 import (
+	"github.com/lib/pq"
 	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
@@ -22,17 +23,17 @@ func (r Repository) InsertMsgVote(hash string, msgs ...*types.MsgVote) error {
 
 	q := `
 		INSERT INTO stwart_polls_msg_vote (
-		    creator, tx_hash
+		    creator, poll_id, option_id, amount, tx_hash
 		) VALUES (	
-		    $1, $2
+		    $1, $2, $3, $4, $5
 		) RETURNING
-			id, creator, tx_hash
+			id, creator, poll_id, option_id, amount, tx_hash
 	`
 
 	for _, msg := range msgs {
 		m := toDatabaseMsgVote(hash, msg)
 
-		if _, err := r.db.Exec(q, m.Creator, m.TxHash); err != nil {
+		if _, err := r.db.Exec(q, m.Creator, m.PollID, m.OptionID, pq.Array(m.Amount), m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

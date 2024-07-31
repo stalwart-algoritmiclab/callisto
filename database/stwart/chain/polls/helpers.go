@@ -6,7 +6,11 @@
 
 package polls
 
-import "github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
+import (
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
+
+	dbtypes "github.com/stalwart-algoritmiclab/callisto/database/types"
+)
 
 // toMsgCreatePollsParamsDomain - mapping db model to model
 func (m MsgCreatePollsParams) toMsgCreatePollsParamsDomain() types.MsgCreatePollsParams {
@@ -15,7 +19,7 @@ func (m MsgCreatePollsParams) toMsgCreatePollsParamsDomain() types.MsgCreatePoll
 		MinDaysDuration: m.MinDaysDuration,
 		MaxDaysDuration: m.MaxDaysDuration,
 		MaxDaysPending:  m.MaxDaysPending,
-		ProposerDeposit: m.ProposerDeposit,
+		ProposerDeposit: m.ProposerDeposit.ToCoins(),
 		BurnVeto:        m.BurnVeto,
 	}
 }
@@ -27,7 +31,7 @@ func toDatabaseMsgCreatePollsParams(hash string, m *types.MsgCreatePollsParams) 
 		MinDaysDuration: m.MinDaysDuration,
 		MaxDaysDuration: m.MaxDaysDuration,
 		MaxDaysPending:  m.MaxDaysPending,
-		ProposerDeposit: m.ProposerDeposit,
+		ProposerDeposit: dbtypes.NewDbCoins(m.ProposerDeposit),
 		BurnVeto:        m.BurnVeto,
 		TxHash:          hash,
 	}
@@ -40,7 +44,7 @@ func (m MsgUpdatePollsParams) toMsgUpdatePollsPayloadDomain() types.MsgUpdatePol
 		MinDaysDuration: m.MinDaysDuration,
 		MaxDaysDuration: m.MaxDaysDuration,
 		MaxDaysPending:  m.MaxDaysPending,
-		ProposerDeposit: m.ProposerDeposit,
+		ProposerDeposit: m.ProposerDeposit.ToCoins(),
 		BurnVeto:        m.BurnVeto,
 	}
 }
@@ -52,7 +56,7 @@ func toDatabaseMsgUpdatePollsParams(hash string, m *types.MsgUpdatePollsParams) 
 		MinDaysDuration: m.MinDaysDuration,
 		MaxDaysDuration: m.MaxDaysDuration,
 		MaxDaysPending:  m.MaxDaysPending,
-		ProposerDeposit: m.ProposerDeposit,
+		ProposerDeposit: dbtypes.NewDbCoins(m.ProposerDeposit),
 		BurnVeto:        m.BurnVeto,
 		TxHash:          hash,
 	}
@@ -107,10 +111,10 @@ func (m Options) toOptionsDomain() types.Options {
 	return types.Options{
 		Id:           m.ID,
 		VotersCount:  m.VotersCount,
-		TokensAmount: m.TokensAmount,
+		TokensAmount: m.TokensAmount.ToCoins(),
 		IsVeto:       m.IsVeto,
 		Text:         m.Text,
-		IsVinner:     m.IsWinner,
+		IsWinner:     m.IsWinner,
 	}
 }
 
@@ -119,10 +123,10 @@ func toDatabaseOptions(m types.Options) Options {
 	return Options{
 		ID:           m.Id,
 		VotersCount:  m.VotersCount,
-		TokensAmount: m.TokensAmount,
+		TokensAmount: dbtypes.NewDbCoins(m.TokensAmount),
 		IsVeto:       m.IsVeto,
 		Text:         m.Text,
-		IsWinner:     m.IsVinner,
+		IsWinner:     m.IsWinner,
 	}
 }
 
@@ -132,7 +136,7 @@ func (m MsgVote) toMsgVoteDomain() types.MsgVote {
 		Creator:  m.Creator,
 		PollId:   m.PollID,
 		OptionId: m.OptionID,
-		Amount:   m.Amount,
+		Amount:   m.Amount.ToCoins(),
 	}
 }
 
@@ -142,7 +146,7 @@ func toDatabaseMsgVote(hash string, m *types.MsgVote) MsgVote {
 		Creator:  m.Creator,
 		PollID:   m.PollId,
 		OptionID: m.OptionId,
-		Amount:   m.Amount,
+		Amount:   dbtypes.NewDbCoins(m.Amount),
 		TxHash:   hash,
 	}
 }

@@ -6,7 +6,9 @@
 
 package polls
 
-import sdk "github.com/cosmos/cosmos-sdk/types"
+import (
+	"github.com/stalwart-algoritmiclab/callisto/database/types"
+)
 
 const (
 	tableMsgCreatePollsParams = "stwart_polls_msg_create_polls_params"
@@ -20,26 +22,26 @@ const (
 type (
 	// MsgCreatePollsParams - db model for 'stwart_polls_msg_create_polls_params'
 	MsgCreatePollsParams struct {
-		ID              uint64    `db:"id"`
-		Creator         string    `db:"creator"`
-		MinDaysDuration string    `db:"min_days_duration"`
-		MaxDaysDuration string    `db:"max_days_duration"`
-		MaxDaysPending  string    `db:"max_days_pending"`
-		ProposerDeposit sdk.Coins `db:"proposer_deposit"`
-		BurnVeto        bool      `db:"burn_veto"`
-		TxHash          string    `db:"tx_hash"`
+		ID              uint64        `db:"id"`
+		Creator         string        `db:"creator"`
+		MinDaysDuration string        `db:"min_days_duration"`
+		MaxDaysDuration string        `db:"max_days_duration"`
+		MaxDaysPending  string        `db:"max_days_pending"`
+		ProposerDeposit types.DbCoins `db:"proposer_deposit"`
+		BurnVeto        bool          `db:"burn_veto"`
+		TxHash          string        `db:"tx_hash"`
 	}
 
 	// MsgUpdatePollsParams - db model for 'stwart_polls_msg_update_polls_params'
 	MsgUpdatePollsParams struct {
-		ID              uint64    `db:"id"`
-		Creator         string    `db:"creator"`
-		MinDaysDuration string    `db:"min_days_duration"`
-		MaxDaysDuration string    `db:"max_days_duration"`
-		MaxDaysPending  string    `db:"max_days_pending"`
-		ProposerDeposit sdk.Coins `db:"proposer_deposit"`
-		BurnVeto        bool      `db:"burn_veto"`
-		TxHash          string    `db:"tx_hash"`
+		ID              uint64        `db:"id"`
+		Creator         string        `db:"creator"`
+		MinDaysDuration string        `db:"min_days_duration"`
+		MaxDaysDuration string        `db:"max_days_duration"`
+		MaxDaysPending  string        `db:"max_days_pending"`
+		ProposerDeposit types.DbCoins `db:"proposer_deposit"`
+		BurnVeto        bool          `db:"burn_veto"`
+		TxHash          string        `db:"tx_hash"`
 	}
 
 	// MsgDeletePollsParams - db model for 'stwart_polls_msg_delete_polls_params'
@@ -65,22 +67,22 @@ type (
 
 	// Options - db model for 'stwart_polls_options'
 	Options struct {
-		ID           uint64    `db:"id"`
-		PollID       uint64    `db:"poll_id"`
-		VotersCount  uint64    `db:"voters_count"`
-		TokensAmount sdk.Coins `db:"tokens_amount"`
-		IsVeto       bool      `db:"is_veto"`
-		Text         string    `db:"text"`
-		IsWinner     bool      `db:"is_winner"`
+		ID           uint64        `db:"id"`
+		PollID       uint64        `db:"poll_id"`
+		VotersCount  uint64        `db:"voters_count"`
+		TokensAmount types.DbCoins `db:"tokens_amount"`
+		IsVeto       bool          `db:"is_veto"`
+		Text         string        `db:"text"`
+		IsWinner     bool          `db:"is_winner"`
 	}
 
 	// MsgVote - db model for 'stwart_polls_msg_vote'
 	MsgVote struct {
-		ID       uint64    `db:"id"`
-		Creator  string    `db:"creator"`
-		PollID   uint64    `db:"poll_id"`
-		OptionID uint64    `db:"option_id"`
-		Amount   sdk.Coins `db:"amount"`
-		TxHash   string    `db:"tx_hash"`
+		ID       uint64        `db:"id"`
+		Creator  string        `db:"creator"`
+		PollID   uint64        `db:"poll_id"`
+		OptionID uint64        `db:"option_id"`
+		Amount   types.DbCoins `db:"amount"`
+		TxHash   string        `db:"tx_hash"`
 	}
 )

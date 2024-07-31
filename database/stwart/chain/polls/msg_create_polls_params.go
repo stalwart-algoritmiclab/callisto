@@ -10,6 +10,7 @@ import (
 	"database/sql"
 	"errors"
 
+	"github.com/lib/pq"
 	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
 
 	"github.com/stalwart-algoritmiclab/callisto/database/stwart/chain"
@@ -35,7 +36,7 @@ func (r Repository) InsertMsgCreatePollsParams(hash string, msgs ...*types.MsgCr
 	for _, msg := range msgs {
 		m := toDatabaseMsgCreatePollsParams(hash, msg)
 
-		if _, err := r.db.Exec(q, m.Creator, m.MinDaysDuration, m.MaxDaysDuration, m.MaxDaysPending, m.ProposerDeposit, m.BurnVeto, m.TxHash); err != nil {
+		if _, err := r.db.Exec(q, m.Creator, m.MinDaysDuration, m.MaxDaysDuration, m.MaxDaysPending, pq.Array(m.ProposerDeposit), m.BurnVeto, m.TxHash); err != nil {
 			if chain.IsAlreadyExists(err) {
 				continue
 			}

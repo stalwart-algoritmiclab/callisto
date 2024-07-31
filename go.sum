@@ -1300,6 +1300,8 @@ github.com/ssgreg/nlreturn/v2 v2.2.1 h1:X4XDI7jstt3ySqGU86YGAURbxw3oTDPK9sPEi6YE
 github.com/ssgreg/nlreturn/v2 v2.2.1/go.mod h1:E/iiPB78hV7Szg2YfRgyIrk1AD6JVMTRkkxBiELzh2I=
 github.com/stalwart-algoritmiclab/stwart-chain-go v0.0.0-20240730143206-6861b65b8e88 h1:lRXmyXVcyAk075uASiUbN5iiSqCzR9m0KOLNAC2/Eac=
 github.com/stalwart-algoritmiclab/stwart-chain-go v0.0.0-20240730143206-6861b65b8e88/go.mod h1:PLwpJGWpYiUrQQWXqcmCKrf3sfFsD9TKSP1U4az8DGg=
+github.com/stalwart-algoritmiclab/stwart-chain-go v0.0.0-20240731133811-8979968d4600 h1:WkJw8mDfmA7rop23mWFwPX8wu8MY1eTR/e0rrKaDes8=
+github.com/stalwart-algoritmiclab/stwart-chain-go v0.0.0-20240731133811-8979968d4600/go.mod h1:PLwpJGWpYiUrQQWXqcmCKrf3sfFsD9TKSP1U4az8DGg=
 github.com/stbenjam/no-sprintf-host-port v0.1.1 h1:tYugd/yrm1O0dV+ThCbaKZh195Dfm07ysF0U6JQXczc=
 github.com/stbenjam/no-sprintf-host-port v0.1.1/go.mod h1:TLhvtIvONRzdmkFiio4O8LHsN9N74I+PhRquPsxpL0I=
 github.com/streadway/amqp v0.0.0-20190404075320-75d898a42a94/go.mod h1:AZpEONHx3DKn8O/DFsRAY58/XVQiIPMTMB1SddzLXVw=

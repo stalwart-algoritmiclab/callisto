@@ -21,6 +21,7 @@ func (m *Module) handleMsgIssue(tx *juno.Transaction, _ int, msg *types.MsgIssue
 	})
 }
 
+// handleMsgWithdraw handles the MsgWithdraw message
 func (m *Module) handleMsgWithdraw(tx *juno.Transaction, _ int, msg *types.MsgWithdraw) error {
 	return m.coreRepo.InsertMsgWithdraw(tx.TxHash, &types.MsgWithdraw{
 		Creator: msg.Creator,
@@ -30,31 +31,7 @@ func (m *Module) handleMsgWithdraw(tx *juno.Transaction, _ int, msg *types.MsgWi
 	})
 }
 
-func (m *Module) handleMsgFees(tx *juno.Transaction, _ int, msg *types.MsgFees) error {
-	return m.coreRepo.InsertMsgFees(tx.TxHash, &types.MsgFees{
-		Creator:   msg.Creator,
-		Comission: msg.Comission, //nolint:misspell
-		AddressTo: msg.AddressTo,
-	})
-}
-
-func (m *Module) handleMsgRefund(tx *juno.Transaction, _ int, msg *types.MsgRefund) error {
-	return m.coreRepo.InsertMsgRefund(tx.TxHash, &types.MsgRefund{
-		Creator: msg.Creator,
-		Amount:  msg.Amount,
-		From:    msg.From,
-		To:      msg.To,
-	})
-}
-
-func (m *Module) handleMsgRefReward(tx *juno.Transaction, _ int, msg *types.MsgRefReward) error {
-	return m.coreRepo.InsertMsgRefReward(tx.TxHash, &types.MsgRefReward{
-		Creator:  msg.Creator,
-		Amount:   msg.Amount,
-		Referrer: msg.Referrer,
-	})
-}
-
+// handleMsgSend handles the MsgSend message
 func (m *Module) handleMsgSend(tx *juno.Transaction, _ int, msg *types.MsgSend) error {
 	return m.coreRepo.InsertMsgSend(tx.TxHash, &types.MsgSend{
 		Creator: msg.Creator,

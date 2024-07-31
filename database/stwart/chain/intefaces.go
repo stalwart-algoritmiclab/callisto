@@ -56,15 +56,6 @@ type (
 		GetAllMsgWithdraw(filter filter.Filter) ([]coretypes.MsgWithdraw, error)
 		InsertMsgWithdraw(hash string, msgs ...*coretypes.MsgWithdraw) error
 
-		GetAllMsgRefund(filter filter.Filter) ([]coretypes.MsgRefund, error)
-		InsertMsgRefund(hash string, msgs ...*coretypes.MsgRefund) error
-
-		GetAllMsgFees(filter filter.Filter) ([]coretypes.MsgFees, error)
-		InsertMsgFees(hash string, msgs ...*coretypes.MsgFees) error
-
-		GetAllMsgRefReward(filter filter.Filter) ([]coretypes.MsgRefReward, error)
-		InsertMsgRefReward(hash string, msgs ...*coretypes.MsgRefReward) error
-
 		GetAllMsgSend(filter filter.Filter) ([]coretypes.MsgSend, error)
 		InsertMsgSend(hash string, msgs ...*coretypes.MsgSend) error
 	}

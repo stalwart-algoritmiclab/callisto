@@ -58,13 +58,13 @@ CREATE INDEX polls_msg_create_poll_tx_hash_index ON stwart_polls_msg_create_poll
 
 CREATE TABLE stwart_polls_options
 (
-    id            BIGSERIAL NOT NULL PRIMARY KEY,
-    poll_id       BIGINT    NOT NULL REFERENCES stwart_polls_msg_create_poll (id) ON DELETE CASCADE,
+    id            BIGINT,
+    poll_id BIGINT NOT NULL REFERENCES stwart_polls_msg_create_poll (id) ON DELETE CASCADE,
     voters_count  BIGINT,
     tokens_amount COIN[],
     is_veto       BOOLEAN,
     text          TEXT,
-    is_vinner     BOOLEAN
+    is_winner     BOOLEAN
 );
 
 CREATE INDEX options_poll_id_index ON stwart_polls_options (poll_id);
@@ -73,15 +73,13 @@ CREATE TABLE stwart_polls_msg_vote
 (
     id        BIGSERIAL NOT NULL PRIMARY KEY,
     creator   TEXT      NOT NULL,
-    poll_id   BIGINT    NOT NULL REFERENCES stwart_polls_msg_create_poll (id) ON DELETE CASCADE,
-    option_id BIGINT    NOT NULL REFERENCES stwart_polls_options (id) ON DELETE CASCADE,
+    poll_id   BIGINT,
+    option_id BIGINT,
     amount    COIN[],
     tx_hash   TEXT      NOT NULL UNIQUE
 );
 
 CREATE INDEX vote_creator_index ON stwart_polls_msg_vote (creator);
-CREATE INDEX vote_poll_id_index ON stwart_polls_msg_vote (poll_id);
-CREATE INDEX vote_option_id_index ON stwart_polls_msg_vote (option_id);
 CREATE INDEX vote_tx_hash_index ON stwart_polls_msg_vote (tx_hash);
 
 -- +migrate Down
