@@ -13,6 +13,7 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/forbole/juno/v6/node/remote"
 	faucettypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
+	pollstypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
@@ -65,6 +66,8 @@ import (
 	remotefaucetsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/faucet/source/remote"
 	feepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source"
 	remotefeepolicysource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/feepolicy/source/remote"
+	pollssource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/polls/source"
+	remotepollsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/polls/source/remote"
 	ratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source"
 	remoteratessource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/rates/source/remote"
 	referralsource "github.com/stalwart-algoritmiclab/callisto/modules/stwart/chain/referrals/source"
@@ -90,6 +93,7 @@ type Sources struct {
 	RatesSource     ratessource.Source
 	FeepolicySource feepolicysource.Source
 	ReferralSource  referralsource.Source
+	PollSource      pollssource.Source
 }
 
 func BuildSources(nodeCfg nodeconfig.Config, cdc codec.Codec) (*Sources, error) {
@@ -159,5 +163,6 @@ func buildRemoteSources(cfg *remote.Details) (*Sources, error) {
 		CoreSource:      remotecoreSource.NewSource(source, coretypes.NewQueryClient(source.GrpcConn)),
 		FeepolicySource: remotefeepolicysource.NewSource(source, feepolicytypes.NewQueryClient(source.GrpcConn)),
 		ReferralSource:  remotereferralsource.NewSource(source, referralstypes.NewQueryClient(source.GrpcConn)),
+		PollSource:      remotepollsource.NewSource(source, pollstypes.NewQueryClient(source.GrpcConn)),
 	}, nil
 }
