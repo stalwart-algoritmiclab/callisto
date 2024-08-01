@@ -11,6 +11,7 @@ import (
 	exchangertypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/exchanger/types"
 	faucettypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/faucet/types"
 	feepolicytypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/feepolicy/types"
+	pollstypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
 	ratestypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/rates/types"
 	referraltypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/referral/types"
 	securedtypes "github.com/stalwart-algoritmiclab/stwart-chain-go/x/secured/types"
@@ -55,15 +56,6 @@ type (
 		GetAllMsgWithdraw(filter filter.Filter) ([]coretypes.MsgWithdraw, error)
 		InsertMsgWithdraw(hash string, msgs ...*coretypes.MsgWithdraw) error
 
-		GetAllMsgRefund(filter filter.Filter) ([]coretypes.MsgRefund, error)
-		InsertMsgRefund(hash string, msgs ...*coretypes.MsgRefund) error
-
-		GetAllMsgFees(filter filter.Filter) ([]coretypes.MsgFees, error)
-		InsertMsgFees(hash string, msgs ...*coretypes.MsgFees) error
-
-		GetAllMsgRefReward(filter filter.Filter) ([]coretypes.MsgRefReward, error)
-		InsertMsgRefReward(hash string, msgs ...*coretypes.MsgRefReward) error
-
 		GetAllMsgSend(filter filter.Filter) ([]coretypes.MsgSend, error)
 		InsertMsgSend(hash string, msgs ...*coretypes.MsgSend) error
 	}
@@ -104,5 +96,22 @@ type (
 	// Referrals - describes an interface for working with referrals database models.
 	Referrals interface {
 		InsertMsgSetReferrer(hash string, msgs ...*referraltypes.MsgSetReferrer) error
+	}
+
+	// Polls - describes an interface for working with polls database models.
+	Polls interface {
+		GetAllMsgCreatePollsParams(filter filter.Filter) ([]pollstypes.MsgCreatePollsParams, error)
+		InsertMsgCreatePollsParams(hash string, msgs ...*pollstypes.MsgCreatePollsParams) error
+
+		GetAllMsgUpdatePollsParams(filter filter.Filter) ([]pollstypes.MsgUpdatePollsParams, error)
+		InsertMsgUpdatePollsParams(hash string, msgs ...*pollstypes.MsgUpdatePollsParams) error
+
+		GetAllMsgDeletePollsParams(filter filter.Filter) ([]pollstypes.MsgDeletePollsParams, error)
+		InsertMsgDeletePollsParams(hash string, msgs ...*pollstypes.MsgDeletePollsParams) error
+
+		InsertMsgCreatePoll(hash string, msgs ...*pollstypes.MsgCreatePoll) error
+
+		GetAllMsgVote(filter filter.Filter) ([]pollstypes.MsgVote, error)
+		InsertMsgVote(hash string, msgs ...*pollstypes.MsgVote) error
 	}
 )

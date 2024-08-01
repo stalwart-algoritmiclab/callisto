@@ -16,12 +16,9 @@ import (
 
 // msgFilter defines the messages that should be handled by this module
 var msgFilter = map[string]bool{
-	"/stwartchain.core.MsgWithdraw":  true,
-	"/stwartchain.core.MsgIssue":     true,
-	"/stwartchain.core.MsgRefund":    true,
-	"/stwartchain.core.MsgRefReward": true,
-	"/stwartchain.core.MsgSend":      true,
-	"/stwartchain.core.MsgFees":      true,
+	"/stwartchain.core.MsgWithdraw": true,
+	"/stwartchain.core.MsgIssue":    true,
+	"/stwartchain.core.MsgSend":     true,
 }
 
 // HandleMsg implements MessageModule
@@ -37,18 +34,9 @@ func (m *Module) HandleMsg(index int, msg juno.Message, tx *juno.Transaction) er
 	case "/stwartchain.core.MsgIssue":
 		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgIssue{})
 		return m.handleMsgIssue(tx, index, cosmosMsg)
-	case "/stwartchain.core.MsgRefund":
-		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgRefund{})
-		return m.handleMsgRefund(tx, index, cosmosMsg)
-	case "/stwartchain.core.MsgRefReward":
-		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgRefReward{})
-		return m.handleMsgRefReward(tx, index, cosmosMsg)
 	case "/stwartchain.core.MsgSend":
 		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgSend{})
 		return m.handleMsgSend(tx, index, cosmosMsg)
-	case "/stwartchain.core.MsgFees":
-		cosmosMsg := utils.UnpackMessage(m.cdc, msg.GetBytes(), &types.MsgFees{})
-		return m.handleMsgFees(tx, index, cosmosMsg)
 
 	default:
 		return nil

@@ -111,6 +111,7 @@ func (r *Registrar) BuildModules(ctx registrar.Context) jmodules.Modules {
 		sources.CoreSource,
 		sources.FeepolicySource,
 		sources.ReferralSource,
+		sources.PollSource,
 	)
 
 	return []jmodules.Module{

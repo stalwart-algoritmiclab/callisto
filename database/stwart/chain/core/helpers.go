@@ -7,75 +7,8 @@
 package core
 
 import (
-	"fmt"
-
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/core/types"
 )
-
-func toMsgRefRewardDomain(m MsgRefReward) types.MsgRefReward {
-	coin, err := sdk.ParseCoinNormalized(m.Amount)
-	if err != nil {
-		return types.MsgRefReward{}
-	}
-	return types.MsgRefReward{
-		Creator:  m.Creator,
-		Amount:   coin,
-		Referrer: m.Referrer,
-	}
-}
-
-func toMsgRefRewardDomainList(m []MsgRefReward) []types.MsgRefReward {
-	res := make([]types.MsgRefReward, 0, len(m))
-	for _, msg := range m {
-		res = append(res, toMsgRefRewardDomain(msg))
-	}
-
-	return res
-
-}
-
-func toMsgRefRewardDatabase(txHash string, m *types.MsgRefReward) (MsgRefReward, error) {
-	amount := fmt.Sprintf("{%s}{%s}", m.Amount.Amount.String(), m.Amount.Denom)
-	return MsgRefReward{
-		TxHash:   txHash,
-		Creator:  m.Creator,
-		Amount:   amount,
-		Referrer: m.Referrer,
-	}, nil
-}
-
-func toMsgFeesDomain(m MsgFees) types.MsgFees {
-	coin, err := sdk.ParseCoinNormalized(m.Commission)
-	if err != nil {
-		return types.MsgFees{}
-	}
-	return types.MsgFees{
-		Creator:   m.Creator,
-		Comission: coin,
-		AddressTo: m.Address,
-	}
-}
-
-func toMsgFeesDomainList(m []MsgFees) []types.MsgFees {
-	res := make([]types.MsgFees, 0, len(m))
-	for _, msg := range m {
-		res = append(res, toMsgFeesDomain(msg))
-	}
-
-	return res
-}
-
-func toMsgFeesDatabase(txHash string, m *types.MsgFees) (MsgFees, error) {
-	commission := fmt.Sprintf("{%s}{%s}", m.Comission.Amount.String(), m.Comission.Denom)
-	return MsgFees{
-		TxHash:     txHash,
-		Creator:    m.Creator,
-		Commission: commission,
-		Address:    m.AddressTo,
-	}, nil
-
-}
 
 func toMsgSendDomain(m MsgSend) types.MsgSend {
 	return types.MsgSend{
@@ -104,34 +37,6 @@ func toMsgSendDatabase(txHash string, m *types.MsgSend) (MsgSend, error) {
 		To:      m.To,
 		Amount:  m.Amount,
 		Denom:   m.Denom,
-	}, nil
-}
-
-func toMsgRefundDomain(m MsgRefund) types.MsgRefund {
-	return types.MsgRefund{
-		Creator: m.Creator,
-		From:    m.From,
-		To:      m.To,
-		Amount:  m.Amount,
-	}
-}
-
-func toMsgRefundDomainList(m []MsgRefund) []types.MsgRefund {
-	res := make([]types.MsgRefund, 0, len(m))
-	for _, msg := range m {
-		res = append(res, toMsgRefundDomain(msg))
-	}
-
-	return res
-}
-
-func toMsgRefundDatabase(txHash string, m *types.MsgRefund) (MsgRefund, error) {
-	return MsgRefund{
-		TxHash:  txHash,
-		Creator: m.Creator,
-		From:    m.From,
-		To:      m.To,
-		Amount:  m.Amount,
 	}, nil
 }
 

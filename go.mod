@@ -33,7 +33,7 @@ require (
 	github.com/shopspring/decimal v1.4.0
 	github.com/spf13/cast v1.6.0
 	github.com/spf13/cobra v1.8.0
-	github.com/stalwart-algoritmiclab/stwart-chain-go v0.0.0-20240703065159-75cf060a6018
+	github.com/stalwart-algoritmiclab/stwart-chain-go v0.0.0-20240731133811-8979968d4600
 	github.com/stretchr/testify v1.9.0
 	google.golang.org/grpc v1.64.0
 	gopkg.in/yaml.v3 v3.0.1

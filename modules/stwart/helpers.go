@@ -246,6 +246,7 @@ func (m *Module) handleMessage(index int, msg types.Message, tx *types.Transacti
 			err := messageModule.HandleMsg(index, msg, tx)
 			if err != nil {
 				m.logger.MsgError(module, tx, msg, err)
+				return
 			}
 		}
 
