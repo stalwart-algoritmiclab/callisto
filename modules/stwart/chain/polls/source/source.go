@@ -6,6 +6,15 @@
 
 package source
 
+import (
+	"github.com/cosmos/cosmos-sdk/types/query"
+	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
+)
+
+// Source represents the implementation of the polls keeper that works on a local node
 type Source interface {
-	// TODO
+	// GetAllPoll returns all polls
+	GetAllPoll(height int64, pagination *query.PageRequest) (*types.QueryAllPollsResponse, error)
+	// GetPoll returns a poll by its ID
+	GetPoll(pollID uint64, height int64) (*types.QueryGetPollsResponse, error)
 }

@@ -16,14 +16,14 @@ import (
 
 // Context contains the data about a Hasura actions worker execution
 type Context struct {
-	node    node.Node
+	Node    node.Node
 	Sources *modulestypes.Sources
 }
 
 // NewContext returns a new Context instance
 func NewContext(node node.Node, sources *modulestypes.Sources) *Context {
 	return &Context{
-		node:    node,
+		Node:    node,
 		Sources: sources,
 	}
 }
@@ -31,7 +31,7 @@ func NewContext(node node.Node, sources *modulestypes.Sources) *Context {
 // GetHeight uses the latest height when the input height is empty from graphql request
 func (c *Context) GetHeight(payload *Payload) (int64, error) {
 	if payload == nil || payload.Input.Height == 0 {
-		latestHeight, err := c.node.LatestHeight()
+		latestHeight, err := c.Node.LatestHeight()
 		if err != nil {
 			return 0, fmt.Errorf("error while getting chain latest block height: %s", err)
 		}

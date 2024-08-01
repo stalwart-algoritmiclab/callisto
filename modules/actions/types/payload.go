@@ -30,6 +30,7 @@ func (p *Payload) GetPagination() *query.PageRequest {
 
 type PayloadArgs struct {
 	Address    string `json:"address"`
+	PollID     uint64 `json:"poll_id"`
 	Height     int64  `json:"height"`
 	Offset     uint64 `json:"offset"`
 	Limit      uint64 `json:"limit"`

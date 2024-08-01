@@ -7,6 +7,8 @@
 package local
 
 import (
+	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/forbole/juno/v6/node/local"
 	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
 
@@ -29,4 +31,41 @@ func NewSource(source *local.Source, pollsServer types.QueryServer) *Source {
 		Source:      source,
 		pollsServer: pollsServer,
 	}
+}
+
+// GetAllPoll implements source.Source
+func (s Source) GetAllPoll(height int64, pagination *query.PageRequest) (*types.QueryAllPollsResponse, error) {
+	ctx, err := s.LoadHeight(height)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := s.pollsServer.PollsAll(
+		sdk.WrapSDKContext(ctx),
+		&types.QueryAllPollsRequest{
+			Pagination: pagination,
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
+}
+
+// GetPoll implements source.Source
+func (s Source) GetPoll(pollID uint64, height int64) (*types.QueryGetPollsResponse, error) {
+	ctx, err := s.LoadHeight(height)
+	if err != nil {
+		return nil, err
+	}
+
+	res, err := s.pollsServer.Polls(sdk.WrapSDKContext(ctx), &types.QueryGetPollsRequest{
+		Id: pollID,
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
 }

@@ -47,6 +47,9 @@ func (m *Module) RunAdditionalOperations() error {
 	worker.RegisterHandler("/validator_redelegations_from", handlers.ValidatorRedelegationsFromHandler)
 	worker.RegisterHandler("/validator_unbonding_delegations", handlers.ValidatorUnbondingDelegationsHandler)
 
+	// -- StalwartChain Polls --
+	worker.RegisterHandler("/stalwart_polls", handlers.StalwartChainPollsHandler)
+
 	// Listen for and trap any OS signal to gracefully shutdown and exit
 	m.trapSignal()
 

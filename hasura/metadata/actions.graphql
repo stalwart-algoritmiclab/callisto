@@ -72,6 +72,16 @@ type Query {
         limit: Int
         count_total: Boolean
     ): ActionUnbondingDelegationResponse
+
+    action_stwart_polls(
+        address: String!
+        poll_id: Int
+        height: Int
+        offset: Int
+        limit: Int
+        count_total: Boolean
+    ): ActionPollsResponse
+}
 }
 
 type ActionBalance {
@@ -106,10 +116,16 @@ type ActionValidatorCommissionAmount {
     coins: [ActionCoin]
 }
 
+type ActionPollsResponse {
+    polls: [ActionPolls]
+    pagination: ActionPagination
+}
+
 scalar ActionCoin
 scalar ActionDelegation
 scalar ActionEntry
 scalar ActionPagination
 scalar ActionRedelegation
 scalar ActionUnbondingDelegation
+scalar ActionPolls
 
