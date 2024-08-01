@@ -7,6 +7,7 @@
 package remote
 
 import (
+	"github.com/cosmos/cosmos-sdk/types/query"
 	"github.com/forbole/juno/v6/node/remote"
 	"github.com/stalwart-algoritmiclab/stwart-chain-go/x/polls/types"
 
@@ -29,4 +30,35 @@ func NewSource(source *remote.Source, pollsClient types.QueryClient) *Source {
 		Source: source,
 		client: pollsClient,
 	}
+}
+
+// GetAllPoll implements source.Source
+func (s Source) GetAllPoll(height int64, pagination *query.PageRequest) (*types.QueryAllPollsResponse, error) {
+	ctx := s.Ctx
+	res, err := s.client.PollsAll(
+		remote.GetHeightRequestContext(ctx, height),
+		&types.QueryAllPollsRequest{
+			Pagination: pagination,
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// GetPoll implements source.Source
+func (s Source) GetPoll(pollID uint64, height int64) (*types.QueryGetPollsResponse, error) {
+	ctx := s.Ctx
+	res, err := s.client.Polls(
+		remote.GetHeightRequestContext(ctx, height),
+		&types.QueryGetPollsRequest{
+			Id: pollID,
+		},
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	return res, nil
 }

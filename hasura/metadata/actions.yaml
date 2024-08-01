@@ -236,6 +236,32 @@ actions:
   permissions:
   - role: anonymous
 
+  #### Stwart Pools ####
+- name: action_stwart_polls
+  definition:
+    kind: synchronous
+    handler: "{{ACTION_BASE_URL}}/stalwart_polls"
+    output_type: ActionPollsResponse
+    arguments:
+      - name: address
+        type: String!
+      - name: poll_id
+        type: Int
+      - name: height
+        type: Int
+      - name: offset
+        type: Int
+      - name: limit
+        type: Int
+      - name: count_total
+        type: Boolean!
+    type: query
+    headers:
+      - value: application/json
+        name: Content-Type
+  permissions:
+    - role: anonymous
+
 ############### CUSTOM TYPES ###############
 custom_types:
   scalars:
@@ -245,6 +271,7 @@ custom_types:
   - name: ActionPagination
   - name: ActionRedelegation
   - name: ActionUnbondingDelegation
+  - name: ActionPolls
 
   objects:
   - name: ActionBalance
@@ -289,3 +316,10 @@ custom_types:
     fields:
     - name: coins
       type: [ActionCoin]
+
+  - name: ActionPollsResponse
+    fields:
+    - name: polls
+      type: [ActionPolls]
+    - name: pagination
+      type: ActionPagination
